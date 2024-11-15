@@ -386,6 +386,18 @@
       </tags>
   </entry>
   <entry>
+    <title>从零搭建Hexo博客教程（一）</title>
+    <url>/2024/10/25/%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BAHexo%E5%8D%9A%E5%AE%A2%E6%95%99%E7%A8%8B%EF%BC%88%E4%B8%80%EF%BC%89/</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>博客教程</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+        <tag>教程</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>从零开始butterfly博客的魔改教程(二)</title>
     <url>/2024/10/25/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8Bbutterfly%E5%8D%9A%E5%AE%A2%E7%9A%84%E9%AD%94%E6%94%B9%E6%95%99%E7%A8%8B(%E4%BA%8C)/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>上一篇文章主要解决了关于如何搭建hexo博客和使用butterfly主题的问题。这篇文章开始我们将一步一步改良我们的博客，内容可能比较分散，但我尽可能的把大纲梳理清楚，写在最前面。</p>
@@ -405,18 +417,6 @@
       <tags>
         <tag>教程</tag>
         <tag>魔改</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>从零搭建Hexo博客教程（一）</title>
-    <url>/2024/10/25/%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BAHexo%E5%8D%9A%E5%AE%A2%E6%95%99%E7%A8%8B%EF%BC%88%E4%B8%80%EF%BC%89/</url>
-    <content><![CDATA[]]></content>
-      <categories>
-        <category>博客教程</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
-        <tag>教程</tag>
       </tags>
   </entry>
   <entry>
