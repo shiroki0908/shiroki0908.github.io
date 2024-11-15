@@ -290,30 +290,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Hello World</title>
-    <url>/2023/10/22/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-      <categories>
-        <category>Hexo</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>从零开始butterfly博客的魔改教程(一)</title>
     <url>/2024/10/25/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8Bbutterfly%E5%8D%9A%E5%AE%A2%E7%9A%84%E9%AD%94%E6%94%B9%E6%95%99%E7%A8%8B(%E4%B8%80)/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这是一篇从零开始构建butterfly博客的教程，主要面向的完全不知道如何构建Hexo博客的小白，这篇教程会从构建hexo博客开始，初步目标是给Hexo安装上本次的主人公butterfly主题。</p>
@@ -379,10 +355,11 @@
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>以上就是butterfly主题的傻瓜式安装教程，如果你遇到了问题，欢迎在评论区留言，希望能帮助到大家。</p>
 ]]></content>
       <categories>
-        <category>建站教程</category>
+        <category>魔改教程</category>
+        <category>butterfly</category>
       </categories>
       <tags>
-        <tag>教程</tag>
+        <tag>Hexo主题开发</tag>
       </tags>
   </entry>
   <entry>
@@ -390,11 +367,44 @@
     <url>/2024/10/25/%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BAHexo%E5%8D%9A%E5%AE%A2%E6%95%99%E7%A8%8B%EF%BC%88%E4%B8%80%EF%BC%89/</url>
     <content><![CDATA[]]></content>
       <categories>
-        <category>博客教程</category>
+        <category>Hexo主题开发</category>
       </categories>
       <tags>
         <tag>Hexo</tag>
-        <tag>教程</tag>
+        <tag>建站教程</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>这是我写的第一篇文章</title>
+    <url>/2024/10/22/%E8%BF%99%E6%98%AF%E6%88%91%E5%86%99%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/</url>
+    <content><![CDATA[]]></content>
+      <tags>
+        <tag>Hexo</tag>
+        <tag>吐槽</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2023/10/22/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+      <categories>
+        <category>Hexo</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
       </tags>
   </entry>
   <entry>
@@ -412,20 +422,11 @@
 </ul>
 <h3 id="使用参数"><a href="#使用参数" class="headerlink" title="使用参数"></a>使用参数</h3><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 使用html是为了高亮代码，不必在意 --&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 参数如下： --&gt;</span></span><br><span class="line">&#123;% link 链接,标题,图标,介绍 %&#125;</span><br><span class="line"><span class="comment">&lt;!-- 示例如下： --&gt;</span></span><br><span class="line">&#123;% link https://meuicat.com/,MeuiCat,https://meuicat.com/media/favicon.ico,有肉有猫有生活. %&#125;</span><br><span class="line"><span class="comment">&lt;!-- 你也可以什么都不填，将会全部使用默认值，如下： --&gt;</span></span><br><span class="line">&#123;% card %&#125;</span><br><span class="line"><span class="comment">&lt;!-- 你也可以省略部分内容，如下： --&gt;</span></span><br><span class="line">&#123;% link https://meuicat.com/ %&#125;</span><br><span class="line"><span class="comment">&lt;!-- 位置在后面的参数不填的话可以直接省略，但是如果中间的不想填必须留空，如下： --&gt;</span></span><br><span class="line">&#123;% link https://meuicat.com/,,,有肉有猫有生活. %&#125;</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
-        <category>建站教程</category>
+        <category>魔改教程</category>
+        <category>butterfly</category>
       </categories>
       <tags>
-        <tag>教程</tag>
-        <tag>魔改</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>这是我写的第一篇文章</title>
-    <url>/2024/10/22/%E8%BF%99%E6%98%AF%E6%88%91%E5%86%99%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/</url>
-    <content><![CDATA[]]></content>
-      <tags>
-        <tag>Hexo</tag>
-        <tag>吐槽</tag>
+        <tag>Hexo主题开发</tag>
       </tags>
   </entry>
 </search>
