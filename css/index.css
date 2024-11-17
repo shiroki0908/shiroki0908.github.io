@@ -8988,6 +8988,83 @@ body[data-type=music] #nav-music {
   background-position: center;
   transition: transform 0.3s ease, opacity 0.3s ease;
 }
+body {
+  background: #333;
+}
+.coverflow {
+  position: relative;
+  height: 460px;
+  padding: 30px;
+  overflow: hidden;
+  -webkit-perspective: 1000px;
+  perspective: 1000px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.coverflow__image {
+  user-select: none;
+  width: 400px;
+  height: 400px;
+  position: absolute;
+  transform-origin: 50% 50%;
+  transition: all 350ms cubic-bezier(0.215, 0.61, 0.355, 1);
+  box-shadow: 0 1px 25px rgba(0,0,0,0.6);
+}
+.coverflow[data-coverflow-position="1"] .coverflow__image[data-coverflow-index="1"] {
+  z-index: 10;
+  transform: translateX(-300px) scale(0.7) rotateY(45deg);
+  opacity: 0.5;
+}
+.coverflow[data-coverflow-position="1"] .coverflow__image[data-coverflow-index="2"] {
+  z-index: 20;
+  transform: translateX(-150px) scale(0.9) rotateY(25deg);
+  opacity: 0.75;
+}
+.coverflow[data-coverflow-position="1"] .coverflow__image[data-coverflow-index="3"] {
+  z-index: 30;
+  transform: translateX(0px) scale(1) rotateY(0deg);
+  opacity: 1;
+}
+.coverflow[data-coverflow-position="1"] .coverflow__image[data-coverflow-index="4"] {
+  z-index: 20;
+  transform: translateX(150px) scale(0.9) rotateY(-25deg);
+  opacity: 0.75;
+}
+.coverflow[data-coverflow-position="1"] .coverflow__image[data-coverflow-index="5"] {
+  z-index: 10;
+  transform: translateX(300px) scale(0.7) rotateY(-45deg);
+  opacity: 0.5;
+}
+.prev-arrow,
+.next-arrow {
+  cursor: pointer;
+  z-index: 40;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 3rem;
+  color: rgba(255,255,255,0.5);
+  background: transparent;
+  border-radius: 50%;
+  transition: color 200ms, background 200ms;
+}
+.prev-arrow {
+  left: 20px;
+}
+.next-arrow {
+  right: 20px;
+}
+.prev-arrow:hover,
+.next-arrow:hover {
+  color: rgba(255,255,255,0.9);
+  background: rgba(0,0,0,0.5);
+}
+.error {
+  color: #fff;
+  font-size: 1.2rem;
+  text-align: center;
+}
 .flink#banners {
   margin-bottom: 0.5rem;
 }
