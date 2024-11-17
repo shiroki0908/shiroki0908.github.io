@@ -39,8 +39,11 @@ const initializeCoverflow = () => {
       console.log(`Album link for current image: ${albumLink}`); // 检查链接是否正确
       albumButton.setAttribute("data-album", albumLink);
       albumButton.onclick = () => {
-        if (albumLink && albumLink !== "#") {
-          window.open(albumLink, "_blank"); // 打开 PDF 文件
+        // 动态生成 {% pdf %} 并插入页面
+        const pdfContainer = document.querySelector(".pdf-container");
+        if (pdfContainer) {
+          pdfContainer.innerHTML = `{% pdf ${albumLink} %}`;
+          console.log(`Generated {% pdf ${albumLink} %}`);
         } else {
           console.error("PDF container not found!");
         }
