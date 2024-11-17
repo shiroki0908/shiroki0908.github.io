@@ -1,82 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>从零开始butterfly博客的魔改教程(一)</title>
-    <url>/2024/10/25/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8Bbutterfly%E5%8D%9A%E5%AE%A2%E7%9A%84%E9%AD%94%E6%94%B9%E6%95%99%E7%A8%8B(%E4%B8%80)/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这是一篇从零开始构建butterfly博客的教程，主要面向的完全不知道如何构建Hexo博客的小白，这篇教程会从构建hexo博客开始，初步目标是给Hexo安装上本次的主人公butterfly主题。</p>
-<h1 id="Hexo的依赖要求"><a href="#Hexo的依赖要求" class="headerlink" title="Hexo的依赖要求"></a>Hexo的依赖要求</h1><ul>
-<li><strong>Node.js</strong> (Node.js 版本需不低于 10.13，建议使用 Node.js 12.0 及以上版本)</li>
-<li><strong>Git</strong></li>
-</ul>
-<h2 id="1-安装Git"><a href="#1-安装Git" class="headerlink" title="1. 安装Git"></a>1. 安装Git</h2><p>这里我们将介绍不同操作系统的安装方式。</p>
-<ul>
-<li>Windows: 去指定官网<a href="https://git-scm.com/downloads/win">Git官网</a>下载安装包安装。</li>
-<li>Linux: 一般Linux系统都自带Git，如果没有，可以用包管理器安装。<ul>
-<li>Ubuntu&#x2F;Debian: <code>sudo apt-get install git</code></li>
-<li>CentOS&#x2F;Red Hat&#x2F;Fedora: <code>sudo yum install git</code></li>
-<li>Arch Linux: <code>sudo pacman -S git</code></li>
-</ul>
-</li>
-<li>macOS: 去指定官网<a href="https://sourceforge.net/projects/git-osx-installer/">Git官网</a>下载安装包安装。</li>
-</ul>
-<h2 id="2-安装Node-js"><a href="#2-安装Node-js" class="headerlink" title="2. 安装Node.js"></a>2. 安装Node.js</h2><p>这里我们将介绍不同操作系统的安装方式。</p>
-<ul>
-<li>Windows: 去指定官网<a href="https://nodejs.org/en/download/">Node.js官网</a>下载安装包安装。</li>
-<li>Linux: 一般Linux系统都自带Node.js，如果没有，可以用包管理器安装。<ul>
-<li>Ubuntu&#x2F;Debian: <code>sudo apt-get install nodejs</code></li>
-<li>CentOS&#x2F;Red Hat&#x2F;Fedora: <code>sudo yum install nodejs</code></li>
-<li>Arch Linux: <code>sudo pacman -S nodejs</code></li>
-</ul>
-</li>
-<li>macOS: 去指定官网<a href="https://nodejs.org/en/download/">Node.js官网</a>下载安装包安装。</li>
-</ul>
-<h1 id="安装-Hexo"><a href="#安装-Hexo" class="headerlink" title="安装 Hexo"></a>安装 Hexo</h1><p>所有必备的应用程序安装完成后，即可使用 npm 安装 Hexo。</p>
-<h2 id="1-安装Hexo客户端"><a href="#1-安装Hexo客户端" class="headerlink" title="1. 安装Hexo客户端"></a>1. 安装Hexo客户端</h2><ul>
-<li>Windows: 在命令提示符中运行 <code>npm install -g hexo-cli</code></li>
-<li>Linux: 在终端中运行 <code>sudo npm install -g hexo-cli</code></li>
-<li>macOS： 在终端中运行 <code>sudo -s npm install -g hexo-cli</code></li>
-</ul>
-<h2 id="2-执行Hexo命令"><a href="#2-执行Hexo命令" class="headerlink" title="2. 执行Hexo命令"></a>2. 执行Hexo命令</h2><ul>
-<li>Linux以外执行<code>npx hexo &lt;command&gt;</code></li>
-<li>Linux用户可以将 Hexo 所在的目录下的 node_modules 添加到环境变量之中即可直接使用<code>npx hexo &lt;command&gt;</code><br><code>echo &#39;PATH=&quot;$PATH:./node_modules/.bin&quot;&#39; &gt;&gt; ~/.profile</code></li>
-</ul>
-<h2 id="3-安装-Hexo-完成后，需要再指定文件夹内新增文件，执行hexo-init命令，Hexo会在指定文件夹内生成所需文件。"><a href="#3-安装-Hexo-完成后，需要再指定文件夹内新增文件，执行hexo-init命令，Hexo会在指定文件夹内生成所需文件。" class="headerlink" title="3. 安装 Hexo 完成后，需要再指定文件夹内新增文件，执行hexo init命令，Hexo会在指定文件夹内生成所需文件。"></a>3. 安装 Hexo 完成后，需要再指定文件夹内新增文件，执行<code>hexo init</code>命令，Hexo会在指定文件夹内生成所需文件。</h2><ol>
-<li><code>$ hexo init &lt;folder&gt;</code> </li>
-<li><code>cd &lt;folder&gt;</code></li>
-<li><code>npm install</code> macOS用户安装需要开启管理员，所以需要在终端中运行<code>sudo npm install</code></li>
-</ol>
-<p>初始化后，您的项目文件夹将如下所示：<br>.<br>├── _config.yml<br>├── package.json<br>├── scaffolds<br>├── source<br>|   ├── _drafts<br>|   └── _posts<br>└── themes</p>
-<h2 id="4-执行Hexo三板斧"><a href="#4-执行Hexo三板斧" class="headerlink" title="4. 执行Hexo三板斧"></a>4. 执行Hexo三板斧</h2><ol>
-<li><code>hexo cl</code><br>在终端中运行<code>hexo cl</code>命令，确认刺青。(<code>hexo cl</code>是<code>hexo clean</code>的简写)</li>
-<li><code>hexo g</code><br>在终端中运行<code>hexo g</code>命令，生成静态文件。(<code>hexo g</code>是<code>hexo generate</code>的简写)</li>
-<li><code>hexo s</code><br>在终端中运行<code>hexo s</code>命令，启动本地服务器。(<code>hexo s</code>是<code>hexo server</code>的简写)</li>
-</ol>
-<p>在<a href="http://localhost:4000/">本地端口</a>确认Hexo博客是否正常运行。</p>
-<p>若成功运行则会显示成下图这样:</p>
-<p><img src="https://i.imgur.com/C80Biuy.png" alt="hexo成功运行"></p>
-<p>接下来，我们可以开始安装butterfly主题了。</p>
-<h1 id="安装butterfly主题"><a href="#安装butterfly主题" class="headerlink" title="安装butterfly主题"></a>安装butterfly主题</h1><h2 id="1-通过Git获取源代码"><a href="#1-通过Git获取源代码" class="headerlink" title="1. 通过Git获取源代码"></a>1. 通过Git获取源代码</h2><p>Stable branch [recommend]:<br><code>git clone -b master https://github.com/jerryc127/hexo-theme-butterfly.git themes/butterfly</code></p>
-<p>Dev branch:<br><code>git clone -b dev https://github.com/jerryc127/hexo-theme-butterfly.git themes/butterfly</code></p>
-<h2 id="2-NPM安装Butterfly主题"><a href="#2-NPM安装Butterfly主题" class="headerlink" title="2. NPM安装Butterfly主题"></a>2. NPM安装Butterfly主题</h2><p>在终端中运行<code>npm install hexo-theme-butterfly --save</code>命令，安装Butterfly主题。<br>（macOS用户需要开启管理员，所以需要在终端中运行<code>sudo npm install hexo-theme-butterfly --save</code>）</p>
-<h2 id="3-修改Hexo配置文件"><a href="#3-修改Hexo配置文件" class="headerlink" title="3. 修改Hexo配置文件"></a>3. 修改Hexo配置文件</h2><p>打开Hexo配置文件<code>_config.yml</code>，找到<code>theme</code>项，将<code>theme</code>的值修改为<code>butterfly</code>。</p>
-<p>如果你没有pug和stylus renderer，请在终端中运行以下代码:<br><code>npm install hexo-renderer-pug hexo-renderer-stylus --save</code>命令安装。<br>(macOS用户需要开启管理员，所以需要在终端中运行<code>sudo npm install hexo-renderer-pug hexo-renderer-stylus --save</code>)</p>
-<h2 id="4-启用Butterfly主题"><a href="#4-启用Butterfly主题" class="headerlink" title="4. 启用Butterfly主题"></a>4. 启用Butterfly主题</h2><p>执行hexo三板斧命令，确认无误后，在浏览器中访问<a href="http://localhost:4000/">本地端口</a>，即可看到Butterfly主题的博客页面。</p>
-<p>如果成功安装，你将看到如下画面:</p>
-<p><img src="https://i.imgur.com/U2HhcyD.png" alt="butterfly安装成功"></p>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>以上就是butterfly主题的傻瓜式安装教程，如果你遇到了问题，欢迎在评论区留言，希望能帮助到大家。</p>
-]]></content>
-      <categories>
-        <category>魔改教程</category>
-      </categories>
-      <tags>
-        <tag>魔改教程</tag>
-        <tag>butterfly</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Markdown从小白到精通</title>
     <url>/2024/10/25/Markdown%E4%BB%8E%E5%B0%8F%E7%99%BD%E5%88%B0%E7%B2%BE%E9%80%9A/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a><strong>前言</strong></h1><p>相信很多人在看技术博客，做笔记时都经常接触Typora呀熊掌记等一系列笔记软件，这些软件都有着很强大的Markdown语法支持，让我们可以快速、轻松地进行排版。由于Hexo等静态博客主要通过对Markdown文件进行解析来渲染出很多让人眼前一亮的画面效果，所以我觉得在正式开始博客搭建之前，有必要让大家对Markdown语法有一个基本的了解。本文将介绍一些常用的Markdown语法，希望能帮助大家快速上手。废话不多说啦，开始干活！</p>
+    <content><![CDATA[
+
+	<div class="row">
+    <embed src="/pdf/The" width="100%" height="550" type="application/pdf">
+	</div>
+
+
+
+
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a><strong>前言</strong></h1><p>相信很多人在看技术博客，做笔记时都经常接触Typora呀熊掌记等一系列笔记软件，这些软件都有着很强大的Markdown语法支持，让我们可以快速、轻松地进行排版。由于Hexo等静态博客主要通过对Markdown文件进行解析来渲染出很多让人眼前一亮的画面效果，所以我觉得在正式开始博客搭建之前，有必要让大家对Markdown语法有一个基本的了解。本文将介绍一些常用的Markdown语法，希望能帮助大家快速上手。废话不多说啦，开始干活！</p>
 <h1 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a><strong>基本语法</strong></h1><table>
 <thead>
 <tr>
@@ -146,214 +82,9 @@
 </tr>
 <tr>
 <td>标题编号（Heading ID）</td>
-<td><code>### My Great Heading &#123;#custom-id&#125;</code></td>
-</tr>
-<tr>
-<td>定义列表（Definition List）</td>
-<td><code>term</code><br><code>: definition</code></td>
-</tr>
-<tr>
-<td>删除线（Strikethrough）</td>
-<td><code>~~The world is flat.~~</code></td>
-</tr>
-<tr>
-<td>任务列表（Task List）</td>
-<td><code>- [x] Write the press release</code><br><code>- [ ] Update the website</code><br><code>- [ ] Contact the media</code></td>
+<td>&#96;### My Great Heading</td>
 </tr>
 </tbody></table>
-<!-- # 目录
-- [标题语法](#标题语法)
-- [段落语法](#段落语法)
-- [换行语法](#换行语法)
-- [强调语法](#强调语法)
-- [引用语法](#引用语法)
-- [列表语法](#列表语法)
-- [代码语法](#代码语法)
-- [分隔线语法](#分隔线语法)
-- [链接语法](#链接语法)
-- [图片语法](#图片语法)
-- [转义字符语法](#转义字符语法)
-- [内嵌HTML语法](#内嵌HTML语法)
-# 语法详解
-## 标题语法
-要创建标题，请在单词或短语前面添加井号 (`#`)。`#`的数量代表了标题的级别。例如，添加三个`#`表示创建一个三级标题(`<h3>`)(例如：`### My Header`)。
-| Markdown语法            | HTML                       |     
-|------------------------|----------------------------|
-|`# Heading level 1`     |`<h1>Heading level 1</h1>`  | 
-|`## Heading level 2`    | `<h2>Heading level 2</h2>` | 
-|`### Heading level 3`   | `<h3>Heading level 3</h3>` | 
-|`#### Heading level 4`  | `<h4>Heading level 4</h4>` | 
-|`##### Heading level 5` | `<h5>Heading level 5</h5>` | 
-|`###### Heading level 6`| `<h6>Heading level 6</h6>` | 
-
-## 段落语法
-要创建段落，请使用空白行将一行或多行文本进行分隔。
-| Markdown语法            | HTML                       |
-|------------------------|----------------------------|
-|`I really like using Markdown.`<br><br>`I think I'll use it to format all of my documents from now on.` | `<p>I really like using Markdown.</p>`<br><br>`<p>I think I'll use it to format all of my documents from now on.</p>` |
-
-## 换行语法
-在一行的末尾添加两个或多个空格，然后按回车键,即可创建一个换行(`<br>`)。
-| Markdown语法 |	HTML |
-|--------------|------|
-|`This is the first line.`<br>`And this is the second line.`|	`<p>This is the first line. <br>`<br>`And this is the second line.</p>`|
-
-## 强调语法
-通过将文本设置为粗体或斜体来强调其重要性。
-
-1. 粗体（Bold）
-要加粗文本，请在单词或短语的前后各添加两个星号（asterisks）或下划线（underscores）。如需加粗一个单词或短语的中间部分用以表示强调的话，请在要加粗部分的两侧各添加两个星号（asterisks）。
-| Markdown语法 |	HTML |
-|--------------|------|
-|`I really **love** writing in Markdown.`|	`<p>I really <strong>love</strong> writing in Markdown.</p>`|
-|`I really __love__ writing in Markdown.`|	`<p>I really <strong>love</strong> writing in Markdown.</p>`|
-|`I really **love** writing in __Markdown__`|	`<p>I really <strong>love</strong> writing in <strong>Markdown</strong></p>`|
-
-2. 斜体（Italic）
-要用斜体显示文本，请在单词或短语前后添加一个星号（asterisk）或下划线（underscore）。要斜体突出单词的中间部分，请在字母前后各添加一个星号，中间不要带空格。
-| Markdown语法 |	HTML |
-|--------------|------|
-|`IItalicized text is the *cat's meow*.`|`Italicized text is the <em>cat's meow</em>.`|
-|`Italicized text is the _cat's meow_.`|`Italicized text is the <em>cat's meow</em>.`|
-|`A*cat*meow`|`A<em>cat</em>meow`|`Acatmeow`|
-
-3. 粗体（Bold）和斜体（Italic）
-要同时使用粗体和斜体，请在要加粗的单词或短语前后各添加三个星号（asterisks）或下划线（underscores）。要加粗并用斜体显示单词或短语的中间部分，请在要突出显示的部分前后各添加三个星号，中间不要带空格。
-| Markdown语法 |	HTML |
-|--------------|------|
-|`This text is ***really important***.	`|`This text is <strong><em>really important</em></strong>.	`|
-|`This text is ___really important___.`  |`This text is <strong><em>really important</em></strong>.	`|
-|`This text is **_really_** important.	`|`This text is <strong><em>really</em> important</strong>.	`|
-|`This text is __*really important*__.`  |`This text is <strong><em>really important</em></strong>.	`|
-
-## 引用语法
-要创建块引用，请在段落前添加一个 `>` 符号。
-`>  Dorothy followed her through many of the beautiful rooms in her castle.`
-渲染效果如下所示：
-> Dorothy followed her through many of the beautiful rooms in her castle.
-
-1. 多个段落的块引用
-块引用可以包含多个段落。为段落之间的空白行添加一个 `>` 符号。
-`> Dorothy followed her through many of the beautiful rooms in her castle.`
-`>`
-`> The Witch bade her clean the pots and kettles and sweep the floor and keep the fire fed with wood.`
-渲染效果如下：
-> Dorothy followed her through many of the beautiful rooms in her castle.
-> 
-> The Witch bade her clean the pots and kettles and sweep the floor and keep the fire fed with wood.
-
-2. 嵌套块引用
-块引用可以嵌套。在要嵌套的段落前添加一个 `>>` 符号。
-`> Dorothy followed her through many of the beautiful rooms in her castle.`
-`>`
-`>> The Witch bade her clean the pots and kettles and sweep the floor and keep the fire fed with wood.`
-渲染效果如下：
-> Dorothy followed her through many of the beautiful rooms in her castle.
->> The Witch bade her clean the pots and kettles and sweep the floor and keep the fire fed with wood.
-
-3. 带有其它元素的块引用
-块引用可以包含其他 Markdown 格式的元素。并非所有元素都可以使用，你需要进行实验以查看哪些元素有效。
-`> #### The quarterly results look great!`
-`>`
-`> - Revenue was off the chart.`
-`> - Profits were higher than ever.`
-`>`
-`>> *Everything* is going according to **plan**.`
-渲染效果如下：
-> #### The quarterly results look great!
-> 
-> - Revenue was off the chart.
-> - Profits were higher than ever.
-> 
->> *Everything* is going according to **plan**.
-
-## 列表语法
-可以将多个条目组织成有序或无序列表。
-
-1. 有序列表
-要创建有序列表，请在每个列表项前添加数字并紧跟一个英文句点。数字不必按数学顺序排列，但是列表应当以数字 1 起始。要创建有序列表，请在每个列表项前添加数字并紧跟一个英文句点。数字不必按数学顺序排列，但是列表应当以数字 1 起始。
-
-| Markdown语法 |	HTML |
-|--------------|------|
-|`1. First item`<br>`2. Second item`<br>`3. Third item`|	`<ol>`<br>`<li>First item</li>`<br>`<li>Second item</li>`<br>`<li>Third item</li>`<br>`</ol>`|
-
-2. 无序列表
-要创建无序列表，请在每个列表项前面添加破折号 (-)、星号 (*) 或加号 (+) 。缩进一个或多个列表项可创建嵌套列表。
-
-| Markdown语法 |	HTML |
-|--------------|------|
-|`- First item`<br>`- Second item`<br>`- Third item`|	`<ul>`<br>`<li>First item</li>`<br>`<li>Second item</li>`<br>`<li>Third item</li>`<br>`</ul>`|
-|`* First item`<br>`* Second item`<br>`* Third item`|	`<ul>`<br>`<li>First item</li>`<br>`<li>Second item</li>`<br>`<li>Third item</li>`<br>`</ul>`|
-|`+ First item`<br>`+ Second item`<br>`+ Third item`|	`<ul>`<br>`<li>First item</li>`<br>`<li>Second item</li>`<br>`<li>Third item</li>`<br>`</ul>`|
-
-3. 在列表中嵌套其他元素
-要在保留列表连续性的同时在列表中添加另一种元素，请将该元素缩进四个空格或一个制表符，如下例所示：
-
-  ### 段落
-  `*   This is the first list item.`
-  `*   Here's the second list item.`
-  `    I need to add another paragraph below the second list item.`
-  `*   And here's the third list item.`
-  渲染效果如下：
-  *   This is the first list item.
-  *   Here's the second list item.
-      I need to add another paragraph below the second list item.
-  *   And here's the third list item.
-
-  ### 引用块
-  `*   This is the first list item.`
-  `*   Here's the second list item.`
-  `    > A blockquote would look great below the second list item.`
-  `*   And here's the third list item.`
-  渲染效果如下：
-  *   This is the first list item.
-  *   Here's the second list item.
-      > A blockquote would look great below the second list item.
-  *   And here's the third list item.
-
-  ### 代码块
-
-  `*   Open the file.`
-  `*   Find the following code block on line 21:`
-          `&lt;html>`
-          `&lt;head>`
-            `&lt;title>Test&lt;/title>`
-          `&lt;/head>`
-  `*   Update the title to match the name of your website.`
-  渲染效果如下：
-  *   Open the file.
-  *   Find the following code block on line 21:
-          &lt;html>
-          &lt;head>
-            &lt;title>Test&lt;/title>
-          &lt;/head>
-  *   Update the title to match the name of your website.
-
-  ### 图片
-
-  `*   Open the file containing the Linux mascot.`
-  `*   Marvel at its beauty.`
-      `![Tux, the Linux mascot](/assets/images/tux.png)`
-  `*   Close the file.`
-  渲染效果如下：
-  *   Open the file containing the Linux mascot.
-  *   Marvel at its beauty.
-      ![Tux, the Linux mascot](/assets/images/tux.png)
-  *   Close the file.
-
-  ### 列表
-
-  `*   First item`
-  `*   Second item`
-      `- Indented item`
-      `- Indented item`
-  `*   Third item`
-  渲染效果如下：
-  *   First item
-  *   Second item
-      - Indented item
-      - Indented item
-  *   Third item -->
 ]]></content>
       <tags>
         <tag>Markdown</tag>
@@ -373,6 +104,79 @@
 <li>创建 <code>[blogRoot]/themes/butterfly/source/css/_tags/link.styl</code> 样式文件，并新增以下内容<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.link_card</span></span><br><span class="line">  <span class="attribute">display</span>: flex</span><br><span class="line">  margin: <span class="number">10px</span> <span class="number">0</span></span><br><span class="line">  color: <span class="built_in">var</span>(--font-color) <span class="meta">!important</span></span><br><span class="line">  text-decoration: none <span class="meta">!important</span></span><br><span class="line">  background: <span class="built_in">var</span>(--icat-background)</span><br><span class="line">  border-radius: <span class="number">8px</span></span><br><span class="line">  border: <span class="built_in">var</span>(--style-border)</span><br><span class="line">  padding: <span class="number">12px</span></span><br><span class="line">  &amp;:hover</span><br><span class="line">    background: <span class="built_in">var</span>(--icat-theme)</span><br><span class="line">    color: white <span class="meta">!important</span></span><br><span class="line">  .link_icon,.link_content</span><br><span class="line">    height: <span class="number">4rem</span></span><br><span class="line">  .link_icon</span><br><span class="line">    img,svg</span><br><span class="line">      height: <span class="number">4rem</span></span><br><span class="line">      width: <span class="number">4rem</span></span><br><span class="line">      border-radius: <span class="number">6px</span> <span class="meta">!important</span></span><br><span class="line">  .link_content</span><br><span class="line">    margin-left: <span class="number">1rem</span></span><br><span class="line">    width: <span class="built_in">calc</span>(<span class="number">100%</span> - <span class="number">6rem</span>)</span><br><span class="line">    overflow: hidden</span><br><span class="line">    line-height: <span class="number">1.5</span></span><br><span class="line">    display: flex</span><br><span class="line">    flex-direction: column</span><br><span class="line">    justify-content: center</span><br><span class="line">    .link_title</span><br><span class="line">      font-weight: bold</span><br><span class="line">      font-size: <span class="number">1.2rem</span></span><br><span class="line">    .link_title,.link_desc</span><br><span class="line">      word-break: break-all</span><br><span class="line">      overflow:hidden</span><br><span class="line">      text-overflow: ellipsis</span><br><span class="line">    &amp;:<span class="built_in">not</span>(:<span class="built_in">has</span>(.link_desc)) .link_title</span><br><span class="line">      display:-webkit-box</span><br><span class="line">      -webkit-box-orient:vertical</span><br><span class="line">      -webkit-line-clamp:<span class="number">2</span></span><br><span class="line">    .link_desc</span><br><span class="line">      opacity: .<span class="number">6</span></span><br><span class="line">    .link_desc,&amp;:<span class="built_in">has</span>(.link_desc) .link_title</span><br><span class="line">      white-space: nowrap</span><br></pre></td></tr></table></figure></li>
 </ul>
 <h3 id="使用参数"><a href="#使用参数" class="headerlink" title="使用参数"></a>使用参数</h3><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 使用html是为了高亮代码，不必在意 --&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 参数如下： --&gt;</span></span><br><span class="line">&#123;% link 链接,标题,图标,介绍 %&#125;</span><br><span class="line"><span class="comment">&lt;!-- 示例如下： --&gt;</span></span><br><span class="line">&#123;% link https://meuicat.com/,MeuiCat,https://meuicat.com/media/favicon.ico,有肉有猫有生活. %&#125;</span><br><span class="line"><span class="comment">&lt;!-- 你也可以什么都不填，将会全部使用默认值，如下： --&gt;</span></span><br><span class="line">&#123;% card %&#125;</span><br><span class="line"><span class="comment">&lt;!-- 你也可以省略部分内容，如下： --&gt;</span></span><br><span class="line">&#123;% link https://meuicat.com/ %&#125;</span><br><span class="line"><span class="comment">&lt;!-- 位置在后面的参数不填的话可以直接省略，但是如果中间的不想填必须留空，如下： --&gt;</span></span><br><span class="line">&#123;% link https://meuicat.com/,,,有肉有猫有生活. %&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>魔改教程</category>
+      </categories>
+      <tags>
+        <tag>魔改教程</tag>
+        <tag>butterfly</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>从零开始butterfly博客的魔改教程(一)</title>
+    <url>/2024/10/25/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8Bbutterfly%E5%8D%9A%E5%AE%A2%E7%9A%84%E9%AD%94%E6%94%B9%E6%95%99%E7%A8%8B(%E4%B8%80)/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这是一篇从零开始构建butterfly博客的教程，主要面向的完全不知道如何构建Hexo博客的小白，这篇教程会从构建hexo博客开始，初步目标是给Hexo安装上本次的主人公butterfly主题。</p>
+<h1 id="Hexo的依赖要求"><a href="#Hexo的依赖要求" class="headerlink" title="Hexo的依赖要求"></a>Hexo的依赖要求</h1><ul>
+<li><strong>Node.js</strong> (Node.js 版本需不低于 10.13，建议使用 Node.js 12.0 及以上版本)</li>
+<li><strong>Git</strong></li>
+</ul>
+<h2 id="1-安装Git"><a href="#1-安装Git" class="headerlink" title="1. 安装Git"></a>1. 安装Git</h2><p>这里我们将介绍不同操作系统的安装方式。</p>
+<ul>
+<li>Windows: 去指定官网<a href="https://git-scm.com/downloads/win">Git官网</a>下载安装包安装。</li>
+<li>Linux: 一般Linux系统都自带Git，如果没有，可以用包管理器安装。<ul>
+<li>Ubuntu&#x2F;Debian: <code>sudo apt-get install git</code></li>
+<li>CentOS&#x2F;Red Hat&#x2F;Fedora: <code>sudo yum install git</code></li>
+<li>Arch Linux: <code>sudo pacman -S git</code></li>
+</ul>
+</li>
+<li>macOS: 去指定官网<a href="https://sourceforge.net/projects/git-osx-installer/">Git官网</a>下载安装包安装。</li>
+</ul>
+<h2 id="2-安装Node-js"><a href="#2-安装Node-js" class="headerlink" title="2. 安装Node.js"></a>2. 安装Node.js</h2><p>这里我们将介绍不同操作系统的安装方式。</p>
+<ul>
+<li>Windows: 去指定官网<a href="https://nodejs.org/en/download/">Node.js官网</a>下载安装包安装。</li>
+<li>Linux: 一般Linux系统都自带Node.js，如果没有，可以用包管理器安装。<ul>
+<li>Ubuntu&#x2F;Debian: <code>sudo apt-get install nodejs</code></li>
+<li>CentOS&#x2F;Red Hat&#x2F;Fedora: <code>sudo yum install nodejs</code></li>
+<li>Arch Linux: <code>sudo pacman -S nodejs</code></li>
+</ul>
+</li>
+<li>macOS: 去指定官网<a href="https://nodejs.org/en/download/">Node.js官网</a>下载安装包安装。</li>
+</ul>
+<h1 id="安装-Hexo"><a href="#安装-Hexo" class="headerlink" title="安装 Hexo"></a>安装 Hexo</h1><p>所有必备的应用程序安装完成后，即可使用 npm 安装 Hexo。</p>
+<h2 id="1-安装Hexo客户端"><a href="#1-安装Hexo客户端" class="headerlink" title="1. 安装Hexo客户端"></a>1. 安装Hexo客户端</h2><ul>
+<li>Windows: 在命令提示符中运行 <code>npm install -g hexo-cli</code></li>
+<li>Linux: 在终端中运行 <code>sudo npm install -g hexo-cli</code></li>
+<li>macOS： 在终端中运行 <code>sudo -s npm install -g hexo-cli</code></li>
+</ul>
+<h2 id="2-执行Hexo命令"><a href="#2-执行Hexo命令" class="headerlink" title="2. 执行Hexo命令"></a>2. 执行Hexo命令</h2><ul>
+<li>Linux以外执行<code>npx hexo &lt;command&gt;</code></li>
+<li>Linux用户可以将 Hexo 所在的目录下的 node_modules 添加到环境变量之中即可直接使用<code>npx hexo &lt;command&gt;</code><br><code>echo &#39;PATH=&quot;$PATH:./node_modules/.bin&quot;&#39; &gt;&gt; ~/.profile</code></li>
+</ul>
+<h2 id="3-安装-Hexo-完成后，需要再指定文件夹内新增文件，执行hexo-init命令，Hexo会在指定文件夹内生成所需文件。"><a href="#3-安装-Hexo-完成后，需要再指定文件夹内新增文件，执行hexo-init命令，Hexo会在指定文件夹内生成所需文件。" class="headerlink" title="3. 安装 Hexo 完成后，需要再指定文件夹内新增文件，执行hexo init命令，Hexo会在指定文件夹内生成所需文件。"></a>3. 安装 Hexo 完成后，需要再指定文件夹内新增文件，执行<code>hexo init</code>命令，Hexo会在指定文件夹内生成所需文件。</h2><ol>
+<li><code>$ hexo init &lt;folder&gt;</code> </li>
+<li><code>cd &lt;folder&gt;</code></li>
+<li><code>npm install</code> macOS用户安装需要开启管理员，所以需要在终端中运行<code>sudo npm install</code></li>
+</ol>
+<p>初始化后，您的项目文件夹将如下所示：<br>.<br>├── _config.yml<br>├── package.json<br>├── scaffolds<br>├── source<br>|   ├── _drafts<br>|   └── _posts<br>└── themes</p>
+<h2 id="4-执行Hexo三板斧"><a href="#4-执行Hexo三板斧" class="headerlink" title="4. 执行Hexo三板斧"></a>4. 执行Hexo三板斧</h2><ol>
+<li><code>hexo cl</code><br>在终端中运行<code>hexo cl</code>命令，确认刺青。(<code>hexo cl</code>是<code>hexo clean</code>的简写)</li>
+<li><code>hexo g</code><br>在终端中运行<code>hexo g</code>命令，生成静态文件。(<code>hexo g</code>是<code>hexo generate</code>的简写)</li>
+<li><code>hexo s</code><br>在终端中运行<code>hexo s</code>命令，启动本地服务器。(<code>hexo s</code>是<code>hexo server</code>的简写)</li>
+</ol>
+<p>在<a href="http://localhost:4000/">本地端口</a>确认Hexo博客是否正常运行。</p>
+<p>若成功运行则会显示成下图这样:</p>
+<p><img src="https://i.imgur.com/C80Biuy.png" alt="hexo成功运行"></p>
+<p>接下来，我们可以开始安装butterfly主题了。</p>
+<h1 id="安装butterfly主题"><a href="#安装butterfly主题" class="headerlink" title="安装butterfly主题"></a>安装butterfly主题</h1><h2 id="1-通过Git获取源代码"><a href="#1-通过Git获取源代码" class="headerlink" title="1. 通过Git获取源代码"></a>1. 通过Git获取源代码</h2><p>Stable branch [recommend]:<br><code>git clone -b master https://github.com/jerryc127/hexo-theme-butterfly.git themes/butterfly</code></p>
+<p>Dev branch:<br><code>git clone -b dev https://github.com/jerryc127/hexo-theme-butterfly.git themes/butterfly</code></p>
+<h2 id="2-NPM安装Butterfly主题"><a href="#2-NPM安装Butterfly主题" class="headerlink" title="2. NPM安装Butterfly主题"></a>2. NPM安装Butterfly主题</h2><p>在终端中运行<code>npm install hexo-theme-butterfly --save</code>命令，安装Butterfly主题。<br>（macOS用户需要开启管理员，所以需要在终端中运行<code>sudo npm install hexo-theme-butterfly --save</code>）</p>
+<h2 id="3-修改Hexo配置文件"><a href="#3-修改Hexo配置文件" class="headerlink" title="3. 修改Hexo配置文件"></a>3. 修改Hexo配置文件</h2><p>打开Hexo配置文件<code>_config.yml</code>，找到<code>theme</code>项，将<code>theme</code>的值修改为<code>butterfly</code>。</p>
+<p>如果你没有pug和stylus renderer，请在终端中运行以下代码:<br><code>npm install hexo-renderer-pug hexo-renderer-stylus --save</code>命令安装。<br>(macOS用户需要开启管理员，所以需要在终端中运行<code>sudo npm install hexo-renderer-pug hexo-renderer-stylus --save</code>)</p>
+<h2 id="4-启用Butterfly主题"><a href="#4-启用Butterfly主题" class="headerlink" title="4. 启用Butterfly主题"></a>4. 启用Butterfly主题</h2><p>执行hexo三板斧命令，确认无误后，在浏览器中访问<a href="http://localhost:4000/">本地端口</a>，即可看到Butterfly主题的博客页面。</p>
+<p>如果成功安装，你将看到如下画面:</p>
+<p><img src="https://i.imgur.com/U2HhcyD.png" alt="butterfly安装成功"></p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>以上就是butterfly主题的傻瓜式安装教程，如果你遇到了问题，欢迎在评论区留言，希望能帮助到大家。</p>
+]]></content>
       <categories>
         <category>魔改教程</category>
       </categories>
