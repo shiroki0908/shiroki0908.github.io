@@ -4,13 +4,15 @@ const initializeCoverflow = () => {
   if (!coverflowContainer || !albumButton) return;
 
   const images = Array.from(coverflowContainer.querySelectorAll(".coverflow__image"));
+  const maxImages = 5; // 限制最多加载 5 张图片
+  const limitedImages = images.slice(0, maxImages); // 获取前 5 张图片
   const prevArrow = coverflowContainer.querySelector(".prev-arrow");
   const nextArrow = coverflowContainer.querySelector(".next-arrow");
 
   let currentPosition;
 
   const calculateInitialPosition = () => {
-    const totalImages = images.length;
+    const totalImages = limitedImages.length;
     return totalImages % 2 === 0 ? Math.floor(totalImages / 2) : Math.ceil(totalImages / 2);
   };
 
@@ -19,7 +21,7 @@ const initializeCoverflow = () => {
   const updateCoverflow = () => {
     coverflowContainer.dataset.coverflowPosition = currentPosition;
 
-    images.forEach((img, index) => {
+    limitedImages.forEach((img, index) => {
       const offset = index + 1 - currentPosition;
       const translateX = offset * 150;
       const scale = Math.max(0.8, 1 - Math.abs(offset) * 0.2);
@@ -33,34 +35,26 @@ const initializeCoverflow = () => {
     });
 
     // 更新按钮链接
-    const activeImage = images[currentPosition - 1];
+    const activeImage = limitedImages[currentPosition - 1];
     if (activeImage) {
       const albumLink = activeImage.dataset.album || "#";
       console.log(`Album link for current image: ${albumLink}`); // 检查链接是否正确
       albumButton.setAttribute("data-album", albumLink);
       albumButton.onclick = () => {
         if (albumLink && albumLink !== "#") {
-          window.open(albumLink, "_blank"); // 打开 PNG 文件
+          window.open(albumLink, "_blank"); // 打开 PDF 文件
         } else {
           alert("No album link available for this image.");
         }
-        // 动态生成 {% pdf %} 并插入页面
-        // const pdfContainer = document.querySelector(".pdf-container");
-        // if (pdfContainer) {
-        //   pdfContainer.innerHTML = `{% pdf ${albumLink} %}`;
-        //   console.log(`Generated {% pdf ${albumLink} %}`);
-        // } else {
-        //   console.error("PDF container not found!");
-        // }
       };
     }
 
     prevArrow.style.display = currentPosition === 1 ? "none" : "block";
-    nextArrow.style.display = currentPosition === images.length ? "none" : "block";
+    nextArrow.style.display = currentPosition === limitedImages.length ? "none" : "block";
   };
 
   const moveToNext = () => {
-    if (currentPosition < images.length) {
+    if (currentPosition < limitedImages.length) {
       currentPosition++;
       updateCoverflow();
     }
@@ -84,11 +78,11 @@ const initializeCoverflow = () => {
 
   prevArrow.removeEventListener("click", moveToPrev);
   nextArrow.removeEventListener("click", moveToNext);
-  images.forEach((img) => img.removeEventListener("click", moveToClickedImage));
+  limitedImages.forEach((img) => img.removeEventListener("click", moveToClickedImage));
 
   prevArrow.addEventListener("click", moveToPrev);
   nextArrow.addEventListener("click", moveToNext);
-  images.forEach((img, index) => {
+  limitedImages.forEach((img, index) => {
     img.addEventListener("click", () => moveToClickedImage(index));
   });
 

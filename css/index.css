@@ -8994,6 +8994,7 @@ body {
 .coverflow {
   position: relative;
   height: 460px;
+  width: 700px;
   padding: 30px;
   overflow: hidden;
   -webkit-perspective: 1000px;
