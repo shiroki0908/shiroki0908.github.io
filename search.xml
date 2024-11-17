@@ -3,16 +3,7 @@
   <entry>
     <title>Markdown从小白到精通</title>
     <url>/2024/10/25/Markdown%E4%BB%8E%E5%B0%8F%E7%99%BD%E5%88%B0%E7%B2%BE%E9%80%9A/</url>
-    <content><![CDATA[
-
-	<div class="row">
-    <embed src="/pdf/The" width="100%" height="550" type="application/pdf">
-	</div>
-
-
-
-
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a><strong>前言</strong></h1><p>相信很多人在看技术博客，做笔记时都经常接触Typora呀熊掌记等一系列笔记软件，这些软件都有着很强大的Markdown语法支持，让我们可以快速、轻松地进行排版。由于Hexo等静态博客主要通过对Markdown文件进行解析来渲染出很多让人眼前一亮的画面效果，所以我觉得在正式开始博客搭建之前，有必要让大家对Markdown语法有一个基本的了解。本文将介绍一些常用的Markdown语法，希望能帮助大家快速上手。废话不多说啦，开始干活！</p>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a><strong>前言</strong></h1><p>相信很多人在看技术博客，做笔记时都经常接触Typora呀熊掌记等一系列笔记软件，这些软件都有着很强大的Markdown语法支持，让我们可以快速、轻松地进行排版。由于Hexo等静态博客主要通过对Markdown文件进行解析来渲染出很多让人眼前一亮的画面效果，所以我觉得在正式开始博客搭建之前，有必要让大家对Markdown语法有一个基本的了解。本文将介绍一些常用的Markdown语法，希望能帮助大家快速上手。废话不多说啦，开始干活！</p>
 <h1 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a><strong>基本语法</strong></h1><table>
 <thead>
 <tr>
@@ -82,9 +73,214 @@
 </tr>
 <tr>
 <td>标题编号（Heading ID）</td>
-<td>&#96;### My Great Heading</td>
+<td><code>### My Great Heading &#123;#custom-id&#125;</code></td>
+</tr>
+<tr>
+<td>定义列表（Definition List）</td>
+<td><code>term</code><br><code>: definition</code></td>
+</tr>
+<tr>
+<td>删除线（Strikethrough）</td>
+<td><code>~~The world is flat.~~</code></td>
+</tr>
+<tr>
+<td>任务列表（Task List）</td>
+<td><code>- [x] Write the press release</code><br><code>- [ ] Update the website</code><br><code>- [ ] Contact the media</code></td>
 </tr>
 </tbody></table>
+<!-- # 目录
+- [标题语法](#标题语法)
+- [段落语法](#段落语法)
+- [换行语法](#换行语法)
+- [强调语法](#强调语法)
+- [引用语法](#引用语法)
+- [列表语法](#列表语法)
+- [代码语法](#代码语法)
+- [分隔线语法](#分隔线语法)
+- [链接语法](#链接语法)
+- [图片语法](#图片语法)
+- [转义字符语法](#转义字符语法)
+- [内嵌HTML语法](#内嵌HTML语法)
+# 语法详解
+## 标题语法
+要创建标题，请在单词或短语前面添加井号 (`#`)。`#`的数量代表了标题的级别。例如，添加三个`#`表示创建一个三级标题(`<h3>`)(例如：`### My Header`)。
+| Markdown语法            | HTML                       |     
+|------------------------|----------------------------|
+|`# Heading level 1`     |`<h1>Heading level 1</h1>`  | 
+|`## Heading level 2`    | `<h2>Heading level 2</h2>` | 
+|`### Heading level 3`   | `<h3>Heading level 3</h3>` | 
+|`#### Heading level 4`  | `<h4>Heading level 4</h4>` | 
+|`##### Heading level 5` | `<h5>Heading level 5</h5>` | 
+|`###### Heading level 6`| `<h6>Heading level 6</h6>` | 
+
+## 段落语法
+要创建段落，请使用空白行将一行或多行文本进行分隔。
+| Markdown语法            | HTML                       |
+|------------------------|----------------------------|
+|`I really like using Markdown.`<br><br>`I think I'll use it to format all of my documents from now on.` | `<p>I really like using Markdown.</p>`<br><br>`<p>I think I'll use it to format all of my documents from now on.</p>` |
+
+## 换行语法
+在一行的末尾添加两个或多个空格，然后按回车键,即可创建一个换行(`<br>`)。
+| Markdown语法 |	HTML |
+|--------------|------|
+|`This is the first line.`<br>`And this is the second line.`|	`<p>This is the first line. <br>`<br>`And this is the second line.</p>`|
+
+## 强调语法
+通过将文本设置为粗体或斜体来强调其重要性。
+
+1. 粗体（Bold）
+要加粗文本，请在单词或短语的前后各添加两个星号（asterisks）或下划线（underscores）。如需加粗一个单词或短语的中间部分用以表示强调的话，请在要加粗部分的两侧各添加两个星号（asterisks）。
+| Markdown语法 |	HTML |
+|--------------|------|
+|`I really **love** writing in Markdown.`|	`<p>I really <strong>love</strong> writing in Markdown.</p>`|
+|`I really __love__ writing in Markdown.`|	`<p>I really <strong>love</strong> writing in Markdown.</p>`|
+|`I really **love** writing in __Markdown__`|	`<p>I really <strong>love</strong> writing in <strong>Markdown</strong></p>`|
+
+2. 斜体（Italic）
+要用斜体显示文本，请在单词或短语前后添加一个星号（asterisk）或下划线（underscore）。要斜体突出单词的中间部分，请在字母前后各添加一个星号，中间不要带空格。
+| Markdown语法 |	HTML |
+|--------------|------|
+|`IItalicized text is the *cat's meow*.`|`Italicized text is the <em>cat's meow</em>.`|
+|`Italicized text is the _cat's meow_.`|`Italicized text is the <em>cat's meow</em>.`|
+|`A*cat*meow`|`A<em>cat</em>meow`|`Acatmeow`|
+
+3. 粗体（Bold）和斜体（Italic）
+要同时使用粗体和斜体，请在要加粗的单词或短语前后各添加三个星号（asterisks）或下划线（underscores）。要加粗并用斜体显示单词或短语的中间部分，请在要突出显示的部分前后各添加三个星号，中间不要带空格。
+| Markdown语法 |	HTML |
+|--------------|------|
+|`This text is ***really important***.	`|`This text is <strong><em>really important</em></strong>.	`|
+|`This text is ___really important___.`  |`This text is <strong><em>really important</em></strong>.	`|
+|`This text is **_really_** important.	`|`This text is <strong><em>really</em> important</strong>.	`|
+|`This text is __*really important*__.`  |`This text is <strong><em>really important</em></strong>.	`|
+
+## 引用语法
+要创建块引用，请在段落前添加一个 `>` 符号。
+`>  Dorothy followed her through many of the beautiful rooms in her castle.`
+渲染效果如下所示：
+> Dorothy followed her through many of the beautiful rooms in her castle.
+
+1. 多个段落的块引用
+块引用可以包含多个段落。为段落之间的空白行添加一个 `>` 符号。
+`> Dorothy followed her through many of the beautiful rooms in her castle.`
+`>`
+`> The Witch bade her clean the pots and kettles and sweep the floor and keep the fire fed with wood.`
+渲染效果如下：
+> Dorothy followed her through many of the beautiful rooms in her castle.
+> 
+> The Witch bade her clean the pots and kettles and sweep the floor and keep the fire fed with wood.
+
+2. 嵌套块引用
+块引用可以嵌套。在要嵌套的段落前添加一个 `>>` 符号。
+`> Dorothy followed her through many of the beautiful rooms in her castle.`
+`>`
+`>> The Witch bade her clean the pots and kettles and sweep the floor and keep the fire fed with wood.`
+渲染效果如下：
+> Dorothy followed her through many of the beautiful rooms in her castle.
+>> The Witch bade her clean the pots and kettles and sweep the floor and keep the fire fed with wood.
+
+3. 带有其它元素的块引用
+块引用可以包含其他 Markdown 格式的元素。并非所有元素都可以使用，你需要进行实验以查看哪些元素有效。
+`> #### The quarterly results look great!`
+`>`
+`> - Revenue was off the chart.`
+`> - Profits were higher than ever.`
+`>`
+`>> *Everything* is going according to **plan**.`
+渲染效果如下：
+> #### The quarterly results look great!
+> 
+> - Revenue was off the chart.
+> - Profits were higher than ever.
+> 
+>> *Everything* is going according to **plan**.
+
+## 列表语法
+可以将多个条目组织成有序或无序列表。
+
+1. 有序列表
+要创建有序列表，请在每个列表项前添加数字并紧跟一个英文句点。数字不必按数学顺序排列，但是列表应当以数字 1 起始。要创建有序列表，请在每个列表项前添加数字并紧跟一个英文句点。数字不必按数学顺序排列，但是列表应当以数字 1 起始。
+
+| Markdown语法 |	HTML |
+|--------------|------|
+|`1. First item`<br>`2. Second item`<br>`3. Third item`|	`<ol>`<br>`<li>First item</li>`<br>`<li>Second item</li>`<br>`<li>Third item</li>`<br>`</ol>`|
+
+2. 无序列表
+要创建无序列表，请在每个列表项前面添加破折号 (-)、星号 (*) 或加号 (+) 。缩进一个或多个列表项可创建嵌套列表。
+
+| Markdown语法 |	HTML |
+|--------------|------|
+|`- First item`<br>`- Second item`<br>`- Third item`|	`<ul>`<br>`<li>First item</li>`<br>`<li>Second item</li>`<br>`<li>Third item</li>`<br>`</ul>`|
+|`* First item`<br>`* Second item`<br>`* Third item`|	`<ul>`<br>`<li>First item</li>`<br>`<li>Second item</li>`<br>`<li>Third item</li>`<br>`</ul>`|
+|`+ First item`<br>`+ Second item`<br>`+ Third item`|	`<ul>`<br>`<li>First item</li>`<br>`<li>Second item</li>`<br>`<li>Third item</li>`<br>`</ul>`|
+
+3. 在列表中嵌套其他元素
+要在保留列表连续性的同时在列表中添加另一种元素，请将该元素缩进四个空格或一个制表符，如下例所示：
+
+  ### 段落
+  `*   This is the first list item.`
+  `*   Here's the second list item.`
+  `    I need to add another paragraph below the second list item.`
+  `*   And here's the third list item.`
+  渲染效果如下：
+  *   This is the first list item.
+  *   Here's the second list item.
+      I need to add another paragraph below the second list item.
+  *   And here's the third list item.
+
+  ### 引用块
+  `*   This is the first list item.`
+  `*   Here's the second list item.`
+  `    > A blockquote would look great below the second list item.`
+  `*   And here's the third list item.`
+  渲染效果如下：
+  *   This is the first list item.
+  *   Here's the second list item.
+      > A blockquote would look great below the second list item.
+  *   And here's the third list item.
+
+  ### 代码块
+
+  `*   Open the file.`
+  `*   Find the following code block on line 21:`
+          `&lt;html>`
+          `&lt;head>`
+            `&lt;title>Test&lt;/title>`
+          `&lt;/head>`
+  `*   Update the title to match the name of your website.`
+  渲染效果如下：
+  *   Open the file.
+  *   Find the following code block on line 21:
+          &lt;html>
+          &lt;head>
+            &lt;title>Test&lt;/title>
+          &lt;/head>
+  *   Update the title to match the name of your website.
+
+  ### 图片
+
+  `*   Open the file containing the Linux mascot.`
+  `*   Marvel at its beauty.`
+      `![Tux, the Linux mascot](/assets/images/tux.png)`
+  `*   Close the file.`
+  渲染效果如下：
+  *   Open the file containing the Linux mascot.
+  *   Marvel at its beauty.
+      ![Tux, the Linux mascot](/assets/images/tux.png)
+  *   Close the file.
+
+  ### 列表
+
+  `*   First item`
+  `*   Second item`
+      `- Indented item`
+      `- Indented item`
+  `*   Third item`
+  渲染效果如下：
+  *   First item
+  *   Second item
+      - Indented item
+      - Indented item
+  *   Third item -->
 ]]></content>
       <tags>
         <tag>Markdown</tag>
