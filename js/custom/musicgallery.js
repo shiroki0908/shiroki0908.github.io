@@ -1,39 +1,27 @@
-let coverflowInitialized = false;
-
 const initializeCoverflow = () => {
   const coverflowContainer = document.querySelector(".coverflow");
-  const viewAlbumButton = document.getElementById("view-album-button");
-
-  if (!coverflowContainer || !viewAlbumButton) return;
+  if (!coverflowContainer) return;
 
   const images = Array.from(coverflowContainer.querySelectorAll(".coverflow__image"));
   const prevArrow = coverflowContainer.querySelector(".prev-arrow");
   const nextArrow = coverflowContainer.querySelector(".next-arrow");
 
-  let currentPosition = calculateInitialPosition();
+  let currentPosition;
 
-  // 计算初始位置
-  function calculateInitialPosition() {
+  // 根据图片数量计算初始中心点
+  const calculateInitialPosition = () => {
     const totalImages = images.length;
-    return totalImages % 2 === 0 ? Math.floor(totalImages / 2) : Math.ceil(totalImages / 2);
-  }
-
-  // 重置样式
-  const resetStyles = () => {
-    images.forEach((img) => {
-      img.style.transform = "scale(0)";
-      img.style.opacity = "0";
-      img.style.zIndex = "-1";
-    });
-    viewAlbumButton.classList.add("hidden");
-    prevArrow.style.display = "none";
-    nextArrow.style.display = "none";
+    if (totalImages % 2 === 0) {
+      return Math.floor(totalImages / 2);
+    } else {
+      return Math.ceil(totalImages / 2);
+    }
   };
+
+  currentPosition = calculateInitialPosition();
 
   // 更新 Coverflow 状态
   const updateCoverflow = () => {
-    resetStyles();
-
     coverflowContainer.dataset.coverflowPosition = currentPosition;
 
     images.forEach((img, index) => {
@@ -49,16 +37,14 @@ const initializeCoverflow = () => {
       img.style.zIndex = zIndex;
     });
 
-    const currentImage = images[currentPosition - 1];
-    if (currentImage) {
-      viewAlbumButton.textContent = `View ${currentImage.alt}`;
-      viewAlbumButton.classList.remove("hidden");
-      viewAlbumButton.classList.add("visible");
-      prevArrow.style.display = currentPosition === 1 ? "none" : "block";
-      nextArrow.style.display = currentPosition === images.length ? "none" : "block";
-    } else {
-      viewAlbumButton.classList.remove("visible");
-      viewAlbumButton.classList.add("hidden");
+    prevArrow.style.display = currentPosition === 1 ? "none" : "block";
+    nextArrow.style.display = currentPosition === images.length ? "none" : "block";
+  };
+
+  const moveToNext = () => {
+    if (currentPosition < images.length) {
+      currentPosition++;
+      updateCoverflow();
     }
   };
 
@@ -69,59 +55,39 @@ const initializeCoverflow = () => {
     }
   };
 
-  const moveToNext = () => {
-    if (currentPosition < images.length) {
-      currentPosition++;
+  const moveToClickedImage = (clickedIndex) => {
+    if (clickedIndex + 1 !== currentPosition) {
+      currentPosition = clickedIndex + 1;
       updateCoverflow();
     }
   };
 
-  const handleEventDelegation = (e) => {
-    if (e.target.classList.contains("prev-arrow")) {
-      moveToPrev();
-    } else if (e.target.classList.contains("next-arrow")) {
-      moveToNext();
-    } else if (e.target.classList.contains("coverflow__image")) {
-      const clickedIndex = images.indexOf(e.target);
-      if (clickedIndex + 1 !== currentPosition) {
-        currentPosition = clickedIndex + 1;
-        updateCoverflow();
-      }
-    } else if (e.target.id === "view-album-button") {
-      const currentImage = images[currentPosition - 1];
-      alert(`Viewing ${currentImage.alt}`);
-    }
-  };
-
-  resetStyles();
   updateCoverflow();
 
+  // 移除可能的重复监听器
+  prevArrow.removeEventListener("click", moveToPrev);
+  nextArrow.removeEventListener("click", moveToNext);
+  images.forEach((img) => img.removeEventListener("click", moveToClickedImage));
+
+  // 添加事件监听
   prevArrow.addEventListener("click", moveToPrev);
   nextArrow.addEventListener("click", moveToNext);
+  images.forEach((img, index) => {
+    img.addEventListener("click", () => moveToClickedImage(index));
+  });
 
-  document.body.removeEventListener("click", handleEventDelegation);
-  document.body.addEventListener("click", handleEventDelegation);
-
-  coverflowContainer.classList.add("loaded"); // 加载完成后显示
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowLeft") moveToPrev();
+    if (e.key === "ArrowRight") moveToNext();
+  });
 };
 
-const delayedInitializeCoverflow = () => {
-  setTimeout(() => {
-    if (!coverflowInitialized) {
-      initializeCoverflow();
-      coverflowInitialized = true;
-    }
-  }, 500); // 延迟 500ms
-};
+// 监听 DOM 内容加载完成
+document.addEventListener("DOMContentLoaded", initializeCoverflow);
 
-window.addEventListener("load", delayedInitializeCoverflow);
-
-const observer = new MutationObserver((mutationsList) => {
-  for (const mutation of mutationsList) {
-    if (mutation.type === "childList" && mutation.target.classList.contains("coverflow")) {
-      delayedInitializeCoverflow();
-    }
-  }
+// 使用 MutationObserver 检测页面内容变化
+const observer = new MutationObserver(() => {
+  initializeCoverflow();
 });
 
 observer.observe(document.body, {
