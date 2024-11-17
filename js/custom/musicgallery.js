@@ -1,6 +1,7 @@
 const initializeCoverflow = () => {
   const coverflowContainer = document.querySelector(".coverflow");
-  if (!coverflowContainer) return;
+  const albumButton = document.querySelector(".album-button");
+  if (!coverflowContainer || !albumButton) return;
 
   const images = Array.from(coverflowContainer.querySelectorAll(".coverflow__image"));
   const prevArrow = coverflowContainer.querySelector(".prev-arrow");
@@ -8,19 +9,13 @@ const initializeCoverflow = () => {
 
   let currentPosition;
 
-  // 根据图片数量计算初始中心点
   const calculateInitialPosition = () => {
     const totalImages = images.length;
-    if (totalImages % 2 === 0) {
-      return Math.floor(totalImages / 2);
-    } else {
-      return Math.ceil(totalImages / 2);
-    }
+    return totalImages % 2 === 0 ? Math.floor(totalImages / 2) : Math.ceil(totalImages / 2);
   };
 
   currentPosition = calculateInitialPosition();
 
-  // 更新 Coverflow 状态
   const updateCoverflow = () => {
     coverflowContainer.dataset.coverflowPosition = currentPosition;
 
@@ -36,6 +31,24 @@ const initializeCoverflow = () => {
       img.style.opacity = opacity;
       img.style.zIndex = zIndex;
     });
+
+    // 更新按钮链接
+    const activeImage = images[currentPosition - 1];
+    if (activeImage) {
+      const albumLink = activeImage.dataset.album || "#";
+      console.log(`Album link for current image: ${albumLink}`); // 检查链接是否正确
+      albumButton.setAttribute("data-album", albumLink);
+      albumButton.onclick = () => {
+        // 动态生成 {% pdf %} 并插入页面
+        const pdfContainer = document.querySelector(".pdf-container");
+        if (pdfContainer) {
+          pdfContainer.innerHTML = `{% pdf ${albumLink} %}`;
+          console.log(`Generated {% pdf ${albumLink} %}`);
+        } else {
+          console.error("PDF container not found!");
+        }
+      };
+    }
 
     prevArrow.style.display = currentPosition === 1 ? "none" : "block";
     nextArrow.style.display = currentPosition === images.length ? "none" : "block";
@@ -64,12 +77,10 @@ const initializeCoverflow = () => {
 
   updateCoverflow();
 
-  // 移除可能的重复监听器
   prevArrow.removeEventListener("click", moveToPrev);
   nextArrow.removeEventListener("click", moveToNext);
   images.forEach((img) => img.removeEventListener("click", moveToClickedImage));
 
-  // 添加事件监听
   prevArrow.addEventListener("click", moveToPrev);
   nextArrow.addEventListener("click", moveToNext);
   images.forEach((img, index) => {
@@ -82,15 +93,4 @@ const initializeCoverflow = () => {
   });
 };
 
-// 监听 DOM 内容加载完成
 document.addEventListener("DOMContentLoaded", initializeCoverflow);
-
-// 使用 MutationObserver 检测页面内容变化
-const observer = new MutationObserver(() => {
-  initializeCoverflow();
-});
-
-observer.observe(document.body, {
-  childList: true,
-  subtree: true,
-});
