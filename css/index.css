@@ -8994,7 +8994,6 @@ body {
 .coverflow {
   position: relative;
   height: 460px;
-  width: 700px;
   padding: 30px;
   overflow: hidden;
   -webkit-perspective: 1000px;
@@ -9005,7 +9004,7 @@ body {
 }
 .coverflow__image {
   user-select: none;
-  width: 400px;
+  width: 300px;
   height: 400px;
   position: absolute;
   transform-origin: 50% 50%;
@@ -9082,12 +9081,6 @@ body {
 .album-button:hover {
   background: rgba(255,255,255,0.8);
   color: #000;
-}
-.comment-section {
-  text-align: center;
-  color: #fff;
-  font-size: 1rem;
-  margin-top: 20px;
 }
 .flink#banners {
   margin-bottom: 0.5rem;
