@@ -8719,24 +8719,24 @@ body[data-type=music] #nav-music {
   background: var(--efu-main);
   color: var(--efu-white);
 }
-#gamegallery {
+#game {
   margin-top: 26px;
 }
-#gamegallery .gamegallery-item .gamegallery-item-title {
+#game .game-item .game-item-title {
   line-height: 1;
 }
-#gamegallery .gamegallery-item .gamegallery-item-description {
+#game .game-item .game-item-description {
   line-height: 1;
   margin: 4px 0 8px 0;
   color: var(--efu-secondtext);
 }
-#gamegallery .gamegallery-item .gamegallery-item-content {
+#game .game-item .game-item-content {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   margin: 0 -8px;
 }
-#gamegallery .gamegallery-item .gamegallery-item-content-item {
+#game .game-item .game-item-content-item {
   width: calc(25% - 12px);
   border-radius: 12px;
   border: var(--style-border-always);
@@ -8749,31 +8749,31 @@ body[data-type=music] #nav-music {
   user-select: none;
 }
 @media screen and (max-width: 1200px) {
-  #gamegallery .gamegallery-item .gamegallery-item-content-item {
+  #game .game-item .game-item-content-item {
     width: calc(50% - 12px);
   }
 }
 @media screen and (max-width: 768px) {
-  #gamegallery .gamegallery-item .gamegallery-item-content-item {
+  #game .game-item .game-item-content-item {
     width: 100%;
   }
 }
-#gamegallery .gamegallery-item .gamegallery-item-content-item .gamegallery-item-content-item-cover {
+#game .game-item .game-item-content-item .game-item-content-item-cover {
   width: 100%;
   height: 200px;
   background: var(--efu-secondbg);
   display: flex;
   justify-content: center;
 }
-#gamegallery .gamegallery-item .gamegallery-item-content-item .gamegallery-item-content-item-cover .gamegallery-item-content-item-image {
+#game .game-item .game-item-content-item .game-item-content-item-cover .game-item-content-item-image {
   object-fit: cover;
   height: 100%;
 }
-#gamegallery .gamegallery-item .gamegallery-item-content-item .gamegallery-item-content-item-info {
+#game .game-item .game-item-content-item .game-item-content-item-info {
   padding: 8px 16px 16px 16px;
   margin-top: 12px;
 }
-#gamegallery .gamegallery-item .gamegallery-item-content-item .gamegallery-item-content-item-info .gamegallery-item-content-item-name {
+#game .game-item .game-item-content-item .game-item-content-item-info .game-item-content-item-name {
   font-size: 18px;
   font-weight: 700;
   line-height: 1;
@@ -8782,11 +8782,11 @@ body[data-type=music] #nav-music {
   text-overflow: ellipsis;
   width: fit-content;
 }
-#gamegallery .gamegallery-item .gamegallery-item-content-item .gamegallery-item-content-item-info .gamegallery-item-content-item-name:hover {
+#game .game-item .game-item-content-item .game-item-content-item-info .game-item-content-item-name:hover {
   color: var(--efu-vip);
   cursor: pointer;
 }
-#gamegallery .gamegallery-item .gamegallery-item-content-item .gamegallery-item-content-item-info .gamegallery-item-content-item-specification {
+#game .game-item .game-item-content-item .game-item-content-item-info .game-item-content-item-specification {
   font-size: 12px;
   color: var(--efu-secondtext);
   line-height: 1;
@@ -8795,7 +8795,7 @@ body[data-type=music] #nav-music {
   overflow: hidden;
   text-overflow: ellipsis;
 }
-#gamegallery .gamegallery-item .gamegallery-item-content-item .gamegallery-item-content-item-info .gamegallery-item-content-item-description {
+#game .game-item .game-item-content-item .game-item-content-item-info .game-item-content-item-description {
   line-height: 20px;
   color: var(--efu-secondtext);
   height: 60px;
@@ -8805,7 +8805,7 @@ body[data-type=music] #nav-music {
   -webkit-box-orient: vertical;
   font-size: 14px;
 }
-#gamegallery .gamegallery-item .gamegallery-item-content-item .gamegallery-item-content-item-info .gamegallery-item-content-item-toolbar {
+#game .game-item .game-item-content-item .game-item-content-item-info .game-item-content-item-toolbar {
   display: flex;
   justify-content: space-between;
   position: absolute;
@@ -8814,14 +8814,14 @@ body[data-type=music] #nav-music {
   width: 100%;
   padding: 0 16px;
 }
-#gamegallery .gamegallery-item .gamegallery-item-content-item .gamegallery-item-content-item-info .gamegallery-item-content-item-toolbar .gamegallery-item-content-item-link {
+#game .game-item .game-item-content-item .game-item-content-item-info .game-item-content-item-toolbar .game-item-content-item-link {
   font-size: 12px;
   background: var(--efu-gray-op);
   padding: 4px 8px;
   border-radius: 8px;
   cursor: pointer;
 }
-#gamegallery .gamegallery-item .gamegallery-item-content-item .gamegallery-item-content-item-info .gamegallery-item-content-item-toolbar .gamegallery-item-content-item-link:hover {
+#game .game-item .game-item-content-item .game-item-content-item-info .game-item-content-item-toolbar .game-item-content-item-link:hover {
   background: var(--efu-main);
   color: var(--efu-white);
 }
@@ -9046,7 +9046,7 @@ body {
   font-size: 3rem;
   color: rgba(255,255,255,0.5);
   background: transparent;
-  border-radius: 50%;
+  border-radius: 0%;
   transition: color 200ms, background 200ms;
 }
 .prev-arrow {
@@ -13112,12 +13112,91 @@ figure.highlight .code-expand-btn:not(.expand-done) ~ pre {
     display: none !important;
   }
 }
+#card-digit-clock {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#clock {
+    font-size: 10px;
+    position: relative;
+}
+.digit-group {
+    display: inline-block;
+}
+.digit-group:not(:last-child):after {
+    color: inherit;
+    content: ":";
+    font-size: 50px;
+    line-height: 0
+
+}
+.digit {
+    display: inline-block;
+    width: 33px;
+}
+.digit .digit-number {
+    color: inherit;
+    transform: rotate(-90deg);
+    transition: font-size 200ms,transform 350ms,color 150ms;
+    text-align: center;
+    line-height: 1.2;
+}
+.digit .digit-number.bright {
+    color: inherit;
+    font-size: 25px;
+    transform: rotate(0deg);
+}
+/**
+那年今日
+*/
+
+#aside-content .card-history .swiper-wrapper {
+    flex-direction: column
+}
+
+#aside-content .card-history .item-headline {
+    margin-left: 0;
+}
+
+#aside-content .card-history .history_slide {
+    text-align: left;
+    display: flex !important;
+    flex-direction: column;
+    align-items: flex-start
+}
+
+#aside-content .card-history .history_slide_time {
+    color: var(--ba-secondtext);
+    font-size: 14px;
+    font-style: italic;
+    font-weight: lighter
+}
+
+#aside-content .card-history .history_slide_link {
+    line-height: 1.5;
+    -webkit-line-clamp: 2;
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical
+}
+
+#aside-content .card-history .history_slide_link a {
+    color: var(--ba-main);
+    padding: 0 4px;
+    border-radius: 4px
+}
+
+#aside-content .card-history .history_slide_link a:hover {
+    color: var(--ba-white);
+    background: var(--ba-main)
+}
 /* 背景与页面基本样式 */
-body[data-type="anniversary"] #web_bg {
+body[data-type="nekko"] #web_bg {
     background: var(--anzhiyu-background);
 }
 
-body[data-type="anniversary"] #page {
+body[data-type="nekko"] #page {
     border: 0;
     -webkit-box-shadow: none !important;
     box-shadow: none !important;
@@ -13125,12 +13204,12 @@ body[data-type="anniversary"] #page {
     background: 0 0 !important;
 }
 
-body[data-type="anniversary"] #page .page-title {
+body[data-type="nekko"] #page .page-title {
     display: none;
 }
 
 /* 卡片整体布局 */
-.anniversary-cards {
+.nekko-cards {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* 响应式布局 */
     gap: 20px;
@@ -13138,7 +13217,7 @@ body[data-type="anniversary"] #page .page-title {
 }
 
 /* 卡片样式 */
-.anniversary-card {
+.nekko-card {
     background-color: #f9f9f9;
     border-radius: 10px;
     padding: 20px;
@@ -13146,7 +13225,7 @@ body[data-type="anniversary"] #page .page-title {
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
-.anniversary-card:hover {
+.nekko-card:hover {
     transform: translateY(-10px);
     box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
 }
@@ -13241,11 +13320,11 @@ body[data-type="anniversary"] #page .page-title {
 
 /* 响应式布局优化，适配不同设备 */
 @media (max-width: 768px) {
-    .anniversary-cards {
+    .nekko-cards {
         grid-template-columns: 1fr;
     }
 
-    .anniversary-card {
+    .nekko-card {
         padding: 15px;
     }
 
@@ -13255,11 +13334,11 @@ body[data-type="anniversary"] #page .page-title {
 }
 
 /* 动画效果 */
-.anniversary-card {
+.nekko-card {
     transition: all 0.3s ease-in-out;
 }
 
-.anniversary-card:hover {
+.nekko-card:hover {
     transform: scale(1.05);
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
 }
@@ -13281,7 +13360,7 @@ body[data-type="anniversary"] #page .page-title {
     text-decoration: underline;
 }
 /* 分组标题和描述样式 */
-.anniversary-group {
+.nekko-group {
     margin-bottom: 40px;
 }
 
@@ -13302,85 +13381,6 @@ body[data-type="anniversary"] #page .page-title {
     color: #666;
     margin-bottom: 20px;
     text-align: left; /* 分组描述左对齐 */
-}
-#card-digit-clock {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-#clock {
-    font-size: 10px;
-    position: relative;
-}
-.digit-group {
-    display: inline-block;
-}
-.digit-group:not(:last-child):after {
-    color: inherit;
-    content: ":";
-    font-size: 50px;
-    line-height: 0
-
-}
-.digit {
-    display: inline-block;
-    width: 33px;
-}
-.digit .digit-number {
-    color: inherit;
-    transform: rotate(-90deg);
-    transition: font-size 200ms,transform 350ms,color 150ms;
-    text-align: center;
-    line-height: 1.2;
-}
-.digit .digit-number.bright {
-    color: inherit;
-    font-size: 25px;
-    transform: rotate(0deg);
-}
-/**
-那年今日
-*/
-
-#aside-content .card-history .swiper-wrapper {
-    flex-direction: column
-}
-
-#aside-content .card-history .item-headline {
-    margin-left: 0;
-}
-
-#aside-content .card-history .history_slide {
-    text-align: left;
-    display: flex !important;
-    flex-direction: column;
-    align-items: flex-start
-}
-
-#aside-content .card-history .history_slide_time {
-    color: var(--ba-secondtext);
-    font-size: 14px;
-    font-style: italic;
-    font-weight: lighter
-}
-
-#aside-content .card-history .history_slide_link {
-    line-height: 1.5;
-    -webkit-line-clamp: 2;
-    display: -webkit-box;
-    overflow: hidden;
-    -webkit-box-orient: vertical
-}
-
-#aside-content .card-history .history_slide_link a {
-    color: var(--ba-main);
-    padding: 0 4px;
-    border-radius: 4px
-}
-
-#aside-content .card-history .history_slide_link a:hover {
-    color: var(--ba-white);
-    background: var(--ba-main)
 }
 html, body {
     height: 100%;
