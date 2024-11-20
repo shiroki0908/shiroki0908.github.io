@@ -1,103 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Hello World</title>
-    <url>/2023/10/22/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-      <categories>
-        <category>Hexo</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>从零开始butterfly博客的魔改教程(一)</title>
-    <url>/2024/10/25/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8Bbutterfly%E5%8D%9A%E5%AE%A2%E7%9A%84%E9%AD%94%E6%94%B9%E6%95%99%E7%A8%8B(%E4%B8%80)/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这是一篇从零开始构建butterfly博客的教程，主要面向的完全不知道如何构建Hexo博客的小白，这篇教程会从构建hexo博客开始，初步目标是给Hexo安装上本次的主人公butterfly主题。</p>
-<h1 id="Hexo的依赖要求"><a href="#Hexo的依赖要求" class="headerlink" title="Hexo的依赖要求"></a>Hexo的依赖要求</h1><ul>
-<li><strong>Node.js</strong> (Node.js 版本需不低于 10.13，建议使用 Node.js 12.0 及以上版本)</li>
-<li><strong>Git</strong></li>
-</ul>
-<h2 id="1-安装Git"><a href="#1-安装Git" class="headerlink" title="1. 安装Git"></a>1. 安装Git</h2><p>这里我们将介绍不同操作系统的安装方式。</p>
-<ul>
-<li>Windows: 去指定官网<a href="https://git-scm.com/downloads/win">Git官网</a>下载安装包安装。</li>
-<li>Linux: 一般Linux系统都自带Git，如果没有，可以用包管理器安装。<ul>
-<li>Ubuntu&#x2F;Debian: <code>sudo apt-get install git</code></li>
-<li>CentOS&#x2F;Red Hat&#x2F;Fedora: <code>sudo yum install git</code></li>
-<li>Arch Linux: <code>sudo pacman -S git</code></li>
-</ul>
-</li>
-<li>macOS: 去指定官网<a href="https://sourceforge.net/projects/git-osx-installer/">Git官网</a>下载安装包安装。</li>
-</ul>
-<h2 id="2-安装Node-js"><a href="#2-安装Node-js" class="headerlink" title="2. 安装Node.js"></a>2. 安装Node.js</h2><p>这里我们将介绍不同操作系统的安装方式。</p>
-<ul>
-<li>Windows: 去指定官网<a href="https://nodejs.org/en/download/">Node.js官网</a>下载安装包安装。</li>
-<li>Linux: 一般Linux系统都自带Node.js，如果没有，可以用包管理器安装。<ul>
-<li>Ubuntu&#x2F;Debian: <code>sudo apt-get install nodejs</code></li>
-<li>CentOS&#x2F;Red Hat&#x2F;Fedora: <code>sudo yum install nodejs</code></li>
-<li>Arch Linux: <code>sudo pacman -S nodejs</code></li>
-</ul>
-</li>
-<li>macOS: 去指定官网<a href="https://nodejs.org/en/download/">Node.js官网</a>下载安装包安装。</li>
-</ul>
-<h1 id="安装-Hexo"><a href="#安装-Hexo" class="headerlink" title="安装 Hexo"></a>安装 Hexo</h1><p>所有必备的应用程序安装完成后，即可使用 npm 安装 Hexo。</p>
-<h2 id="1-安装Hexo客户端"><a href="#1-安装Hexo客户端" class="headerlink" title="1. 安装Hexo客户端"></a>1. 安装Hexo客户端</h2><ul>
-<li>Windows: 在命令提示符中运行 <code>npm install -g hexo-cli</code></li>
-<li>Linux: 在终端中运行 <code>sudo npm install -g hexo-cli</code></li>
-<li>macOS： 在终端中运行 <code>sudo -s npm install -g hexo-cli</code></li>
-</ul>
-<h2 id="2-执行Hexo命令"><a href="#2-执行Hexo命令" class="headerlink" title="2. 执行Hexo命令"></a>2. 执行Hexo命令</h2><ul>
-<li>Linux以外执行<code>npx hexo &lt;command&gt;</code></li>
-<li>Linux用户可以将 Hexo 所在的目录下的 node_modules 添加到环境变量之中即可直接使用<code>npx hexo &lt;command&gt;</code><br><code>echo &#39;PATH=&quot;$PATH:./node_modules/.bin&quot;&#39; &gt;&gt; ~/.profile</code></li>
-</ul>
-<h2 id="3-安装-Hexo-完成后，需要再指定文件夹内新增文件，执行hexo-init命令，Hexo会在指定文件夹内生成所需文件。"><a href="#3-安装-Hexo-完成后，需要再指定文件夹内新增文件，执行hexo-init命令，Hexo会在指定文件夹内生成所需文件。" class="headerlink" title="3. 安装 Hexo 完成后，需要再指定文件夹内新增文件，执行hexo init命令，Hexo会在指定文件夹内生成所需文件。"></a>3. 安装 Hexo 完成后，需要再指定文件夹内新增文件，执行<code>hexo init</code>命令，Hexo会在指定文件夹内生成所需文件。</h2><ol>
-<li><code>$ hexo init &lt;folder&gt;</code> </li>
-<li><code>cd &lt;folder&gt;</code></li>
-<li><code>npm install</code> macOS用户安装需要开启管理员，所以需要在终端中运行<code>sudo npm install</code></li>
-</ol>
-<p>初始化后，您的项目文件夹将如下所示：<br>.<br>├── _config.yml<br>├── package.json<br>├── scaffolds<br>├── source<br>|   ├── _drafts<br>|   └── _posts<br>└── themes</p>
-<h2 id="4-执行Hexo三板斧"><a href="#4-执行Hexo三板斧" class="headerlink" title="4. 执行Hexo三板斧"></a>4. 执行Hexo三板斧</h2><ol>
-<li><code>hexo cl</code><br>在终端中运行<code>hexo cl</code>命令，确认刺青。(<code>hexo cl</code>是<code>hexo clean</code>的简写)</li>
-<li><code>hexo g</code><br>在终端中运行<code>hexo g</code>命令，生成静态文件。(<code>hexo g</code>是<code>hexo generate</code>的简写)</li>
-<li><code>hexo s</code><br>在终端中运行<code>hexo s</code>命令，启动本地服务器。(<code>hexo s</code>是<code>hexo server</code>的简写)</li>
-</ol>
-<p>在<a href="http://localhost:4000/">本地端口</a>确认Hexo博客是否正常运行。</p>
-<p>若成功运行则会显示成下图这样:</p>
-<p><img src="https://i.imgur.com/C80Biuy.png" alt="hexo成功运行"></p>
-<p>接下来，我们可以开始安装butterfly主题了。</p>
-<h1 id="安装butterfly主题"><a href="#安装butterfly主题" class="headerlink" title="安装butterfly主题"></a>安装butterfly主题</h1><h2 id="1-通过Git获取源代码"><a href="#1-通过Git获取源代码" class="headerlink" title="1. 通过Git获取源代码"></a>1. 通过Git获取源代码</h2><p>Stable branch [recommend]:<br><code>git clone -b master https://github.com/jerryc127/hexo-theme-butterfly.git themes/butterfly</code></p>
-<p>Dev branch:<br><code>git clone -b dev https://github.com/jerryc127/hexo-theme-butterfly.git themes/butterfly</code></p>
-<h2 id="2-NPM安装Butterfly主题"><a href="#2-NPM安装Butterfly主题" class="headerlink" title="2. NPM安装Butterfly主题"></a>2. NPM安装Butterfly主题</h2><p>在终端中运行<code>npm install hexo-theme-butterfly --save</code>命令，安装Butterfly主题。<br>（macOS用户需要开启管理员，所以需要在终端中运行<code>sudo npm install hexo-theme-butterfly --save</code>）</p>
-<h2 id="3-修改Hexo配置文件"><a href="#3-修改Hexo配置文件" class="headerlink" title="3. 修改Hexo配置文件"></a>3. 修改Hexo配置文件</h2><p>打开Hexo配置文件<code>_config.yml</code>，找到<code>theme</code>项，将<code>theme</code>的值修改为<code>butterfly</code>。</p>
-<p>如果你没有pug和stylus renderer，请在终端中运行以下代码:<br><code>npm install hexo-renderer-pug hexo-renderer-stylus --save</code>命令安装。<br>(macOS用户需要开启管理员，所以需要在终端中运行<code>sudo npm install hexo-renderer-pug hexo-renderer-stylus --save</code>)</p>
-<h2 id="4-启用Butterfly主题"><a href="#4-启用Butterfly主题" class="headerlink" title="4. 启用Butterfly主题"></a>4. 启用Butterfly主题</h2><p>执行hexo三板斧命令，确认无误后，在浏览器中访问<a href="http://localhost:4000/">本地端口</a>，即可看到Butterfly主题的博客页面。</p>
-<p>如果成功安装，你将看到如下画面:</p>
-<p><img src="https://i.imgur.com/U2HhcyD.png" alt="butterfly安装成功"></p>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>以上就是butterfly主题的傻瓜式安装教程，如果你遇到了问题，欢迎在评论区留言，希望能帮助到大家。</p>
-]]></content>
-      <categories>
-        <category>魔改教程</category>
-      </categories>
-      <tags>
-        <tag>魔改教程</tag>
-        <tag>butterfly</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Markdown从小白到精通</title>
     <url>/2024/10/25/Markdown%E4%BB%8E%E5%B0%8F%E7%99%BD%E5%88%B0%E7%B2%BE%E9%80%9A/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a><strong>前言</strong></h1><p>相信很多人在看技术博客，做笔记时都经常接触Typora呀熊掌记等一系列笔记软件，这些软件都有着很强大的Markdown语法支持，让我们可以快速、轻松地进行排版。由于Hexo等静态博客主要通过对Markdown文件进行解析来渲染出很多让人眼前一亮的画面效果，所以我觉得在正式开始博客搭建之前，有必要让大家对Markdown语法有一个基本的了解。本文将介绍一些常用的Markdown语法，希望能帮助大家快速上手。废话不多说啦，开始干活！</p>
@@ -384,24 +287,100 @@
       </tags>
   </entry>
   <entry>
-    <title>从零搭建Hexo博客教程（一）</title>
-    <url>/2024/10/25/%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BAHexo%E5%8D%9A%E5%AE%A2%E6%95%99%E7%A8%8B%EF%BC%88%E4%B8%80%EF%BC%89/</url>
-    <content><![CDATA[]]></content>
+    <title>从零开始butterfly博客的魔改教程(一)</title>
+    <url>/2024/10/25/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8Bbutterfly%E5%8D%9A%E5%AE%A2%E7%9A%84%E9%AD%94%E6%94%B9%E6%95%99%E7%A8%8B(%E4%B8%80)/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这是一篇从零开始构建butterfly博客的教程，主要面向的完全不知道如何构建Hexo博客的小白，这篇教程会从构建hexo博客开始，初步目标是给Hexo安装上本次的主人公butterfly主题。</p>
+<h1 id="Hexo的依赖要求"><a href="#Hexo的依赖要求" class="headerlink" title="Hexo的依赖要求"></a>Hexo的依赖要求</h1><ul>
+<li><strong>Node.js</strong> (Node.js 版本需不低于 10.13，建议使用 Node.js 12.0 及以上版本)</li>
+<li><strong>Git</strong></li>
+</ul>
+<h2 id="1-安装Git"><a href="#1-安装Git" class="headerlink" title="1. 安装Git"></a>1. 安装Git</h2><p>这里我们将介绍不同操作系统的安装方式。</p>
+<ul>
+<li>Windows: 去指定官网<a href="https://git-scm.com/downloads/win">Git官网</a>下载安装包安装。</li>
+<li>Linux: 一般Linux系统都自带Git，如果没有，可以用包管理器安装。<ul>
+<li>Ubuntu&#x2F;Debian: <code>sudo apt-get install git</code></li>
+<li>CentOS&#x2F;Red Hat&#x2F;Fedora: <code>sudo yum install git</code></li>
+<li>Arch Linux: <code>sudo pacman -S git</code></li>
+</ul>
+</li>
+<li>macOS: 去指定官网<a href="https://sourceforge.net/projects/git-osx-installer/">Git官网</a>下载安装包安装。</li>
+</ul>
+<h2 id="2-安装Node-js"><a href="#2-安装Node-js" class="headerlink" title="2. 安装Node.js"></a>2. 安装Node.js</h2><p>这里我们将介绍不同操作系统的安装方式。</p>
+<ul>
+<li>Windows: 去指定官网<a href="https://nodejs.org/en/download/">Node.js官网</a>下载安装包安装。</li>
+<li>Linux: 一般Linux系统都自带Node.js，如果没有，可以用包管理器安装。<ul>
+<li>Ubuntu&#x2F;Debian: <code>sudo apt-get install nodejs</code></li>
+<li>CentOS&#x2F;Red Hat&#x2F;Fedora: <code>sudo yum install nodejs</code></li>
+<li>Arch Linux: <code>sudo pacman -S nodejs</code></li>
+</ul>
+</li>
+<li>macOS: 去指定官网<a href="https://nodejs.org/en/download/">Node.js官网</a>下载安装包安装。</li>
+</ul>
+<h1 id="安装-Hexo"><a href="#安装-Hexo" class="headerlink" title="安装 Hexo"></a>安装 Hexo</h1><p>所有必备的应用程序安装完成后，即可使用 npm 安装 Hexo。</p>
+<h2 id="1-安装Hexo客户端"><a href="#1-安装Hexo客户端" class="headerlink" title="1. 安装Hexo客户端"></a>1. 安装Hexo客户端</h2><ul>
+<li>Windows: 在命令提示符中运行 <code>npm install -g hexo-cli</code></li>
+<li>Linux: 在终端中运行 <code>sudo npm install -g hexo-cli</code></li>
+<li>macOS： 在终端中运行 <code>sudo -s npm install -g hexo-cli</code></li>
+</ul>
+<h2 id="2-执行Hexo命令"><a href="#2-执行Hexo命令" class="headerlink" title="2. 执行Hexo命令"></a>2. 执行Hexo命令</h2><ul>
+<li>Linux以外执行<code>npx hexo &lt;command&gt;</code></li>
+<li>Linux用户可以将 Hexo 所在的目录下的 node_modules 添加到环境变量之中即可直接使用<code>npx hexo &lt;command&gt;</code><br><code>echo &#39;PATH=&quot;$PATH:./node_modules/.bin&quot;&#39; &gt;&gt; ~/.profile</code></li>
+</ul>
+<h2 id="3-安装-Hexo-完成后，需要再指定文件夹内新增文件，执行hexo-init命令，Hexo会在指定文件夹内生成所需文件。"><a href="#3-安装-Hexo-完成后，需要再指定文件夹内新增文件，执行hexo-init命令，Hexo会在指定文件夹内生成所需文件。" class="headerlink" title="3. 安装 Hexo 完成后，需要再指定文件夹内新增文件，执行hexo init命令，Hexo会在指定文件夹内生成所需文件。"></a>3. 安装 Hexo 完成后，需要再指定文件夹内新增文件，执行<code>hexo init</code>命令，Hexo会在指定文件夹内生成所需文件。</h2><ol>
+<li><code>$ hexo init &lt;folder&gt;</code> </li>
+<li><code>cd &lt;folder&gt;</code></li>
+<li><code>npm install</code> macOS用户安装需要开启管理员，所以需要在终端中运行<code>sudo npm install</code></li>
+</ol>
+<p>初始化后，您的项目文件夹将如下所示：<br>.<br>├── _config.yml<br>├── package.json<br>├── scaffolds<br>├── source<br>|   ├── _drafts<br>|   └── _posts<br>└── themes</p>
+<h2 id="4-执行Hexo三板斧"><a href="#4-执行Hexo三板斧" class="headerlink" title="4. 执行Hexo三板斧"></a>4. 执行Hexo三板斧</h2><ol>
+<li><code>hexo cl</code><br>在终端中运行<code>hexo cl</code>命令，确认刺青。(<code>hexo cl</code>是<code>hexo clean</code>的简写)</li>
+<li><code>hexo g</code><br>在终端中运行<code>hexo g</code>命令，生成静态文件。(<code>hexo g</code>是<code>hexo generate</code>的简写)</li>
+<li><code>hexo s</code><br>在终端中运行<code>hexo s</code>命令，启动本地服务器。(<code>hexo s</code>是<code>hexo server</code>的简写)</li>
+</ol>
+<p>在<a href="http://localhost:4000/">本地端口</a>确认Hexo博客是否正常运行。</p>
+<p>若成功运行则会显示成下图这样:</p>
+<p><img src="https://i.imgur.com/C80Biuy.png" alt="hexo成功运行"></p>
+<p>接下来，我们可以开始安装butterfly主题了。</p>
+<h1 id="安装butterfly主题"><a href="#安装butterfly主题" class="headerlink" title="安装butterfly主题"></a>安装butterfly主题</h1><h2 id="1-通过Git获取源代码"><a href="#1-通过Git获取源代码" class="headerlink" title="1. 通过Git获取源代码"></a>1. 通过Git获取源代码</h2><p>Stable branch [recommend]:<br><code>git clone -b master https://github.com/jerryc127/hexo-theme-butterfly.git themes/butterfly</code></p>
+<p>Dev branch:<br><code>git clone -b dev https://github.com/jerryc127/hexo-theme-butterfly.git themes/butterfly</code></p>
+<h2 id="2-NPM安装Butterfly主题"><a href="#2-NPM安装Butterfly主题" class="headerlink" title="2. NPM安装Butterfly主题"></a>2. NPM安装Butterfly主题</h2><p>在终端中运行<code>npm install hexo-theme-butterfly --save</code>命令，安装Butterfly主题。<br>（macOS用户需要开启管理员，所以需要在终端中运行<code>sudo npm install hexo-theme-butterfly --save</code>）</p>
+<h2 id="3-修改Hexo配置文件"><a href="#3-修改Hexo配置文件" class="headerlink" title="3. 修改Hexo配置文件"></a>3. 修改Hexo配置文件</h2><p>打开Hexo配置文件<code>_config.yml</code>，找到<code>theme</code>项，将<code>theme</code>的值修改为<code>butterfly</code>。</p>
+<p>如果你没有pug和stylus renderer，请在终端中运行以下代码:<br><code>npm install hexo-renderer-pug hexo-renderer-stylus --save</code>命令安装。<br>(macOS用户需要开启管理员，所以需要在终端中运行<code>sudo npm install hexo-renderer-pug hexo-renderer-stylus --save</code>)</p>
+<h2 id="4-启用Butterfly主题"><a href="#4-启用Butterfly主题" class="headerlink" title="4. 启用Butterfly主题"></a>4. 启用Butterfly主题</h2><p>执行hexo三板斧命令，确认无误后，在浏览器中访问<a href="http://localhost:4000/">本地端口</a>，即可看到Butterfly主题的博客页面。</p>
+<p>如果成功安装，你将看到如下画面:</p>
+<p><img src="https://i.imgur.com/U2HhcyD.png" alt="butterfly安装成功"></p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>以上就是butterfly主题的傻瓜式安装教程，如果你遇到了问题，欢迎在评论区留言，希望能帮助到大家。</p>
+]]></content>
       <categories>
-        <category>博客教程</category>
+        <category>魔改教程</category>
       </categories>
       <tags>
-        <tag>Hexo</tag>
-        <tag>教程</tag>
+        <tag>魔改教程</tag>
+        <tag>butterfly</tag>
       </tags>
   </entry>
   <entry>
-    <title>这是我写的第一篇文章</title>
-    <url>/2024/10/22/%E8%BF%99%E6%98%AF%E6%88%91%E5%86%99%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/</url>
-    <content><![CDATA[]]></content>
+    <title>Hello World</title>
+    <url>/2023/10/22/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+      <categories>
+        <category>Hexo</category>
+      </categories>
       <tags>
         <tag>Hexo</tag>
-        <tag>吐槽</tag>
       </tags>
   </entry>
   <entry>
@@ -424,6 +403,27 @@
       <tags>
         <tag>魔改教程</tag>
         <tag>butterfly</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>从零搭建Hexo博客教程（一）</title>
+    <url>/2024/10/25/%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BAHexo%E5%8D%9A%E5%AE%A2%E6%95%99%E7%A8%8B%EF%BC%88%E4%B8%80%EF%BC%89/</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>博客教程</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+        <tag>教程</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>这是我写的第一篇文章</title>
+    <url>/2024/10/22/%E8%BF%99%E6%98%AF%E6%88%91%E5%86%99%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/</url>
+    <content><![CDATA[]]></content>
+      <tags>
+        <tag>Hexo</tag>
+        <tag>吐槽</tag>
       </tags>
   </entry>
 </search>
