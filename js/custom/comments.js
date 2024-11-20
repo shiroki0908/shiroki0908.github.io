@@ -5,32 +5,23 @@ const path = require('path')
 const urlFor = require('hexo-util').url_for.bind(hexo)
 const util = require('hexo-util')
 hexo.extend.generator.register('comments', function (locals) {
-  const config = hexo.theme.config.envelope_comment || hexo.config.envelope_comment
-  if (!(config && config.enable)) return
+  const config = hexo.theme.config.envelope_comment || hexo.config.envelope_comment;
+  // 确保 `enable` 为 false 时完全跳过生成
+  if (!config || !config.enable) {
+    console.log('envelope_comment is disabled, skipping generation...');
+    return null; // 确保返回 null 而非其他值
+  }
 
   const data = {
-    cover: config.custom_pic.cover ? urlFor(config.custom_pic.cover) : "/img/comments/violet.jpg",
-    line: config.custom_pic.line ? urlFor(config.custom_pic.line) : "/img/comments/line.png",
-    beforeimg: config.custom_pic.beforeimg ? urlFor(config.custom_pic.beforeimg) : "/img/comments/before.png",
-    afterimg: config.custom_pic.afterimg ? urlFor(config.custom_pic.afterimg) : "/img/comments/after.png",
-    message: config.message ?  config.message : ["有什么想问的？","有什么想说的？","有什么想吐槽的？","哪怕是有什么想吃的，都可以告诉我哦~"],
+    custom_pic: config.custom_pic || {},
+    message: Array.isArray(config.message) ? config.message : [],
     bottom: config.bottom ? config.bottom : "自动书记人偶竭诚为您服务",
-  }
-  const content = pug.renderFile(path.join(__dirname, './lib/html.pug'), data)
-
-  const pathPre = config.path || ''
-
-  let pageDate = {
-    content: content
-  }
-
-  if (config.front_matter) {
-    pageDate = Object.assign(pageDate, config.front_matter)
-  }
+  };
+  const content = pug.renderFile(path.join(__dirname, './lib/html.pug'), data);
 
   return {
-    path: pathPre + '/index.html',
-    data: pageDate,
-    layout: ['page', 'post']
-  }
-})
+    path: pathPre + 'message/index.html',
+    data,
+    layout: false,
+  };
+});
