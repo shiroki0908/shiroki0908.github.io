@@ -2636,7 +2636,7 @@ span.tags-punctuation i {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  opacity: 0.4;
+  opacity: 0.5;
   transition: opacity 0.3s ease;
 }
 [data-theme=dark] #global_bg::before {
@@ -8737,7 +8737,7 @@ body[data-type=music] #nav-music {
 }
 #ffka_sc_wrap {
   width: 1338.49px;
-  height: 752.9px;
+  height: 450px;
   margin: 20px auto;
   position: relative;
   overflow: hidden;

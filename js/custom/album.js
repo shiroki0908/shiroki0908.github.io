@@ -35,12 +35,15 @@ const initializeGallery = () => {
     return { x, y };
   };
 
-  const getCenterPosition = () => {
+  const getCenterPosition = (photoDiv) => {
     const containerWidth = wrap.offsetWidth;
     const containerHeight = wrap.offsetHeight;
-
-    const x = containerWidth / 2 - 200; // 居中 X 坐标
-    const y = containerHeight / 2 - 200; // 居中 Y 坐标
+  
+    const photoWidth = photoDiv.offsetWidth || 400; // 获取图片宽度
+    const photoHeight = photoDiv.offsetHeight || 400; // 获取图片高度
+  
+    const x = containerWidth / 2 - photoWidth / 2; // 中心 X 坐标
+    const y = containerHeight / 2 - photoHeight / 2; // 中心 Y 坐标
     return { x, y };
   };
 
@@ -64,16 +67,16 @@ const initializeGallery = () => {
 
     // 点击时居中显示
     photoDiv.addEventListener("click", () => {
-      const centerPosition = getCenterPosition();
-
+      const centerPosition = getCenterPosition(photoDiv); // 调用新的居中逻辑
+    
       // 提升被点击图片的 z-index
       photoDiv.style.zIndex = 100;
-
+    
       // 居中
       photoDiv.style.left = `${centerPosition.x}px`;
       photoDiv.style.top = `${centerPosition.y}px`;
       photoDiv.style.transform = `rotate(0deg) scale(1.2)`; // 放大并居中
-
+    
       // 让其他图片重新随机分布，并恢复默认 z-index
       wrap.querySelectorAll(".photo").forEach((otherDiv) => {
         if (otherDiv !== photoDiv) {
