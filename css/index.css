@@ -9096,13 +9096,30 @@ body[data-type=music] #nav-music {
   justify-content: flex-start;
   align-items: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  padding: 0 10px; /* 控制内容与卡片边缘的距离 */
+  padding: 0 10px;
+}
+.album_card .image_wrapper[style*="blur"] {
+  position: relative;
+  filter: blur(8px); /* 模糊效果 */
 }
 .album_card:hover {
   box-shadow: 0 8px 16px rgba(0,0,0,0.2), 0 16px 24px rgba(0,0,0,0.15);
 }
 .album_card.hidden {
   display: none !important;
+}
+.album_lock {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2rem;
+  color: #f00;
+  font-weight: bold;
+  background-color: rgba(255,255,255,0.7);
+  padding: 10px;
+  border-radius: 50%;
+  z-index: 10;
 }
 .image_wrapper {
   width: 100%;
