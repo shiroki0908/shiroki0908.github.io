@@ -1,8 +1,25 @@
-// 使用事件委托绑定相册卡片的点击事件
 const initAlbumModal = () => {
   const modal = document.getElementById("album_modal");
   const mainImage = modal.querySelector(".modal_main_image");
   const thumbnails = modal.querySelector(".modal_thumbnails");
+
+  // 禁止右击和拖拽
+  const disableImageInteractions = (imageElement) => {
+    imageElement.addEventListener("contextmenu", (event) => {
+      event.preventDefault();
+    });
+
+    imageElement.addEventListener("dragstart", (event) => {
+      event.preventDefault();
+    });
+  };
+
+    // 禁止右键点击
+  document.querySelectorAll('#album_modal .thumbnail').forEach(function (thumbnail) {
+    thumbnail.addEventListener('contextmenu', function (e) {
+      e.preventDefault();  // 阻止右键菜单
+    });
+  });
 
   // 显示模态框并加载图片
   const showModal = (images) => {
@@ -11,6 +28,7 @@ const initAlbumModal = () => {
 
     // 默认显示第一张图片
     mainImage.src = images[0]?.url || "";
+    disableImageInteractions(mainImage);
 
     // 渲染缩略图
     images.forEach((img, index) => {
@@ -18,6 +36,9 @@ const initAlbumModal = () => {
       thumbnail.src = img.url;
       thumbnail.className = "thumbnail";
       if (index === 0) thumbnail.classList.add("active");
+
+      // 禁止缩略图右击和拖拽
+      disableImageInteractions(thumbnail);
 
       // 点击缩略图切换主图片
       thumbnail.addEventListener("click", (event) => {

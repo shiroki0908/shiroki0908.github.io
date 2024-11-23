@@ -32,6 +32,23 @@
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* 阴影效果 */
   }
   
+  /* 主图片容器及透明遮罩 */
+  .modal_main_image_wrapper {
+    position: relative;
+    max-width: 100%;
+  }
+
+  .modal_main_image_wrapper::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    z-index: 2; /* 确保遮罩在图片上方 */
+    pointer-events: none;
+  }
   /* 主图片 */
   #album_modal .modal_main_image {
     max-width: 100%; /* 主图片宽度不超过容器宽度 */
@@ -74,6 +91,16 @@
     transform: scale(1.1); /* 鼠标悬停时放大 */
   }
   
+  .modal_main_image {
+    pointer-events: none;
+    user-select: none; /* 禁止选中文件名 */
+  }
+  
+  .thumbnail {
+    pointer-events: auto; /* 缩略图依然可以点击 */
+    user-select: none;
+  }
+
   /* 自适应优化 */
   @media (max-width: 768px) {
     #album_modal .modal_content {

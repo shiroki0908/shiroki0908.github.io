@@ -9100,7 +9100,7 @@ body[data-type=music] #nav-music {
 }
 .album_card .image_wrapper[style*="blur"] {
   position: relative;
-  filter: blur(8px); /* 模糊效果 */
+  filter: blur(8px);
 }
 .album_card:hover {
   box-shadow: 0 8px 16px rgba(0,0,0,0.2), 0 16px 24px rgba(0,0,0,0.15);
@@ -9132,12 +9132,24 @@ body[data-type=music] #nav-music {
   background-color: #f0f0f0;
   border: 1px solid #ddd;
   box-sizing: border-box;
+  cursor: pointer; /* 鼠标指针样式 */
+}
+.image_wrapper::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  z-index: 2;
 }
 .image_wrapper img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   transition: transform 0.8s ease;
+  pointer-events: none;
 }
 .image_wrapper:hover img {
   transform: scale(1.1);
@@ -13248,6 +13260,23 @@ figure.highlight .code-expand-btn:not(.expand-done) ~ pre {
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* 阴影效果 */
   }
   
+  /* 主图片容器及透明遮罩 */
+  .modal_main_image_wrapper {
+    position: relative;
+    max-width: 100%;
+  }
+
+  .modal_main_image_wrapper::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    z-index: 2; /* 确保遮罩在图片上方 */
+    pointer-events: none;
+  }
   /* 主图片 */
   #album_modal .modal_main_image {
     max-width: 100%; /* 主图片宽度不超过容器宽度 */
@@ -13290,6 +13319,16 @@ figure.highlight .code-expand-btn:not(.expand-done) ~ pre {
     transform: scale(1.1); /* 鼠标悬停时放大 */
   }
   
+  .modal_main_image {
+    pointer-events: none;
+    user-select: none; /* 禁止选中文件名 */
+  }
+  
+  .thumbnail {
+    pointer-events: auto; /* 缩略图依然可以点击 */
+    user-select: none;
+  }
+
   /* 自适应优化 */
   @media (max-width: 768px) {
     #album_modal .modal_content {

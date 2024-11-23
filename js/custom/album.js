@@ -1,4 +1,3 @@
-// 初始化相册功能（事件委托方式）
 const initializeAlbumSectionWithDelegation = () => {
   const albumSection = document.querySelector("#album_section");
 
@@ -34,8 +33,29 @@ const initializeAlbumSectionWithDelegation = () => {
     });
   };
 
+  // 禁止图片右键下载
+  const disableImageDownload = () => {
+    albumSection.querySelectorAll("img").forEach((img) => {
+      // 禁用右键菜单
+      img.addEventListener("contextmenu", (event) => {
+        event.preventDefault();
+      });
+
+      // 禁用拖拽下载
+      img.addEventListener("dragstart", (event) => {
+        event.preventDefault();
+      });
+
+      // 添加 CSS 防止复制
+      img.style.userSelect = "none";
+    });
+  };
+
   // 应用默认分类逻辑
   applyDefaultCategory();
+
+  // 禁止图片右键下载
+  disableImageDownload();
 
   // 绑定事件委托到父容器
   albumSection.addEventListener("click", (event) => {
@@ -58,6 +78,9 @@ const initializeAlbumSectionWithDelegation = () => {
       });
 
       console.log(`Tag clicked: ${selectedTag}`);
+
+      // 更新后重新禁止图片下载
+      disableImageDownload();
     }
   });
 };
