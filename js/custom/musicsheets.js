@@ -1,20 +1,15 @@
-const initializeCoverflow = () => {
+const initializeCoverflowWithDelegation = () => {
   const coverflowContainer = document.querySelector(".coverflow");
   const albumButton = document.querySelector(".album-button");
   if (!coverflowContainer || !albumButton) return;
 
-  const images = Array.from(coverflowContainer.querySelectorAll(".coverflow__image"));
-  const prevArrow = coverflowContainer.querySelector(".prev-arrow");
-  const nextArrow = coverflowContainer.querySelector(".next-arrow");
-
   let currentPosition;
+  let images = [];
 
   const calculateInitialPosition = () => {
     const totalImages = images.length;
     return totalImages % 2 === 0 ? Math.floor(totalImages / 2) : Math.ceil(totalImages / 2);
   };
-
-  currentPosition = calculateInitialPosition();
 
   const updateCoverflow = () => {
     coverflowContainer.dataset.coverflowPosition = currentPosition;
@@ -36,19 +31,24 @@ const initializeCoverflow = () => {
     const activeImage = images[currentPosition - 1];
     if (activeImage) {
       const albumLink = activeImage.dataset.album || "#";
-      console.log(`Album link for current image: ${albumLink}`); // 检查链接是否正确
+      console.log(`Album link for current image: ${albumLink}`);
       albumButton.setAttribute("data-album", albumLink);
       albumButton.onclick = () => {
         if (albumLink && albumLink !== "#") {
-          window.open(albumLink, "_blank"); // 打开 PDF 文件
+          window.open(albumLink, "_blank");
         } else {
           alert("No album link available for this image.");
         }
       };
     }
 
-    prevArrow.style.display = currentPosition === 1 ? "none" : "block";
-    nextArrow.style.display = currentPosition === images.length ? "none" : "block";
+    const prevArrow = coverflowContainer.querySelector(".prev-arrow");
+    const nextArrow = coverflowContainer.querySelector(".next-arrow");
+
+    if (prevArrow && nextArrow) {
+      prevArrow.style.display = currentPosition === 1 ? "none" : "block";
+      nextArrow.style.display = currentPosition === images.length ? "none" : "block";
+    }
   };
 
   const moveToNext = () => {
@@ -72,22 +72,43 @@ const initializeCoverflow = () => {
     }
   };
 
-  updateCoverflow();
+  const handleCoverflowClick = (event) => {
+    const target = event.target;
 
-  prevArrow.removeEventListener("click", moveToPrev);
-  nextArrow.removeEventListener("click", moveToNext);
-  images.forEach((img) => img.removeEventListener("click", moveToClickedImage));
+    if (target.classList.contains("prev-arrow")) {
+      moveToPrev();
+    } else if (target.classList.contains("next-arrow")) {
+      moveToNext();
+    } else if (target.classList.contains("coverflow__image")) {
+      const clickedIndex = images.indexOf(target);
+      if (clickedIndex !== -1) moveToClickedImage(clickedIndex);
+    }
+  };
 
-  prevArrow.addEventListener("click", moveToPrev);
-  nextArrow.addEventListener("click", moveToNext);
-  images.forEach((img, index) => {
-    img.addEventListener("click", () => moveToClickedImage(index));
-  });
+  const initializeCoverflowImages = () => {
+    images = Array.from(coverflowContainer.querySelectorAll(".coverflow__image"));
+    currentPosition = calculateInitialPosition();
+    updateCoverflow();
+  };
 
+  // 初始化 Coverflow 并绑定事件委托
+  initializeCoverflowImages();
+  coverflowContainer.addEventListener("click", handleCoverflowClick);
+
+  // 监听键盘事件
   document.addEventListener("keydown", (e) => {
     if (e.key === "ArrowLeft") moveToPrev();
     if (e.key === "ArrowRight") moveToNext();
   });
+
+  // 如果有动态加载图片，可以用 MutationObserver 或手动调用重新初始化
+  const observer = new MutationObserver(() => {
+    initializeCoverflowImages();
+  });
+
+  observer.observe(coverflowContainer, { childList: true });
 };
 
-document.addEventListener("DOMContentLoaded", initializeCoverflow);
+// 绑定到页面加载和页面迁移事件
+document.addEventListener("DOMContentLoaded", initializeCoverflowWithDelegation);
+document.addEventListener("pjax:success", initializeCoverflowWithDelegation);
