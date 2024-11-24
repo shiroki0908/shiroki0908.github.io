@@ -14,13 +14,6 @@ const initAlbumModal = () => {
     });
   };
 
-    // 禁止右键点击
-  document.querySelectorAll('#album_modal .thumbnail').forEach(function (thumbnail) {
-    thumbnail.addEventListener('contextmenu', function (e) {
-      e.preventDefault();  // 阻止右键菜单
-    });
-  });
-
   // 显示模态框并加载图片
   const showModal = (images) => {
     modal.classList.remove("hidden");
