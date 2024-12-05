@@ -1,0 +1,206 @@
+.naokuo-song-wrap
+  padding-top: 63px
+
+  &.naokuo-ab-song 
+    display: none
+    .naokuo-song-disc
+      position: relative
+      width: 207px
+      height: 207px
+      margin: 0 auto
+
+      &:after
+        content: " "
+        position: absolute   
+        width: 66px
+        height: 106px
+        top: -45px
+        left: 90px
+        z-index: 5
+        -webkit-transform: rotate(-37deg)
+        -ms-transform: rotate(-37deg)
+        transform: rotate(-37deg)
+        transition-property: all
+        transition-duration: 0.8s
+        -webkit-transform-origin: left top
+        -ms-transform-origin: left top
+        transform-origin: left top
+        background: url(https://s11.ax1x.com/2023/12/30/piOdl28.png) no-repeat
+        background-size: contain
+
+      // 播放拨片旋转
+      &.naokuo-play
+        &:after
+          -webkit-transform: rotate(-7deg)
+          -ms-transform: rotate(-7deg)
+          transform: rotate(-7deg)  
+        .naokuo-song-turn
+          .naokuo-song-rollwrap
+            .naokuo-song-img
+              // 播放信息图片
+              &.a-circling
+                -webkit-animation: circling 20s linear infinite
+                animation: circling 20s linear infinite
+
+      .naokuo-song-turn
+        width: 100%
+        height: 100%
+
+        &:before
+          content: " "
+          position: absolute
+          left: 0
+          right: 0
+          top: 0
+          bottom: 0
+          z-index: 2
+          background: url(https://s11.ax1x.com/2023/12/30/piOJfGF.png) no-repeat
+          background-size: contain
+
+        .naokuo-song-rollwrap
+          position: absolute
+          width: 150px
+          height: 150px
+          left: 50%
+          top: 50%
+          z-index: 1
+          margin: -75px 0 0 -75px
+          .naokuo-song-img
+            width: 100%
+            height: 100%
+            border-radius: 50%
+            overflow: hidden
+            background: url(https://s11.ax1x.com/2023/12/30/piOJWPU.png) no-repeat
+            // background-size: contain
+            background-size: cover
+            // 暂停
+            &.a-circling
+              -webkit-animation-play-state: paused
+              animation-play-state: paused
+
+              
+        .naokuo-song-lgour,
+        .naokuo-song-light
+          position: absolute
+          left: 0
+          right: 0
+          top: 0
+          bottom: 0
+          z-index: 3
+
+        .naokuo-song-light
+          background: url(https://s11.ax1x.com/2023/12/30/piOJybq.png) no-repeat
+          background-size: contain
+
+@media screen and (min-width: 360px)
+  .naokuo-song-wrap
+    padding-top: 70px
+
+    &.naokuo-ab-song 
+      .naokuo-song-disc
+        width: 247px
+        height: 247px
+
+        &:after
+          width: 73px
+          height: 118px
+          top: -50px
+          left: 112px
+
+        .naokuo-song-turn
+          &:before
+            background-image: url(https://s11.ax1x.com/2023/12/30/piOJgaV.png)
+
+          .naokuo-song-light
+            background-image: url(https://s11.ax1x.com/2023/12/30/piOJcV0.png)
+
+          .naokuo-song-rollwrap
+            width: 184px
+            height: 184px
+            margin: -92px 0 0 -92px
+
+@media screen and (min-width: 414px)
+  .naokuo-song-wrap
+    padding-top: 80px
+
+    &.naokuo-ab-song 
+      .naokuo-song-disc
+        width: 285px
+        height: 285px
+        // 唱片拨杆 
+        &:after
+          width: 84px
+          height: 136px
+          top: -60px
+          left: 130px
+          background-image: url(https://s11.ax1x.com/2023/12/30/piOdl28.png)
+
+        // 唱片
+        .naokuo-song-turn
+          &:before
+            background-image: url(https://s11.ax1x.com/2023/12/30/piOJ4xJ.png)
+
+          // 唱片反光
+          .naokuo-song-light
+            background-image: url(https://s11.ax1x.com/2023/12/30/piOJ25T.png)
+
+          .naokuo-song-rollwrap
+            width: 212px
+            height: 212px
+            margin: -106px 0 0 -106px
+
+// 手机端
+// @media screen and (min-height: 724px)
+//   .naokuo-song-wrap
+//     &.naokuo-ab-song
+//       padding-top: 30px
+
+@media screen and (max-height: 553px)
+  .naokuo-song-wrap
+    &.naokuo-ab-song
+      padding-top: 0
+
+@media screen and (min-width: 414px) and (min-height:800px)
+  .naokuo-song-wrap
+    &.naokuo-ab-song
+      padding-top: 90px
+
+@media screen and (min-width: 360px) and (max-height:700px)
+  .naokuo-song-wrap
+    &.naokuo-ab-song
+      padding-top: 0px
+
+
+@-webkit-keyframes circling
+  0%
+    -webkit-transform: rotate(0deg)
+    transform: rotate(0deg)
+  to
+    -webkit-transform: rotate(1turn)
+    transform: rotate(1turn)
+
+@keyframes circling
+  0%
+    -webkit-transform: rotate(0deg)
+    transform: rotate(0deg)
+  to
+    -webkit-transform: rotate(1turn)
+    transform: rotate(1turn)
+
+#anMusic-page 
+  .aplayer
+    &.aplayer-withlrc 
+      .aplayer-pic
+        display: none !important      
+      .naokuo-song-wrap
+        &.naokuo-ab-song
+          display: block !important
+
+@media screen and (min-width: 768px)
+  #anMusic-page 
+    .aplayer
+      &.aplayer-withlrc 
+        .aplayer-lrc 
+          .aplayer-lrc-contents
+            position: absolute
+            top: 36%
