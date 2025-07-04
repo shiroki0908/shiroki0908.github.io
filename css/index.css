@@ -9223,37 +9223,155 @@ body[data-type=music] #nav-music {
   .album_card {
     max-width: 100%;
     min-width: 0;
-    height: 62vw;
+    height: 50vw;
+    background: #fff;
+    border: 2px solid #eee;
+    border-radius: 10px;
     aspect-ratio: unset !important;
     padding: 0;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    overflow: hidden;
+    position: relative;
+    padding: 6px 6px 16px 6px;
   }
   .image_wrapper {
     width: 100%;
-/* 38px为信息区大致高度，可根据实际微调 */
     height: calc(100% - 38px);
     margin: 0;
     border-radius: 10px;
+    background: #fff;
+    box-sizing: border-box;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 0 0 0px 0px;
   }
   .image_wrapper img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    border-radius: 10px;
+    background: #f8f8f8;
+    box-shadow: none;
+    display: block;
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .image_wrapper:hover img {
+    transform: scale(1.1);
   }
   .album_info {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0; /* 紧贴拍立得底部 */
     width: 100%;
-    height: auto;
-    min-height: 0;
-    padding: 0 !important;
+    background: transparent;
+    padding: 0 0 6px 6px; /* 顶部0，底部6px，左侧6px，右侧0 */
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    align-items: flex-start;
+    z-index: 2;
+    font-size: 0.8rem;
+    pointer-events: none;
+    height: 38px; /* 保证底部白边高度一致，可根据实际微调 */
+    justify-content: space-between; /* 名字和日期分布上下 */
   }
   .album_info .album_name,
   .album_info p {
-    margin: 0 !important;
+    font-size: clamp(0.6rem, 3vw, 0.8rem); /* 根据屏幕宽度自适应字体大小 */
+    margin: 0 0 2px 0;
+    color: #333;
     line-height: 1.2;
+    text-shadow: 0 1px 2px #fff;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+@media only screen and (min-width: 551px) and (max-width: 900px) {
+  .album_container {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+    width: 100%;
+    padding: 0;
+    box-sizing: border-box;
+    justify-items: stretch;
+    align-items: stretch;
+  }
+  .album_card {
+    max-width: 100%;
+    min-width: 0;
+    height: 32vw;
+    background: #fff;
+    border: 2px solid #eee;
+    border-radius: 10px;
+    aspect-ratio: unset !important;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    overflow: hidden;
+    position: relative;
+    padding: 6px 6px 16px 6px;
+  }
+  .image_wrapper {
+    width: 100%;
+    height: calc(100% - 38px);
+    margin: 0;
+    border-radius: 10px; /* 四个角都有圆角 */
+    background: #fff;
+    box-sizing: border-box;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  .image_wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 4px;
+    background: #f8f8f8;
+    box-shadow: none;
+    display: block;
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 10px; /* 图片本身也加圆角，和外框一致 */
+  }
+  .image_wrapper:hover img {
+    transform: scale(1.1);
+  }
+  .album_info {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 8px;
+    width: 100%;
+    background: transparent;
+    padding: 16px 0 0 16px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    z-index: 2;
+    font-size: 0.85rem;
+    pointer-events: none;
+  }
+  .album_info .album_name,
+  .album_info p {
+    margin: 0 0 2px 0;
+    color: #333;
+    font-size: 0.85rem;
+    line-height: 1.2;
+    text-shadow: 0 1px 2px #fff;
   }
 }
 :root {
