@@ -56,6 +56,8 @@ const scrollFn = () => {
     const isDown = currentTop > initTop;
     initTop = currentTop;
     updateHeaderAndRightside(isDown, currentTop);
+    // 添加 percent 函数调用
+    if (typeof percent === 'function') percent();
   }, 200);
 
   window.addEventListener('scroll', (e) => {
@@ -72,18 +74,30 @@ const scrollFn = () => {
 const percent = () => {
   const docEl = document.documentElement;
   const body = document.body;
-  const scrollPos = window.pageYOffset || docEl.scrollTop;
-  const totalScrollableHeight = Math.max(body.scrollHeight, docEl.scrollHeight, body.offsetHeight, docEl.offsetHeight, body.clientHeight, docEl.clientHeight) - docEl.clientHeight;
+  
+  // 使用多种方法检测滚动位置
+  const scrollPos = window.pageYOffset || docEl.scrollTop || body.scrollTop || 0;
+  
+  // 使用 body 的高度来计算，因为 body 有滚动条
+  const totalScrollableHeight = body.scrollHeight - docEl.clientHeight;
   const scrolledPercent = Math.round((scrollPos / totalScrollableHeight) * 100);
   const navToTop = document.querySelector("#nav-totop");
   const rsToTop = document.querySelector(".rs_show .top i");
-  const percentDisplay = document.querySelector("#percent");
-  const isNearEnd = (window.scrollY + docEl.clientHeight) >= (document.getElementById("post-comment") || document.getElementById("footer")).offsetTop;
+  // 修复选择器，确保找到 rightside 中的 percent
+  const percentDisplay = document.querySelector("#rightside #percent");
+  const postComment = document.getElementById("post-comment");
+  const footer = document.getElementById("footer");
+  const isNearEnd = (window.scrollY + docEl.clientHeight) >= ((postComment || footer)?.offsetTop || 0);
 
-  navToTop?.classList.toggle("long", isNearEnd || scrolledPercent > 90);
-  rsToTop?.classList.toggle("show", isNearEnd || scrolledPercent > 90);
-  percentDisplay.textContent = isNearEnd || scrolledPercent > 90 ? (navToTop ? GLOBAL_CONFIG.lang.backtop : '') : scrolledPercent;
-
+  if (navToTop) navToTop.classList.toggle("long", isNearEnd || scrolledPercent > 90);
+  if (rsToTop) rsToTop.classList.toggle("show", isNearEnd || scrolledPercent > 90);
+  
+  // 更新 percent 显示
+  if (percentDisplay) {
+    const value = scrolledPercent || 0;
+    percentDisplay.textContent = value;
+  }
+  
   document.querySelectorAll(".needEndHide").forEach(item => item.classList.toggle("hide", totalScrollableHeight - scrollPos < 100));
 };
 
@@ -764,7 +778,18 @@ window.refreshFn = () => {
 };
 
 document.addEventListener('DOMContentLoaded', () => {
-  [addCopyright, window.refreshFn, asideStatus, () => window.onscroll = percent, sco.initConsoleState].forEach(fn => fn());
+  [addCopyright, window.refreshFn, asideStatus, () => {
+    // 确保页面可以正常滚动
+    document.body.style.height = 'auto';
+    document.documentElement.style.height = 'auto';
+    
+    window.onscroll = function() {
+      if (typeof scrollFn === 'function') scrollFn();
+      if (typeof percent === 'function') percent();
+    };
+    // 页面加载后立即执行一次 percent，确保初始值正确
+    if (typeof percent === 'function') percent();
+  }, sco.initConsoleState].forEach(fn => fn());
 });
 
 document.addEventListener('visibilitychange', () => {
