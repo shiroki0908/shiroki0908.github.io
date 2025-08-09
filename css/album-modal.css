@@ -1,0 +1,118 @@
+/* 模态框样式 */
+#album_modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8); /* 半透明背景 */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    visibility: hidden; /* 默认隐藏 */
+    opacity: 0; /* 默认透明 */
+    transition: opacity 0.3s ease, visibility 0.3s ease; /* 淡入淡出效果 */
+  }
+  
+  #album_modal:not(.hidden) {
+    visibility: visible;
+    opacity: 1;
+  }
+  
+  /* 模态框内容区域 */
+  #album_modal .modal_content {
+    max-width: 90%; /* 宽度占屏幕的 90% */
+    background: #fff; /* 白色背景 */
+    border-radius: 8px; /* 圆角 */
+    padding: 1rem; /* 内边距 */
+    text-align: center;
+    position: relative;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* 阴影效果 */
+  }
+  
+  /* 主图片容器及透明遮罩 */
+  .modal_main_image_wrapper {
+    position: relative;
+    max-width: 100%;
+  }
+
+  .modal_main_image_wrapper::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    z-index: 2; /* 确保遮罩在图片上方 */
+    pointer-events: none;
+  }
+  /* 主图片 */
+  #album_modal .modal_main_image {
+    max-width: 100%; /* 主图片宽度不超过容器宽度 */
+    max-height: 400px; /* 主图片高度限制 */
+    margin-bottom: 1rem;
+    border-radius: 8px; /* 圆角 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 主图片阴影 */
+    object-fit: contain; /* 保持图片比例 */
+  }
+  
+  /* 缩略图容器 */
+  #album_modal .modal_thumbnails {
+    display: flex; /* 水平排列缩略图 */
+    gap: 0.5rem; /* 缩略图之间的间距 */
+    overflow-x: auto; /* 横向滚动 */
+    padding: 0.5rem; /* 内边距 */
+    justify-content: flex-start; /* 左对齐 */
+    max-height: 150px; /* 缩略图容器的最大高度 */
+    align-items: center; /* 垂直居中 */
+  }
+  
+  /* 缩略图 */
+  #album_modal .thumbnail {
+    height: 100px; /* 统一缩略图高度 */
+    flex-shrink: 0; /* 防止图片被压缩 */
+    object-fit: contain; /* 保持图片比例 */
+    border: 2px solid transparent; /* 默认透明边框 */
+    transition: border 0.3s ease, transform 0.3s ease; /* 动画效果 */
+    border-radius: 5px; /* 缩略图圆角 */
+    cursor: pointer; /* 鼠标指针样式 */
+  }
+  
+  #album_modal .thumbnail.active {
+    border-color: #007BFF; /* 激活缩略图的边框颜色 */
+    transform: scale(1.1); /* 放大激活缩略图 */
+  }
+  
+  #album_modal .thumbnail:hover {
+    border-color: #007BFF; /* 鼠标悬停时边框颜色 */
+    transform: scale(1.1); /* 鼠标悬停时放大 */
+  }
+  
+  .modal_main_image {
+    pointer-events: none;
+    user-select: none; /* 禁止选中文件名 */
+  }
+  
+  .thumbnail {
+    pointer-events: auto; /* 缩略图依然可以点击 */
+    user-select: none;
+  }
+
+  /* 自适应优化 */
+  @media (max-width: 768px) {
+    #album_modal .modal_content {
+      max-width: 95%; /* 更小屏幕下的模态框宽度 */
+      padding: 0.5rem;
+    }
+  
+    #album_modal .modal_main_image {
+      max-height: 300px; /* 主图片高度减少 */
+    }
+  
+    #album_modal .thumbnail {
+      height: 80px; /* 缩略图高度减少 */
+    }
+  } 

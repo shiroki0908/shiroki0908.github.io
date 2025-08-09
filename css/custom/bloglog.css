@@ -1,0 +1,32 @@
+.timeline {
+  margin: 2rem 0;
+  padding: 1rem;
+  border-radius: 12px;
+  background: var(--efu-card-bg, #fff);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+.timeline .timenode {
+  margin-bottom: 1.5rem;
+  position: relative;
+  padding-left: 1.5rem;
+}
+.timeline .timenode:before {
+  content: '';
+  position: absolute;
+  left: 0.5rem;
+  top: 0.2rem;
+  width: 0.7rem;
+  height: 0.7rem;
+  background: var(--efu-main, #007bff);
+  border-radius: 50%;
+}
+.timeline .radio {
+  display: inline-block;
+  margin-right: 0.5rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 1rem;
+  font-size: 0.95em;
+}
+.timeline .radio.pink { background: #ffb6c1; color: #fff; }
+.timeline .radio.purple { background: #b39ddb; color: #fff; }
+.timeline .radio.yellow { background: #ffe082; color: #333; } 

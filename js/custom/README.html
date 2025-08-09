@@ -1,0 +1,243 @@
+<h1>Solitude Theme Loading 主题分离实现</h1>
+<h2 id="概述">概述</h2>
+<p>本次更新实现了loading主题的完全独立分离，支持 <code>mona-lisa</code> 和 <code>black-cat</code> 两种主题，通过配置文件可以轻松切换。两个主题完全独立，无重复样式，Black Cat主题完全基于原始创意svg加载loading小猫动画实现。</p>
+<h2 id="配置方式">配置方式</h2>
+<p>在 <code>_config.solitude.yml</code> 中配置：</p>
+<pre><code class="language-yaml">loading:
+  fullpage: true
+  theme: black-cat  # 可选值: mona-lisa / black-cat
+  pace: true
+</code></pre>
+<h2 id="文件结构">文件结构</h2>
+<pre><code>themes/solitude/
+├── layout/includes/
+│   └── loading.pug                    # 主题判断和HTML结构
+├── source/css/_layout/
+│   └── fullpage.styl                  # 主题CSS样式分离
+└── source/js/custom/
+    ├── loading-theme-mona-lisa.js     # Mona Lisa主题JS
+    ├── loading-theme-black-cat.js     # Black Cat主题JS (完全原始实现)
+    └── README.md                      # 本文件
+</code></pre>
+<h2 id="主题特性">主题特性</h2>
+<h3 id="Mona-Lisa-主题">Mona Lisa 主题</h3>
+<ul>
+<li><strong>SVG描边动画</strong>: 复杂的SVG图形描边效果</li>
+<li><strong>文字故障效果</strong>: 使用伪元素实现的故障动画</li>
+<li><strong>进度条模拟</strong>: 模拟真实加载进度</li>
+<li><strong>双重收起动画</strong>: 分层的收起效果</li>
+<li><strong>颜色方案</strong>: 蓝色主题 (#409EFF)</li>
+<li><strong>独立样式</strong>: 完全独立的CSS和JS实现</li>
+</ul>
+<h3 id="Black-Cat-主题">Black Cat 主题</h3>
+<ul>
+<li><strong>小猫动画</strong>: 完全基于原始创意svg加载loading小猫动画</li>
+<li><strong>GSAP动画库</strong>: 使用TweenMax实现复杂动画</li>
+<li><strong>直接跳转</strong>: 小猫跳跃后直接收起loading，跳转到真实主页</li>
+<li><strong>响应式设计</strong>: 支持移动端适配</li>
+<li><strong>颜色方案</strong>: 灰色主题 (#E4E5E6)</li>
+<li><strong>原始特性保留</strong>: 完全保留原始动画的所有细节</li>
+<li><strong>独立样式</strong>: 完全独立的CSS和JS实现</li>
+<li><strong>全屏遮罩</strong>: 修复了loading时主页内容显示的问题</li>
+</ul>
+<h2 id="修复内容">修复内容</h2>
+<h3 id="Black-Cat主题全屏遮罩修复">Black Cat主题全屏遮罩修复</h3>
+<p><strong>问题</strong>: Black Cat主题在loading时主页内容会显示出来，没有全屏遮罩效果。</p>
+<p><strong>解决方案</strong>:</p>
+<ol>
+<li>
+<p><strong>HTML结构修复</strong> (<code>loading.pug</code>):</p>
+<pre><code class="language-pug">// Black Cat 主题 - 基于原始创意svg加载loading小猫动画
+if theme.loading.theme == 'black-cat'
+  div(id=&quot;loading-container&quot;)  // 添加全屏遮罩容器
+    div.wrapper-no7
+      // ... 原始HTML结构
+</code></pre>
+</li>
+<li>
+<p><strong>CSS样式修复</strong> (<code>fullpage.styl</code>):</p>
+<pre><code class="language-stylus">// Black Cat 主题样式 - 基于原始创意svg加载loading小猫动画
+if hexo-config('loading.theme') == 'black-cat'
+  // Black Cat 全屏遮罩容器
+  #loading-container
+    position fixed
+    top 0
+    left 0
+    width 100%
+    height 100%
+    background #E4E5E6
+    z-index 9999
+    transition transform 1.3s ease
+    will-change transform
+    display flex
+    align-items center
+    justify-content center
+    overflow hidden
+</code></pre>
+</li>
+<li>
+<p><strong>JavaScript修复</strong> (<code>loading-theme-black-cat.js</code>):</p>
+<ul>
+<li>添加了 <code>completeLoading()</code> 函数</li>
+<li>在动画完成后自动收起loading容器</li>
+<li>添加了Pjax兼容和超时保护</li>
+</ul>
+</li>
+</ol>
+<h3 id="Black-Cat主题直接跳转修复">Black Cat主题直接跳转修复</h3>
+<p><strong>问题</strong>: 小猫跳跃后显示假的layout页面，而不是直接跳转到真实主页。</p>
+<p><strong>解决方案</strong>:</p>
+<ol>
+<li>
+<p><strong>移除假页面元素</strong> (<code>loading.pug</code>):</p>
+<ul>
+<li>移除了所有layout相关的HTML元素</li>
+<li>简化了HTML结构</li>
+</ul>
+</li>
+<li>
+<p><strong>移除假页面样式</strong> (<code>fullpage.styl</code>):</p>
+<ul>
+<li>移除了所有layout相关的CSS样式</li>
+<li>减少了CSS体积</li>
+</ul>
+</li>
+<li>
+<p><strong>修改动画逻辑</strong> (<code>loading-theme-black-cat.js</code>):</p>
+<ul>
+<li>将动画完成回调从 <code>logoVisible</code> 改为 <code>completeLoading</code></li>
+<li>移除了对layout元素的引用</li>
+<li>小猫跳跃后直接收起loading容器</li>
+</ul>
+</li>
+</ol>
+<h2 id="实现细节">实现细节</h2>
+<h3 id="1-完全独立的配置判断">1. 完全独立的配置判断</h3>
+<p><strong>CSS层面</strong> (<code>fullpage.styl</code>):</p>
+<pre><code class="language-stylus">// Mona Lisa 主题样式 - 完全独立
+if hexo-config('loading.theme') == 'mona-lisa'
+  // Mona Lisa 特定样式，无重复
+
+// Black Cat 主题样式 - 完全独立  
+if hexo-config('loading.theme') == 'black-cat'
+  // Black Cat 特定样式，完全基于原始实现
+</code></pre>
+<p><strong>HTML层面</strong> (<code>loading.pug</code>):</p>
+<pre><code class="language-pug">// Mona Lisa 主题 - 完全独立
+if theme.loading.theme == 'mona-lisa'
+  // Mona Lisa HTML结构，使用loading-container
+
+// Black Cat 主题 - 完全独立
+if theme.loading.theme == 'black-cat'
+  // Black Cat HTML结构，添加全屏遮罩容器
+</code></pre>
+<h3 id="2-JavaScript完全独立">2. JavaScript完全独立</h3>
+<ul>
+<li><strong>Mona Lisa</strong>: 专注于SVG描边动画和进度条，使用IIFE封装</li>
+<li><strong>Black Cat</strong>: 完全基于原始实现，直接使用原始动画逻辑，添加收起动画</li>
+</ul>
+<h3 id="3-CSS样式完全独立">3. CSS样式完全独立</h3>
+<ul>
+<li><strong>Mona Lisa</strong>: 独立的loading容器样式和动画</li>
+<li><strong>Black Cat</strong>: 完全基于原始CSS，无重复定义，添加全屏遮罩样式</li>
+</ul>
+<h2 id="技术特点">技术特点</h2>
+<h3 id="性能优化">性能优化</h3>
+<ol>
+<li><strong>按需加载</strong>: 只加载当前主题的CSS和JS</li>
+<li><strong>条件编译</strong>: 使用Stylus的条件编译减少CSS体积</li>
+<li><strong>模块化</strong>: 每个主题完全独立，便于维护</li>
+<li><strong>无重复</strong>: 两个主题之间无重复样式定义</li>
+</ol>
+<h3 id="兼容性">兼容性</h3>
+<ol>
+<li><strong>Pjax支持</strong>: 两个主题都支持页面无刷新跳转</li>
+<li><strong>超时保护</strong>: 8秒超时保护机制</li>
+<li><strong>降级处理</strong>: Black Cat主题支持GSAP不可用时的降级</li>
+<li><strong>原始兼容</strong>: 保持原始实现的浏览器兼容性</li>
+</ol>
+<h3 id="可扩展性">可扩展性</h3>
+<ol>
+<li><strong>主题配置</strong>: 通过配置文件轻松切换</li>
+<li><strong>模块化设计</strong>: 便于添加新主题</li>
+<li><strong>独立维护</strong>: 每个主题可以独立开发和维护</li>
+<li><strong>原始扩展</strong>: 可以基于原始实现进行进一步扩展</li>
+</ol>
+<h2 id="使用方法">使用方法</h2>
+<h3 id="切换主题">切换主题</h3>
+<ol>
+<li>修改 <code>_config.solitude.yml</code> 中的 <code>theme</code> 值</li>
+<li>重新生成网站</li>
+</ol>
+<h3 id="添加新主题">添加新主题</h3>
+<ol>
+<li>在 <code>fullpage.styl</code> 中添加新主题的CSS（使用条件编译）</li>
+<li>在 <code>loading.pug</code> 中添加新主题的HTML结构（使用条件判断）</li>
+<li>创建新主题的JavaScript文件</li>
+<li>在配置中添加新主题选项</li>
+</ol>
+<h2 id="原始实现特性">原始实现特性</h2>
+<h3 id="Black-Cat主题保留的原始特性：">Black Cat主题保留的原始特性：</h3>
+<ol>
+<li><strong>完整的小猫SVG结构</strong>: 身体、头部、眼睛、耳朵、尾巴、腿部</li>
+<li><strong>GSAP动画序列</strong>: 眨眼、走路、跳跃、消失等完整动画</li>
+<li><strong>页面布局模拟</strong>: 导航栏、标题、内容区域的布局动画</li>
+<li><strong>响应式设计</strong>: 移动端和桌面端的适配</li>
+<li><strong>交互功能</strong>: 重启动画按钮</li>
+<li><strong>视觉细节</strong>: 所有原始的视觉效果和动画细节</li>
+<li><strong>原始HTML结构</strong>: 直接使用原始HTML结构，添加全屏遮罩容器</li>
+</ol>
+<h2 id="注意事项">注意事项</h2>
+<ol>
+<li><strong>GSAP依赖</strong>: Black Cat主题需要GSAP库，已通过CDN引入</li>
+<li><strong>浏览器兼容</strong>: 确保目标浏览器支持使用的CSS和JS特性</li>
+<li><strong>性能考虑</strong>: 复杂的动画可能影响性能，建议在低端设备上测试</li>
+<li><strong>原始实现</strong>: Black Cat主题完全基于原始实现，保持所有特性</li>
+<li><strong>独立维护</strong>: 两个主题完全独立，可以独立维护和更新</li>
+<li><strong>全屏遮罩</strong>: Black Cat主题现在有完整的全屏遮罩效果</li>
+</ol>
+<h2 id="优势">优势</h2>
+<ol>
+<li><strong>灵活性</strong>: 用户可以根据喜好选择主题</li>
+<li><strong>可维护性</strong>: 代码完全分离，便于维护和更新</li>
+<li><strong>性能优化</strong>: 按需加载，减少不必要的资源</li>
+<li><strong>扩展性</strong>: 便于添加新的loading主题</li>
+<li><strong>原始保留</strong>: Black Cat主题完全保留原始实现的魅力</li>
+<li><strong>无缝集成</strong>: 完美集成到solitude主题的loading系统</li>
+<li><strong>无重复</strong>: 两个主题之间无重复样式，完全独立</li>
+<li><strong>全屏遮罩</strong>: 修复了Black Cat主题的遮罩问题</li>
+</ol>
+<h2 id="更新日志">更新日志</h2>
+<h3 id="v1-4-0-当前版本">v1.4.0 (当前版本)</h3>
+<ul>
+<li>修复Black Cat主题的直接跳转问题</li>
+<li>移除假的layout页面，小猫跳跃后直接跳转到真实主页</li>
+<li>简化HTML和CSS结构，减少代码体积</li>
+<li>优化动画完成逻辑</li>
+<li>保持原始动画的所有特性</li>
+</ul>
+<h3 id="v1-3-0">v1.3.0</h3>
+<ul>
+<li>修复Black Cat主题的全屏遮罩问题</li>
+<li>添加完整的收起动画逻辑</li>
+<li>确保loading时主页内容不会显示</li>
+<li>保持原始动画的所有特性</li>
+<li>优化Pjax兼容性</li>
+</ul>
+<h3 id="v1-2-0">v1.2.0</h3>
+<ul>
+<li>实现两个主题的完全独立分离</li>
+<li>消除所有重复的CSS和JS代码</li>
+<li>Black Cat主题完全基于原始实现</li>
+<li>Mona Lisa主题保持原有功能</li>
+<li>优化性能和可维护性</li>
+<li>添加完整的响应式支持</li>
+</ul>
+<h3 id="v1-1-0">v1.1.0</h3>
+<ul>
+<li>基于原始创意svg加载loading小猫动画实现Black Cat主题</li>
+<li>完全保留原始动画的所有细节和特性</li>
+<li>保持原始CSS样式和JavaScript逻辑</li>
+<li>添加响应式设计和移动端适配</li>
+<li>集成到solitude主题的loading系统</li>
+</ul>
