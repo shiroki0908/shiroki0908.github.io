@@ -51,27 +51,92 @@ class MusicPlayer {
         const mobileListBtn = document.querySelector('.mobile-player-controls .mobile-control-btn.list-btn');
 
         if (mobilePlayBtn) {
-            mobilePlayBtn.addEventListener('click', this.togglePlayback.bind(this));
+            mobilePlayBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                // 添加按钮点击的视觉反馈
+                mobilePlayBtn.style.transform = 'scale(0.9)';
+                setTimeout(() => {
+                    mobilePlayBtn.style.transform = '';
+                }, 150);
+                
+                this.togglePlayback();
+            }, { passive: false });
         }
         if (mobilePrevBtn) {
-            mobilePrevBtn.addEventListener('click', this.previousSong.bind(this));
+            mobilePrevBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                // 添加按钮点击的视觉反馈
+                mobilePrevBtn.style.transform = 'scale(0.9)';
+                setTimeout(() => {
+                    mobilePrevBtn.style.transform = '';
+                }, 150);
+                
+                this.previousSong();
+            }, { passive: false });
         }
         if (mobileNextBtn) {
-            mobileNextBtn.addEventListener('click', this.nextSong.bind(this));
+            mobileNextBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                // 添加按钮点击的视觉反馈
+                mobileNextBtn.style.transform = 'scale(0.9)';
+                setTimeout(() => {
+                    mobileNextBtn.style.transform = '';
+                }, 150);
+                
+                this.nextSong();
+            }, { passive: false });
         }
         if (mobileRepeatBtn) {
-            mobileRepeatBtn.addEventListener('click', this.toggleRepeatMode.bind(this));
+            mobileRepeatBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                // 添加按钮点击的视觉反馈
+                mobileRepeatBtn.style.transform = 'scale(0.9)';
+                setTimeout(() => {
+                    mobileRepeatBtn.style.transform = '';
+                }, 150);
+                
+                this.toggleRepeatMode();
+            }, { passive: false });
         }
         if (mobileListBtn) {
-            mobileListBtn.addEventListener('click', this.toggleMobilePlaylist.bind(this));
+            mobileListBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                // 添加按钮点击的视觉反馈
+                mobileListBtn.style.transform = 'scale(0.9)';
+                setTimeout(() => {
+                    mobileListBtn.style.transform = '';
+                }, 150);
+                
+                this.toggleMobilePlaylist();
+            }, { passive: false });
         }
 
         // 手机端进度条（现在在固定控制栏中）
         const mobileProgressBar = document.querySelector('.mobile-player-controls .mobile-progress-bar');
         if (mobileProgressBar) {
-            mobileProgressBar.addEventListener('click', this.seekMobile.bind(this));
-            mobileProgressBar.addEventListener('mousedown', this.startDrag.bind(this));
-            mobileProgressBar.addEventListener('touchstart', this.startDrag.bind(this));
+            mobileProgressBar.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                this.seekMobile(e);
+            }, { passive: false });
+            mobileProgressBar.addEventListener('mousedown', (e) => {
+                e.preventDefault();
+                this.startDrag(e);
+            }, { passive: false });
+            mobileProgressBar.addEventListener('touchstart', (e) => {
+                e.preventDefault();
+                this.startDrag(e);
+            }, { passive: false });
         }
 
         // 延迟绑定歌词切换事件，确保DOM完全加载
@@ -269,10 +334,10 @@ class MusicPlayer {
             this.changeMusicBg(true);
             this.updateVinylInfo();
             this.updatePlaylistStatus();
-            // 延迟更新歌词内容，确保歌词已加载
+            // 减少延迟更新歌词内容，确保歌词已加载
             setTimeout(() => {
                 this.updateMobileLyricContent();
-            }, 500);
+            }, 100); // 从500ms减少到100ms
         });
         
         // 监听歌词显示事件
@@ -305,7 +370,15 @@ class MusicPlayer {
         this.isPlaying = true;
         // 手机端唱片旋转动画
         const mobileVinylRecord = document.querySelector('.mobile-vinyl-record');
-        if (mobileVinylRecord) mobileVinylRecord.classList.add('playing');
+        if (mobileVinylRecord) {
+            // 记录开始播放的时间
+            if (!mobileVinylRecord.dataset.playStartTime) {
+                mobileVinylRecord.dataset.playStartTime = Date.now();
+            }
+            mobileVinylRecord.classList.add('playing');
+            // 恢复动画播放
+            mobileVinylRecord.style.animationPlayState = 'running';
+        }
         
         // 手机端指针动画
         const mobileVinylNeedle = document.querySelector('.mobile-vinyl-needle');
@@ -317,9 +390,12 @@ class MusicPlayer {
 
     stopVinylAnimation() {
         this.isPlaying = false;
-        // 手机端唱片停止旋转
+        // 手机端唱片停止旋转 - 停在当前位置
         const mobileVinylRecord = document.querySelector('.mobile-vinyl-record');
-        if (mobileVinylRecord) mobileVinylRecord.classList.remove('playing');
+        if (mobileVinylRecord) {
+            // 暂停动画，但保持在当前位置
+            mobileVinylRecord.style.animationPlayState = 'paused';
+        }
         
         // 手机端指针离开唱片
         const mobileVinylNeedle = document.querySelector('.mobile-vinyl-needle');
@@ -368,12 +444,44 @@ class MusicPlayer {
     // 手机端专用方法
     previousSong() {
         if (!this.currentAplayer) return;
+        
+        // 添加按钮点击的视觉反馈
+        const prevBtn = document.querySelector('.mobile-control-btn.prev-btn');
+        if (prevBtn) {
+            prevBtn.style.transform = 'scale(0.9)';
+            setTimeout(() => {
+                prevBtn.style.transform = '';
+            }, 150);
+        }
+        
+        // 立即切换歌曲
         this.currentAplayer.list.switch(this.currentAplayer.list.index - 1);
+        
+        // 立即更新歌曲信息，不等待loadeddata事件
+        setTimeout(() => {
+            this.updateVinylInfo();
+        }, 50);
     }
 
     nextSong() {
         if (!this.currentAplayer) return;
+        
+        // 添加按钮点击的视觉反馈
+        const nextBtn = document.querySelector('.mobile-control-btn.next-btn');
+        if (nextBtn) {
+            nextBtn.style.transform = 'scale(0.9)';
+            setTimeout(() => {
+                nextBtn.style.transform = '';
+            }, 150);
+        }
+        
+        // 立即切换歌曲
         this.currentAplayer.list.switch(this.currentAplayer.list.index + 1);
+        
+        // 立即更新歌曲信息，不等待loadeddata事件
+        setTimeout(() => {
+            this.updateVinylInfo();
+        }, 50);
     }
 
     seekMobile(event) {
@@ -476,8 +584,11 @@ class MusicPlayer {
                 newIcon = 'fas fa-redo';
         }
 
-        this.currentAplayer.options.order = newOrder;
+        // 立即更新按钮图标，提供即时反馈
         repeatBtn.className = newIcon;
+        
+        // 立即更新播放器设置
+        this.currentAplayer.options.order = newOrder;
         
         // 显示切换提示
         let modeText;
@@ -493,7 +604,15 @@ class MusicPlayer {
                 break;
         }
         
-        // 可以在这里添加提示显示，比如控制台输出或者临时提示
+        // 添加按钮点击的视觉反馈
+        const repeatBtnContainer = document.querySelector('.mobile-control-btn.repeat-btn');
+        if (repeatBtnContainer) {
+            repeatBtnContainer.style.transform = 'scale(0.9)';
+            setTimeout(() => {
+                repeatBtnContainer.style.transform = '';
+            }, 150);
+        }
+        
         console.log(`已切换到：${modeText}`);
     }
 
@@ -539,11 +658,11 @@ class MusicPlayer {
         // 生成播放列表
         this.generatePlaylist();
         
-        // 显示播放列表
+        // 显示播放列表 - 减少延迟时间
         playlistContainer.classList.remove('hidden');
         setTimeout(() => {
             playlistContainer.classList.add('show');
-        }, 10);
+        }, 5); // 从10ms减少到5ms
 
         // 添加事件监听
         this.addPlaylistEventListeners();
@@ -556,7 +675,7 @@ class MusicPlayer {
         playlistContainer.classList.remove('show');
         setTimeout(() => {
             playlistContainer.classList.add('hidden');
-        }, 300);
+        }, 150); // 从300ms减少到150ms
 
         // 移除事件监听
         this.removePlaylistEventListeners();
@@ -590,7 +709,23 @@ class MusicPlayer {
 
             // 添加点击事件
             item.addEventListener('click', () => {
+                // 添加点击的视觉反馈
+                item.style.transform = 'scale(0.95)';
+                item.style.opacity = '0.8';
+                setTimeout(() => {
+                    item.style.transform = '';
+                    item.style.opacity = '';
+                }, 150);
+                
+                // 立即切换歌曲
                 this.currentAplayer.list.switch(index);
+                
+                // 立即更新歌曲信息，不等待loadeddata事件
+                setTimeout(() => {
+                    this.updateVinylInfo();
+                }, 50);
+                
+                // 快速关闭播放列表
                 this.hideMobilePlaylist();
             });
 
@@ -626,6 +761,13 @@ class MusicPlayer {
         // 定位按钮事件
         const locateBtn = document.querySelector('.mobile-playlist-locate');
         this.locateHandler = () => {
+            // 添加按钮点击的视觉反馈
+            if (locateBtn) {
+                locateBtn.style.transform = 'scale(0.9)';
+                setTimeout(() => {
+                    locateBtn.style.transform = '';
+                }, 150);
+            }
             this.locateCurrentSong();
         };
         
@@ -675,7 +817,7 @@ class MusicPlayer {
         };
 
         const handleEnd = () => {
-            if (currentY > containerHeight * 0.2) {
+            if (currentY > containerHeight * 0.15) { // 从0.2减少到0.15，更容易关闭
                 this.hideMobilePlaylist();
             } else {
                 playlistContainer.style.transform = 'translateY(0)';
@@ -1008,11 +1150,13 @@ class MusicPlayer {
         if (!this.currentAplayer.audio.paused) {
             // 正在播放 - 添加旋转动画和唱针接触状态
             mobileVinylRecord.classList.add('playing');
+            mobileVinylRecord.style.animationPlayState = 'running';
             mobileVinylNeedle.classList.add('playing');
             this.isPlaying = true;
         } else {
-            // 暂停状态 - 移除旋转动画，唱针悬空
-            mobileVinylRecord.classList.remove('playing');
+            // 暂停状态 - 暂停动画但保持在当前位置
+            mobileVinylRecord.classList.add('playing'); // 保持动画类
+            mobileVinylRecord.style.animationPlayState = 'paused'; // 暂停动画
             mobileVinylNeedle.classList.remove('playing');
             this.isPlaying = false;
         }
