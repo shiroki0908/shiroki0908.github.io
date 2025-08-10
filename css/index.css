@@ -12711,6 +12711,25 @@ maxWidth480()
   -o-transition: -o-transform 0.3s ease;
   -ms-transition: -ms-transform 0.3s ease;
   transition: transform 0.3s ease;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  image-rendering: pixelated;
+  image-rendering: high-quality;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  will-change: transform;
+  background-attachment: fixed;
+  -webkit-transform: translate(-50%, -50%) translateZ(0);
+  -moz-transform: translate(-50%, -50%) translateZ(0);
+  -o-transform: translate(-50%, -50%) translateZ(0);
+  -ms-transform: translate(-50%, -50%) translateZ(0);
+  transform: translate(-50%, -50%) translateZ(0);
+  -webkit-transform: translate(-50%, -50%) translateZ(0);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 maxWidth480()
 }
 #Music-page .vinyl-player-mobile .mobile-vinyl-container .mobile-vinyl-disc .mobile-vinyl-record .mobile-album-cover:hover {
