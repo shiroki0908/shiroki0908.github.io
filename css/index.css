@@ -23643,7 +23643,7 @@ figure.highlight .code-expand-btn:not(.expand-done) ~ pre {
     left: -42px;
   }
   #shoka-player-sidebar.show {
-    left: 25px;
+    left: 5px;
   }
   #shoka-player-sidebar .control-group {
     gap: 5px;
@@ -23685,7 +23685,7 @@ figure.highlight .code-expand-btn:not(.expand-done) ~ pre {
     color: #333;
   }
   #shoka-music-panel {
-    left: 55px !important;
+    left: 35px !important;
     bottom: 15px !important;
     width: 320px !important;
     height: 380px !important;
@@ -23989,11 +23989,11 @@ figure.highlight .code-expand-btn:not(.expand-done) ~ pre {
   transition: transform 0.3s ease;
 }
 #shoka-music-panel .shoka-player-control .top-section .vinyl-disc-area .vinyl-disc .disc-inner.playing {
-  -webkit-animation: disc-rotate 3s linear infinite;
-  -moz-animation: disc-rotate 3s linear infinite;
-  -o-animation: disc-rotate 3s linear infinite;
-  -ms-animation: disc-rotate 3s linear infinite;
-  animation: disc-rotate 3s linear infinite;
+  -webkit-animation: disc-rotate 6s linear infinite;
+  -moz-animation: disc-rotate 6s linear infinite;
+  -o-animation: disc-rotate 6s linear infinite;
+  -ms-animation: disc-rotate 6s linear infinite;
+  animation: disc-rotate 6s linear infinite;
 }
 #shoka-music-panel .shoka-player-control .top-section .vinyl-disc-area .vinyl-disc .disc-inner .album-art {
   position: absolute;
@@ -24021,7 +24021,7 @@ figure.highlight .code-expand-btn:not(.expand-done) ~ pre {
   right: 90px;
   width: 50px;
   height: 160px;
-  background: url("../../img/muisc-player/play_needle.png") no-repeat center;
+  background: url("../../img/muisc-player/play_needle_bk.png") no-repeat center;
   background-size: contain;
   -webkit-transform: rotate(-60deg);
   -moz-transform: rotate(-60deg);
@@ -24763,8 +24763,8 @@ figure.highlight .code-expand-btn:not(.expand-done) ~ pre {
   background-size: contain !important;
 }
 [data-theme="dark"] #shoka-music-panel .shoka-player-control .top-section .vinyl-disc-area .vinyl-disc .needle {
-  background: url("../../img/muisc-player/play_needle.png") no-repeat center !important;
-  background-size: contain !important;
+  background: url("../../img/muisc-player/play_needle_bk.png") no-repeat center;
+  background-size: contain;
 }
 [data-theme="dark"] #shoka-music-panel .shoka-player-control .top-section .song-info-area {
   height: 150px;
