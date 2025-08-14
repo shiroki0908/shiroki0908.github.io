@@ -23643,7 +23643,7 @@ figure.highlight .code-expand-btn:not(.expand-done) ~ pre {
     left: -42px;
   }
   #shoka-player-sidebar.show {
-    left: 5px;
+    left: 25px;
   }
   #shoka-player-sidebar .control-group {
     gap: 5px;
@@ -23685,7 +23685,7 @@ figure.highlight .code-expand-btn:not(.expand-done) ~ pre {
     color: #333;
   }
   #shoka-music-panel {
-    left: 35px !important;
+    left: 55px !important;
     bottom: 15px !important;
     width: 320px !important;
     height: 380px !important;
