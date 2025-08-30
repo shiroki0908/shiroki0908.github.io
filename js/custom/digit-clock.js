@@ -82,11 +82,30 @@ function initDigitClock() {
         var time = [date.getHours(), date.getMinutes(), date.getSeconds()].
             map(n => `0${n}`.slice(-2).split('').map(e => +e)).
             reduce((p, n) => p.concat(n), []);
+        
         // 遍历time数组  
         time.forEach((n, i) => {
             var digit = digitGroups[Math.floor(i * 0.5)].children[i % 2].children;
             // 遍历数字组的子元素  
-            Array.from(digit).forEach((e, i2) => e.classList[i2 === n ? 'add' : 'remove']('bright'));
+            Array.from(digit).forEach((e, i2) => {
+                if (i2 === n) {
+                    // 当前数字：加粗显示在中间
+                    e.classList.add('bright');
+                    e.style.transform = 'translateY(0)';
+                    e.style.opacity = '1';
+                } else {
+                    // 非当前数字：根据位置决定移动方向
+                    e.classList.remove('bright');
+                    e.style.opacity = '0.6';
+                    if (i2 < n) {
+                        // 小于当前数字的向上移动
+                        e.style.transform = 'translateY(-100%)';
+                    } else {
+                        // 大于当前数字的向下移动
+                        e.style.transform = 'translateY(100%)';
+                    }
+                }
+            });
         });
     }
 }

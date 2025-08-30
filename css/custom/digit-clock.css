@@ -2,33 +2,54 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 60px; /* 固定显示框高度 */
+    overflow: hidden; /* 隐藏超出部分 */
 }
 #clock {
     font-size: 10px;
     position: relative;
+    display: flex;
+    align-items: center;
+    height: 100%;
 }
 .digit-group {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    height: 100%;
 }
 .digit-group:not(:last-child):after {
     color: inherit;
     content: ":";
-    font-size: 50px;
-    line-height: 0;
+    font-size: 30px;
+    font-weight: bold; /* 冒号加粗 */
+    line-height: 1;
+    margin: 0 5px;
 }
 .digit {
     display: inline-block;
-    width: 33px;
+    width: 25px;
+    height: 50px; /* 固定数字容器高度 */
+    overflow: hidden; /* 隐藏超出部分 */
+    position: relative;
 }
 .digit .digit-number {
     color: inherit;
-    transform: rotate(-90deg);
-    transition: font-size 200ms,transform 350ms,color 150ms;
     text-align: center;
-    line-height: 1.2;
+    line-height: 50px; /* 与容器高度一致 */
+    height: 50px;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), font-size 0.3s ease, font-weight 0.3s ease;
+    font-size: 20px;
+    opacity: 0.6; /* 非当前数字稍微透明 */
 }
 .digit .digit-number.bright {
     color: inherit;
-    font-size: 25px;
-    transform: rotate(0deg);
+    font-size: 26px;
+    font-weight: bold; /* 当前时间加粗 */
+    transform: translateY(0); /* 当前数字在中间位置 */
+    opacity: 1; /* 当前数字完全不透明 */
 }
+/* 非当前数字的样式由JavaScript动态控制 */
