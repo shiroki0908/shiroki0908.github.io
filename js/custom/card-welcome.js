@@ -10,11 +10,33 @@ fetch('https://api.nsmao.net/api/ipip/query?key=jBiYaTbxsDaU7b4Z8ZmgW8D3Qv') //�
     })
     .then(data => {
         ipLocation = data;
+        // 将数据保存到localStorage，设置1小时过期
+        localStorage.setItem('ipLocation', JSON.stringify(data));
+        localStorage.setItem('ipLocationTime', Date.now().toString());
         if (isHomePage()) {
             showWelcome();
         }
     })
-    .catch(error => console.error('Error:', error));
+    .catch(error => {
+        console.error('Error:', error);
+        // 如果API请求失败，尝试使用缓存数据
+        const cachedData = localStorage.getItem('ipLocation');
+        const cachedTime = localStorage.getItem('ipLocationTime');
+        if (cachedData && cachedTime) {
+            const timeDiff = Date.now() - parseInt(cachedTime);
+            // 如果缓存数据不超过1小时，使用缓存
+            if (timeDiff < 3600000) {
+                try {
+                    ipLocation = JSON.parse(cachedData);
+                    if (isHomePage()) {
+                        showWelcome();
+                    }
+                } catch (e) {
+                    console.error('Failed to parse cached IP data:', e);
+                }
+            }
+        }
+    });
 
 function getDistance(e1, n1, e2, n2) {
     const R = 6371;
@@ -37,7 +59,7 @@ function showWelcome() {
         return;
     }
 
-    let dist = getDistance(139.8880509, 35.8552506, ipLocation.data.lng, ipLocation.data.lat); // 修改自己的经度（121.413921）纬度（31.089290）
+    let dist = getDistance(139.887924, 35.855370, ipLocation.data.lng, ipLocation.data.lat); // 修改自己的经度（121.413921）纬度（31.089290）
     let pos = ipLocation.data.country;
     let ip = ipLocation.ip;
     let posdesc;
@@ -545,7 +567,25 @@ function showWelcome() {
 
 function handlePjaxComplete() {
     if (isHomePage()) {
-        showWelcome();
+        // 如果IP位置数据丢失，尝试从localStorage恢复
+        if (!ipLocation || !ipLocation.data) {
+            const cachedData = localStorage.getItem('ipLocation');
+            const cachedTime = localStorage.getItem('ipLocationTime');
+            if (cachedData && cachedTime) {
+                const timeDiff = Date.now() - parseInt(cachedTime);
+                // 如果缓存数据不超过1小时，使用缓存
+                if (timeDiff < 3600000) {
+                    try {
+                        ipLocation = JSON.parse(cachedData);
+                        showWelcome();
+                    } catch (e) {
+                        console.error('Failed to parse cached IP data:', e);
+                    }
+                }
+            }
+        } else {
+            showWelcome();
+        }
     }
 }
 

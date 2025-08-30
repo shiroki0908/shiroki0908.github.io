@@ -7,7 +7,9 @@
 }
 
 #aside-content .card-history .item-headline {
-    margin-left: 10px !important;
+    margin-left: 16px !important;
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
 }
 
 #aside-content .card-history .history_slide {
@@ -15,7 +17,9 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    margin-left: 10px !important;
+    margin-left: calc(16px + 0.4rem) !important;
+    width: calc(100% - 2 * (16px + 0.4rem));
+    box-sizing: border-box;
 }
 
 #aside-content .card-history .history_slide_time {
@@ -28,10 +32,15 @@
 #aside-content .card-history .history_slide_link {
     line-height: 1.5;
     -webkit-line-clamp: 2;
+    line-clamp: 2;
     display: -webkit-box;
     overflow: hidden;
     -webkit-box-orient: vertical;
     font-size: 13px;
+    word-wrap: break-word;
+    word-break: break-all;
+    white-space: normal;
+    text-overflow: ellipsis;
 }
 
 #aside-content .card-history .history_slide_link a {
