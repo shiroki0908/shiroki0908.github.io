@@ -1,0 +1,30 @@
+/**
+ * 来访者卡片样式
+ */
+
+/* 来访者卡片内容左边距 */
+#aside-content .card-welcome #welcome-info {
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+#aside-content .card-welcome .welcome_swiper-container {
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+#aside-content .card-welcome .welcome_container_wrapper {
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+/* 如果还有其他内容容器 */
+#aside-content .card-welcome .welcome-original {
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+#aside-content .card-welcome .welcome-ip-info {
+    padding-left: 16px;
+    padding-right: 16px;
+}
