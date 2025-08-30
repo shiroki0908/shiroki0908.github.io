@@ -91,19 +91,17 @@ function initDigitClock() {
                 if (i2 === n) {
                     // 当前数字：加粗显示在中间
                     e.classList.add('bright');
-                    e.style.transform = 'translateY(0)';
+                    e.style.transform = 'translateY(-50%)'; // 保持在中间位置
                     e.style.opacity = '1';
                 } else {
-                    // 非当前数字：根据位置决定移动方向
+                    // 非当前数字：显示在纵列中，根据位置调整透明度
                     e.classList.remove('bright');
-                    e.style.opacity = '0.6';
-                    if (i2 < n) {
-                        // 小于当前数字的向上移动
-                        e.style.transform = 'translateY(-100%)';
-                    } else {
-                        // 大于当前数字的向下移动
-                        e.style.transform = 'translateY(100%)';
-                    }
+                    e.style.opacity = '0.4';
+                    
+                    // 计算每个数字在纵列中的位置
+                    // 当前数字在中间（translateY(-50%)），其他数字按顺序排列
+                    var offset = (i2 - n) * 20; // 每个数字间隔20px
+                    e.style.transform = `translateY(calc(-50% + ${offset}px))`;
                 }
             });
         });

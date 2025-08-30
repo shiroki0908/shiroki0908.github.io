@@ -2,34 +2,36 @@
  * 来访者卡片样式
  */
 
-/* 来访者卡片标题与TOC对齐 */
+/* 来访者卡片标题与那年今日对齐 */
 #aside-content .card-welcome .item-headline {
-    margin-left: 8px !important;
+    margin-left: 16px !important;
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
 }
 
-/* 来访者卡片内容与TOC对齐 */
+/* 来访者卡片内容与那年今日对齐 */
 #aside-content .card-welcome #welcome-info {
-    padding-left: calc(8px + 0.4rem);
+    padding-left: calc(16px + 0.4rem);
     padding-right: 16px;
 }
 
 #aside-content .card-welcome .welcome_swiper-container {
-    padding-left: calc(8px + 0.4rem);
+    padding-left: calc(16px + 0.4rem);
     padding-right: 16px;
 }
 
 #aside-content .card-welcome .welcome_container_wrapper {
-    padding-left: calc(8px + 0.4rem);
+    padding-left: calc(16px + 0.4rem);
     padding-right: 16px;
 }
 
 /* 如果还有其他内容容器 */
 #aside-content .card-welcome .welcome-original {
-    padding-left: calc(8px + 0.4rem);
+    padding-left: calc(16px + 0.4rem);
     padding-right: 16px;
 }
 
 #aside-content .card-welcome .welcome-ip-info {
-    padding-left: calc(8px + 0.4rem);
+    padding-left: calc(16px + 0.4rem);
     padding-right: 16px;
 }
