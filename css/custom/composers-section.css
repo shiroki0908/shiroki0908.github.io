@@ -55,8 +55,8 @@
 
 /* 作曲家展示区域 */
 .composers-section {
-  margin-top: 40px;
-  padding: 40px 20px;
+  margin-top: 5px;
+  padding: 10px 20px;
   background: transparent;
   border-radius: 0;
   box-shadow: none;
@@ -64,14 +64,14 @@
 
 .composers-header {
   text-align: center;
-  margin-bottom: 40px;
+  margin-bottom: 10px;
 }
 
 .composers-title {
   font-size: 2.5rem;
   font-weight: 700;
   color: var(--composer-title-color);
-  margin-bottom: 12px;
+  margin-bottom: 10px;
   font-family: 'Georgia', 'Times New Roman', serif;
 }
 
@@ -525,8 +525,8 @@
 
 @media (max-width: 768px) {
   .composers-section {
-    margin-top: 20px;
-    padding: 20px 15px;
+    margin-top: 3px;
+    padding: 8px 15px;
   }
   
   .composers-title {

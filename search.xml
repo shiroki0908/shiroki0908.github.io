@@ -34,6 +34,8 @@
             
             <tag> 问题修复 </tag>
             
+            <tag> ECharts </tag>
+            
             <tag> 分类页面 </tag>
             
             <tag> 标签页面 </tag>
@@ -41,8 +43,6 @@
             <tag> 归档页面 </tag>
             
             <tag> 统计图 </tag>
-            
-            <tag> ECharts </tag>
             
             <tag> PJAX </tag>
             
@@ -85,9 +85,9 @@
             
             <tag> CSS </tag>
             
-            <tag> 侧边栏 </tag>
-            
             <tag> 那年今日 </tag>
+            
+            <tag> 侧边栏 </tag>
             
             <tag> 历史事件 </tag>
             
@@ -130,9 +130,9 @@
             
             <tag> CSS </tag>
             
-            <tag> 个性时钟 </tag>
-            
             <tag> 侧边栏 </tag>
+            
+            <tag> 个性时钟 </tag>
             
             <tag> 数码时钟 </tag>
             
@@ -580,13 +580,13 @@
             
             <tag> Hexo </tag>
             
+            <tag> 页面移植 </tag>
+            
             <tag> 相册集 </tag>
             
             <tag> 照片墙 </tag>
             
             <tag> 模态框 </tag>
-            
-            <tag> 页面移植 </tag>
             
         </tags>
       
