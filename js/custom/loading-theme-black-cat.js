@@ -192,8 +192,10 @@ document.addEventListener("DOMContentLoaded", function(){
 					if (bodyElement) {
 						bodyElement.className = 'pace-done';
 					}
-					// 确保页面回到顶部
-					window.scrollTo(0, 0);
+					// 确保页面回到顶部（仅在页面初始加载时执行）
+					if (window.scrollY === 0) {
+						window.scrollTo(0, 0);
+					}
 					// 延迟触发一次 percent 函数，确保初始值正确
 					setTimeout(() => {
 						if (typeof percent === 'function') percent();
