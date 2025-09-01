@@ -717,7 +717,6 @@
     image-rendering: -webkit-optimize-contrast;
     image-rendering: -moz-crisp-edges;
     image-rendering: crisp-edges;
-    image-rendering: pixelated;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
     -webkit-transform: translateZ(0);
@@ -725,6 +724,87 @@
     /* 防止图片模糊 */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+  }
+  
+  /* 手机端模态框样式优化 */
+  .modal-body {
+    padding: 16px; /* 减少内边距 */
+  }
+  
+  .composer-detail-header {
+    flex-direction: column;
+    gap: 20px; /* 增加图片和文字之间的间距 */
+    align-items: center;
+    text-align: center;
+  }
+  
+  .composer-detail-image {
+    flex: none;
+    align-self: center;
+    width: 100%; /* 宽度和框体保持一致 */
+    height: auto; /* 高度自适应 */
+    aspect-ratio: 1; /* 保持正方形比例 */
+    max-width: 280px; /* 设置最大宽度，避免图片过大 */
+    margin: 0 auto 20px auto; /* 水平居中，底部增加间距 */
+    order: -1; /* 确保图片在名字上方 */
+  }
+  
+  .composer-detail-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 16px; /* 增加圆角 */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15); /* 增强阴影效果 */
+    /* 图片质量优化 */
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    /* 防止图片模糊 */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* 强制高质量渲染 */
+    -webkit-image-smoothing: high-quality;
+    image-smoothing: high-quality;
+    /* 确保图片不被压缩 */
+    max-width: none;
+    max-height: none;
+  }
+  
+  .composer-detail-info {
+    min-height: auto;
+    text-align: center;
+    order: 1; /* 确保信息在图片下方 */
+    width: 100%;
+    padding: 0 10px; /* 添加左右内边距 */
+  }
+  
+  #detail-composer-name {
+    font-size: 1.8rem; /* 手机端适当调整字体大小 */
+    margin-bottom: 8px;
+  }
+  
+  #detail-composer-years {
+    font-size: 1.1rem; /* 手机端适当调整字体大小 */
+    margin-bottom: 16px;
+  }
+  
+  #detail-composer-bio {
+    font-size: 0.95rem; /* 手机端适当调整字体大小 */
+    line-height: 1.6;
+    text-align: justify; /* 两端对齐，提高可读性 */
+  }
+  
+  .composer-detail-bio {
+    padding: 16px 10px; /* 添加左右内边距 */
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
   }
   
   .composer-info {
@@ -747,4 +827,95 @@
   .composer-years {
     font-size: 0.7rem; /* 确保比名字字体小 */
   }
+}
+
+/* 图片加载优化和预加载 */
+.composer-detail-image img,
+.composer-image img {
+  /* 图片加载优化 */
+  will-change: transform !important;
+  transform: translateZ(0) !important;
+  -webkit-transform: translateZ(0) !important;
+  
+  /* 强制硬件加速 */
+  -webkit-backface-visibility: hidden !important;
+  backface-visibility: hidden !important;
+  -webkit-perspective: 1000px !important;
+  perspective: 1000px !important;
+  
+  /* 图片渲染优化 */
+  image-rendering: -webkit-optimize-contrast !important;
+  image-rendering: -moz-crisp-edges !important;
+  image-rendering: crisp-edges !important;
+  
+  /* 防止图片模糊 */
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+  
+  /* 强制高质量渲染 */
+  -webkit-image-smoothing: high-quality !important;
+  image-smoothing: high-quality !important;
+  
+  /* 确保图片不被压缩 */
+  max-width: none !important;
+  max-height: none !important;
+  min-width: auto !important;
+  min-height: auto !important;
+  
+  /* 移除任何可能的低质量设置 */
+  -webkit-interpolation-mode: auto !important;
+  interpolation-mode: auto !important;
+  
+  /* 图片加载状态 */
+  opacity: 1 !important;
+  transition: opacity 0.3s ease-in-out !important;
+}
+
+/* 图片加载中的状态 */
+.composer-detail-image img[loading],
+.composer-image img[loading] {
+  opacity: 0.7 !important;
+  filter: blur(1px) !important;
+}
+
+/* 图片加载完成后的状态 */
+.composer-detail-image img[data-loaded="true"],
+.composer-image img[data-loaded="true"] {
+  opacity: 1 !important;
+  filter: none !important;
+}
+
+/* 针对高分辨率屏幕的额外优化 */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .composer-detail-image img,
+  .composer-image img {
+    image-rendering: -webkit-optimize-contrast !important;
+    image-rendering: optimize-contrast !important;
+  }
+}
+
+/* 针对超高分辨率屏幕的优化 */
+@media (-webkit-min-device-pixel-ratio: 3), (min-resolution: 288dpi) {
+  .composer-detail-image img,
+  .composer-image img {
+    image-rendering: -webkit-optimize-contrast !important;
+    image-rendering: optimize-contrast !important;
+  }
+}
+
+/* 图片加载动画 */
+@keyframes imageLoadFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.composer-detail-image img[data-loaded="true"],
+.composer-image img[data-loaded="true"] {
+  animation: imageLoadFadeIn 0.5s ease-out !important;
 }

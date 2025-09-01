@@ -34,6 +34,8 @@
             
             <tag> 问题修复 </tag>
             
+            <tag> ECharts </tag>
+            
             <tag> 分类页面 </tag>
             
             <tag> 标签页面 </tag>
@@ -41,8 +43,6 @@
             <tag> 归档页面 </tag>
             
             <tag> 统计图 </tag>
-            
-            <tag> ECharts </tag>
             
             <tag> PJAX </tag>
             
@@ -122,9 +122,9 @@
             
             <tag> Hexo </tag>
             
-            <tag> 动画效果 </tag>
-            
             <tag> 前端开发 </tag>
+            
+            <tag> 动画效果 </tag>
             
             <tag> JavaScript </tag>
             
@@ -292,9 +292,9 @@
             
             <tag> Hexo </tag>
             
-            <tag> Loading </tag>
-            
             <tag> 前端开发 </tag>
+            
+            <tag> Loading </tag>
             
             <tag> JavaScript </tag>
             
@@ -479,11 +479,11 @@
             
             <tag> Hexo </tag>
             
+            <tag> 页面移植 </tag>
+            
             <tag> 本站日志 </tag>
             
             <tag> 时间轴 </tag>
-            
-            <tag> 页面移植 </tag>
             
         </tags>
       

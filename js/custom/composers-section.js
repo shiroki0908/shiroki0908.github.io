@@ -1,6 +1,7 @@
 /**
  * 作曲家与乐谱集展示区域JavaScript功能
  * 处理作曲家卡片的点击事件和模态框显示
+ * 新增：图片预加载和加载优化功能
  */
 
 (function() {
@@ -13,6 +14,9 @@
     let modal, modalContent, modalBackdrop, closeModal;
     let detailComposerImg, detailComposerName, detailComposerYears;
     let detailComposerBio, detailComposerTags, detailScoresContainer;
+    
+    // 图片预加载缓存
+    let imageCache = new Map();
     
     // 初始化函数
     function init() {
@@ -59,7 +63,62 @@
         // 获取作曲家数据
         loadComposersData();
         
+        // 预加载所有作曲家图片
+        preloadAllComposerImages();
+        
         console.log('作曲家展示区域初始化完成，绑定了', composerCards.length, '个作曲家卡片');
+    }
+    
+    // 预加载所有作曲家图片
+    function preloadAllComposerImages() {
+        if (!composersData || Object.keys(composersData).length === 0) {
+            console.log('作曲家数据为空，跳过图片预加载');
+            return;
+        }
+        
+        console.log('开始预加载所有作曲家图片...');
+        
+        Object.values(composersData).forEach(composer => {
+            if (composer.image) {
+                preloadImage(composer.image, composer.id);
+            }
+        });
+    }
+    
+    // 预加载单张图片
+    function preloadImage(imageUrl, composerId) {
+        if (imageCache.has(imageUrl)) {
+            console.log(`图片已缓存: ${composerId}`);
+            return Promise.resolve(imageCache.get(imageUrl));
+        }
+        
+        return new Promise((resolve, reject) => {
+            const img = new Image();
+            
+            img.onload = () => {
+                console.log(`图片预加载成功: ${composerId}`);
+                imageCache.set(imageUrl, img);
+                resolve(img);
+            };
+            
+            img.onerror = () => {
+                console.error(`图片预加载失败: ${composerId}, URL: ${imageUrl}`);
+                reject(new Error(`Failed to load image: ${imageUrl}`));
+            };
+            
+            // 设置图片属性
+            img.src = imageUrl;
+            img.loading = 'lazy';
+            img.decoding = 'async';
+            
+            // 设置超时
+            setTimeout(() => {
+                if (!img.complete) {
+                    console.warn(`图片加载超时: ${composerId}`);
+                    reject(new Error(`Image load timeout: ${imageUrl}`));
+                }
+            }, 10000); // 10秒超时
+        });
     }
     
     // 加载作曲家数据
@@ -130,60 +189,71 @@
 
     // 显示作曲家详情
     function showComposerDetail(composerId) {
-        console.log('尝试显示作曲家详情，ID:', composerId);
-        console.log('作曲家数据:', composersData);
-        console.log('模态框元素:', modal);
-        
-        const composer = composersData[composerId];
-        console.log('找到的作曲家数据:', composer);
-        
+        const composer = getComposerDataById(composerId);
         if (!composer) {
-            console.error('未找到作曲家数据，ID:', composerId);
+            console.error('未找到作曲家数据:', composerId);
             return;
         }
         
-        if (!modal) {
-            console.error('模态框元素未找到');
-            return;
-        }
+        console.log('显示作曲家详情:', composer);
         
-        // 填充详情内容
-        if (detailComposerImg) {
-            detailComposerImg.src = composer.image;
-            detailComposerImg.alt = composer.name + "的肖像";
-            console.log('设置作曲家图片:', composer.image);
-        }
-        
-        if (detailComposerName) {
-            detailComposerName.textContent = composer.name;
-            // 动态调整字体大小以适应容器宽度
-            adjustFontSize(detailComposerName);
-            console.log('设置作曲家姓名:', composer.name);
-        }
-        
-        if (detailComposerYears) {
-            detailComposerYears.textContent = composer.years;
-            console.log('设置作曲家年份:', composer.years);
-        }
-        
-        if (detailComposerBio) {
-            detailComposerBio.textContent = composer.bio;
-            console.log('设置作曲家简介:', composer.bio.substring(0, 50) + '...');
-        }
+        // 填充基本信息
+        if (detailComposerName) detailComposerName.textContent = composer.name;
+        if (detailComposerYears) detailComposerYears.textContent = composer.years;
+        if (detailComposerBio) detailComposerBio.textContent = composer.bio;
         
         // 生成标签
-        if (detailComposerTags) {
+        if (detailComposerTags && composer.tags) {
             detailComposerTags.innerHTML = '';
             composer.tags.forEach(tag => {
                 const tagElement = document.createElement('span');
+                tagElement.className = 'tag';
                 tagElement.textContent = tag;
                 detailComposerTags.appendChild(tagElement);
             });
-            console.log('设置作曲家标签:', composer.tags);
+        }
+        
+        // 优化图片加载
+        if (detailComposerImg && composer.image) {
+            // 设置加载状态
+            detailComposerImg.setAttribute('loading', 'true');
+            detailComposerImg.style.opacity = '0.7';
+            detailComposerImg.style.filter = 'blur(1px)';
+            
+            // 检查缓存
+            if (imageCache.has(composer.image)) {
+                console.log('使用缓存的图片:', composerId);
+                const cachedImg = imageCache.get(composer.image);
+                detailComposerImg.src = cachedImg.src;
+                detailComposerImg.alt = composer.name + "的肖像";
+                detailComposerImg.setAttribute('data-loaded', 'true');
+                detailComposerImg.removeAttribute('loading');
+                detailComposerImg.style.opacity = '1';
+                detailComposerImg.style.filter = 'none';
+            } else {
+                console.log('加载新图片:', composerId);
+                // 预加载图片
+                preloadImage(composer.image, composerId)
+                    .then(() => {
+                        detailComposerImg.src = composer.image;
+                        detailComposerImg.alt = composer.name + "的肖像";
+                        detailComposerImg.setAttribute('data-loaded', 'true');
+                        detailComposerImg.removeAttribute('loading');
+                        detailComposerImg.style.opacity = '1';
+                        detailComposerImg.style.filter = 'none';
+                    })
+                    .catch(error => {
+                        console.error('图片加载失败:', error);
+                        // 使用原始方式加载
+                        detailComposerImg.src = composer.image;
+                        detailComposerImg.alt = composer.name + "的肖像";
+                        detailComposerImg.removeAttribute('loading');
+                    });
+            }
         }
         
         // 生成乐谱集内容
-        if (detailScoresContainer) {
+        if (detailScoresContainer && composer.scores) {
             detailScoresContainer.innerHTML = '';
             composer.scores.forEach((score, index) => {
                 const scoreItem = document.createElement('div');
@@ -200,14 +270,10 @@
                         </div>
                         <div class="score-actions">
                             <div class="score-preview">
-                                <a href="${score.downloadUrl}" target="_blank" title="预览PDF">
-                                    <i class="fas fa-eye"></i>
-                                </a>
+                                <a href="#" title="预览"><i class="fas fa-eye"></i></a>
                             </div>
                             <div class="score-download">
-                                <a href="${score.downloadUrl}" download title="下载PDF">
-                                    <i class="fas fa-download"></i>
-                                </a>
+                                <a href="${score.downloadUrl}" title="下载"><i class="fas fa-download"></i></a>
                             </div>
                         </div>
                     </div>
@@ -215,20 +281,21 @@
                 
                 detailScoresContainer.appendChild(scoreItem);
             });
-            console.log('设置作曲家乐谱，数量:', composer.scores.length);
         }
         
         // 显示模态框
-        console.log('准备显示模态框');
-        modal.classList.add('show');
-        document.body.style.overflow = 'hidden';
-        console.log('模态框已显示，类名:', modal.className);
+        if (modal) {
+            modal.classList.add('show');
+            // 禁止背景滚动
+            document.body.style.overflow = 'hidden';
+        }
     }
     
     // 隐藏模态框
     function hideModal() {
         if (modal) {
             modal.classList.remove('show');
+            // 恢复背景滚动
             document.body.style.overflow = '';
         }
     }
