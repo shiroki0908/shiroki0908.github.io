@@ -116,6 +116,18 @@
   object-fit: cover;
   transition: transform 0.8s ease; /* 学习照片墙的图片过渡时间 */
   border-radius: 10px 10px 0 0;
+  /* 图片质量优化 */
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+  image-rendering: pixelated;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  /* 防止图片模糊 */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .composer-card:hover .composer-image img {
@@ -169,6 +181,9 @@
   align-items: center;
   justify-content: center;
   padding: 20px;
+  /* 立即应用背景模糊，避免延迟 */
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
 }
 
 .composer-modal.show {
@@ -182,7 +197,8 @@
   width: 100%;
   height: 100%;
   background: var(--modal-backdrop); /* 使用主题变量 */
-  backdrop-filter: blur(4px);
+  /* 移除backdrop-filter，避免重复和延迟 */
+  /* backdrop-filter: blur(4px); */
 }
 
 .modal-content {
@@ -311,6 +327,8 @@
 .composer-detail-image {
   flex: 0 0 200px;
   height: 200px; /* 固定图片高度 */
+  position: relative;
+  overflow: hidden;
 }
 
 .composer-detail-info {
@@ -323,10 +341,36 @@
 
 .composer-detail-image img {
   width: 100%;
-  height: 200px;
+  height: 100%;
   object-fit: cover;
+  object-position: center;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  /* 图片质量优化 - 使用更高质量的设置 */
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+  image-rendering: -webkit-crisp-edges;
+  image-rendering: pixelated;
+  /* 硬件加速和防模糊 */
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-perspective: 1000px;
+  perspective: 1000px;
+  /* 防止图片模糊 */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* 强制高质量渲染 */
+  -webkit-image-smoothing: high-quality;
+  image-smoothing: high-quality;
+  /* 确保图片不被压缩 */
+  max-width: none;
+  max-height: none;
+  /* 防止图片被浏览器优化 */
+  -webkit-interpolation-mode: nearest-neighbor;
+  interpolation-mode: nearest-neighbor;
 }
 
 .composer-detail-info {
@@ -567,17 +611,57 @@
     flex-direction: column;
     gap: 16px;
     align-items: center; /* 移动端居中对齐 */
+    text-align: center; /* 确保文字居中 */
   }
   
   .composer-detail-image {
     flex: none;
     align-self: center;
-    height: 150px; /* 移动端减小图片高度 */
+    height: 180px; /* 移动端适当减小图片高度，但保持清晰 */
+    width: 180px; /* 确保宽高一致，保持正方形 */
+    margin: 0 auto; /* 确保水平居中 */
+    order: -1; /* 确保图片在名字上方 */
+  }
+  
+  .composer-detail-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    /* 图片质量优化 - 使用更高质量的设置 */
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+    image-rendering: -webkit-crisp-edges;
+    image-rendering: pixelated;
+    /* 硬件加速和防模糊 */
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-perspective: 1000px;
+    perspective: 1000px;
+    /* 防止图片模糊 */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* 强制高质量渲染 */
+    -webkit-image-smoothing: high-quality;
+    image-smoothing: high-quality;
+    /* 确保图片不被压缩 */
+    max-width: none;
+    max-height: none;
+    /* 防止图片被浏览器优化 */
+    -webkit-interpolation-mode: nearest-neighbor;
+    interpolation-mode: nearest-neighbor;
   }
   
   .composer-detail-info {
     min-height: auto; /* 移动端取消最小高度限制 */
     text-align: center; /* 移动端文字居中 */
+    order: 1; /* 确保信息在图片下方 */
+    width: 100%; /* 占满宽度 */
   }
   
   .composer-detail-bio {
@@ -626,6 +710,21 @@
   
   .composer-image {
     height: 120px;
+  }
+  
+  .composer-image img {
+    /* 图片质量优化 */
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+    image-rendering: pixelated;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    /* 防止图片模糊 */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
   
   .composer-info {

@@ -946,6 +946,7 @@ window.refreshFn = () => {
   if (PAGE_CONFIG.toc) toc.init();
   if (lure) tabs.lureAddListener();
   page === "music" && initializeMusicPlayer();
+  page === "musicsheets" && typeof window.forceRefreshComposersSection === "function" && window.forceRefreshComposersSection();
   forPostFn();
 };
 
