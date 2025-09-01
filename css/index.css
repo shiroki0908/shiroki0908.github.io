@@ -12638,7 +12638,7 @@ maxWidth480()
   transform-origin: 16px 170px;
   width: 160px;
   height: 400px;
-  background: url("/img/muisc-player/play_needle_bk.png") center/contain no-repeat;
+  background: url("/img/muisc-player/play_needle.png") center/contain no-repeat;
   z-index: 10;
   -webkit-transition: -webkit-transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   -moz-transition: -moz-transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
