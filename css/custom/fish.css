@@ -1,0 +1,36 @@
+/* 页脚养鱼样式 */
+#jsi-flying-fish-container {
+    position: relative !important;
+    width: 100% !important;
+    height: 200px !important; /* 增加高度，从160px改为200px，填掉水边和底部的空白 */
+    overflow: hidden !important;
+    background: transparent !important; /* 透明背景 */
+    margin: 0 !important;
+    padding: 0 !important;
+    z-index: 999 !important;
+}
+
+#jsi-flying-fish-container canvas {
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+}
+
+/* 确保页脚内容不被遮挡 */
+#footer-wrap {
+    position: relative;
+    z-index: 1000;
+}
+
+/* 调整footer-bar-links的上边缘，让其与footer-bar保持一致 */
+#footer-bar .footer-bar-links {
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+}
+
+/* 响应式设计 */
+@media only screen and (max-width: 768px) {
+    #jsi-flying-fish-container {
+        height: 180px !important; /* 移动端稍微减小高度 */
+    }
+}

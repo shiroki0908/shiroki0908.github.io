@@ -6443,7 +6443,7 @@ span.tags-punctuation i {
 }
 #footer-bar {
   color: var(--efu-fontcolor);
-  margin-top: 1rem;
+  margin-top: 0;
   background: var(--efu-secondbg);
   display: -webkit-box;
   display: -moz-box;
