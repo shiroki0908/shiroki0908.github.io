@@ -1,0 +1,258 @@
+/* 相册页面图片防护样式 */
+/* Album Page Image Protection Styles */
+
+/* 相册页面图片通用防护 */
+#album_section img,
+.album_container img,
+.album_card img,
+.photo_wall img,
+#album_modal img,
+.modal_main_image,
+.modal_thumbnails img,
+.thumbnail,
+.album_item img,
+img[class*="album"],
+img[src*="album"] {
+    /* 禁用文本选择 */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    
+    /* 禁用拖拽 */
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+    
+    /* 禁用突出显示 */
+    -webkit-touch-callout: none;
+    -webkit-tap-highlight-color: transparent;
+    
+    /* 防止长按保存 */
+    pointer-events: auto;
+    
+    /* 防止通过outline等方式突出显示 */
+    outline: none;
+    
+    /* 禁用图片另存为快捷键 */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+/* 相册容器防护 */
+#album_section,
+.album_container,
+.photo_wall_container,
+#album_modal {
+    /* 禁用选择 */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    
+    /* 防止突出显示 */
+    -webkit-touch-callout: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* 相册卡片防护 */
+.album_card {
+    /* 禁用选择和拖拽 */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    
+    /* 防止卡片被拖拽 */
+    -webkit-user-drag: none;
+}
+
+/* 模态框特殊防护 */
+#album_modal {
+    /* 确保模态框本身不被选择 */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* 模态框主图片防护 */
+.modal_main_image {
+    /* 强制防护 */
+    -webkit-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+    user-select: none !important;
+    
+    -webkit-user-drag: none !important;
+    -khtml-user-drag: none !important;
+    -moz-user-drag: none !important;
+    -o-user-drag: none !important;
+    
+    -webkit-touch-callout: none !important;
+    pointer-events: auto !important;
+}
+
+/* 缩略图防护 */
+.modal_thumbnails img,
+.thumbnail {
+    /* 强制防护缩略图 */
+    -webkit-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+    user-select: none !important;
+    
+    -webkit-user-drag: none !important;
+    -khtml-user-drag: none !important;
+    -moz-user-drag: none !important;
+    -o-user-drag: none !important;
+    
+    -webkit-touch-callout: none !important;
+    pointer-events: auto !important;
+}
+
+/* 照片墙特殊防护 */
+.photo_wall img {
+    /* 照片墙图片防护 */
+    -webkit-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+    user-select: none !important;
+    
+    -webkit-user-drag: none !important;
+
+    
+    -webkit-touch-callout: none !important;
+}
+
+/* 创建透明遮罩层防护 */
+.album-protection-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    background: transparent;
+    pointer-events: auto;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+}
+
+/* 确保相册内容区域的层级正确 */
+.album_card .card-content,
+.photo_wall_item .content {
+    position: relative;
+    z-index: 15;
+    pointer-events: auto;
+}
+
+/* 移动端额外防护 */
+@media (max-width: 768px) {
+    #album_section img,
+    .album_container img,
+    #album_modal img,
+    .modal_main_image,
+    .thumbnail {
+        /* 禁用长按菜单 */
+        -webkit-touch-callout: none !important;
+        -webkit-user-select: none !important;
+        -khtml-user-select: none !important;
+        -moz-user-select: none !important;
+        -ms-user-select: none !important;
+        user-select: none !important;
+        
+        /* 禁用双击缩放 */
+        touch-action: manipulation;
+        
+        /* 防止长按选择 */
+        -webkit-user-drag: none !important;
+    
+    }
+    
+    /* 移动端相册容器防护 */
+    #album_section,
+    .album_container,
+    #album_modal {
+        /* 禁用双击缩放 */
+        touch-action: manipulation;
+        
+        /* 防止长按菜单 */
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        user-select: none;
+    }
+}
+
+/* 防止通过CSS选择器定位到相册媒体元素 */
+#album_section img,
+.album_container img,
+#album_modal img {
+    /* 防止通过属性选择器定位 */
+    content-visibility: auto;
+}
+
+/* 额外的右键菜单禁用 */
+.album-no-context-menu {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    
+    -webkit-user-drag: none;
+}
+
+/* 禁用F12开发者工具时的一些行为 */
+#album_section,
+.album_container,
+#album_modal {
+    /* 防止检查元素时突出显示 */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+/* 特殊情况：针对动态加载的图片 */
+img[data-src*="album"],
+img[data-original*="album"],
+.lazy-loaded img {
+    -webkit-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+    user-select: none !important;
+    
+    -webkit-user-drag: none !important;
+
+    
+    -webkit-touch-callout: none !important;
+}
+
+/* 防止通过伪元素绕过防护 */
+#album_section img::before,
+#album_section img::after,
+.album_container img::before,
+.album_container img::after,
+#album_modal img::before,
+#album_modal img::after {
+    content: none !important;
+    display: none !important;
+}
+
+/* 防止通过背景图像绕过 */
+.album_card[style*="background-image"],
+.photo_wall_item[style*="background-image"] {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    
+    -webkit-touch-callout: none;
+    pointer-events: auto;
+}

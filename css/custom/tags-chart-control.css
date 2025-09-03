@@ -1,0 +1,27 @@
+/**
+ * 标签统计图显示控制
+ * 根据页面类型控制统计图的显示和隐藏
+ */
+
+/* 默认显示统计图（标签页面 /tags/） */
+#tags-chart {
+    display: block;
+    height: 300px;
+    padding: 10px;
+    margin: 0;
+}
+
+/* 响应式设计 */
+@media screen and (max-width: 768px) {
+    #tags-chart {
+        height: 250px;
+        padding: 8px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    #tags-chart {
+        height: 200px;
+        padding: 5px;
+    }
+}
