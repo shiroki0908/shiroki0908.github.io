@@ -270,10 +270,10 @@
                         </div>
                         <div class="score-actions">
                             <div class="score-preview">
-                                <a href="#" title="预览"><i class="fas fa-eye"></i></a>
+                                <a href="${score.downloadUrl}" target="_blank" title="预览"><i class="fas fa-eye"></i></a>
                             </div>
                             <div class="score-download">
-                                <a href="${score.downloadUrl}" title="下载"><i class="fas fa-download"></i></a>
+                                <a href="${score.downloadUrl}" download title="下载"><i class="fas fa-download"></i></a>
                             </div>
                         </div>
                     </div>
