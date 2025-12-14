@@ -1,0 +1,139 @@
+@layer utilities {
+    .content-auto {
+        content-visibility: auto;
+    }
+    .piano-shadow {
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
+    }
+    .key-shadow {
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+    .black-key-shadow {
+        box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+    }
+    .key-active {
+        transform: translateY(2px);
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+    .no-select {
+        user-select: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+    }
+    .code-block {
+        transition: opacity 0.2s ease-out;
+    }
+    .code-block:hover {
+        opacity: 1 !important;
+        cursor: pointer;
+    }
+    /* 钢琴键默认样式 */
+    .white-key {
+    fill: white;
+    transition: fill 0.3s ease;
+    }
+    .black-key {
+    fill: black;
+    transition: fill 0.3s ease;
+    }
+    /* key-active 类不设固定颜色，颜色由JS动态设置inline style */
+    .key-active {
+    /* 这里不写fill，避免覆盖JS动态颜色 */
+    }
+    /* 定义CSS变量 */
+    :root {
+            /* 层次更丰富、比之前更深一档的清新波西米亚/高级马卡龙风格白键悬停色 */
+            --white-key-hover-A0: #ffc980;
+            --white-key-hover-B0: #fff380;
+            --white-key-hover-C1: #c8ff80;
+            --white-key-hover-D1: #80ffb2;
+            --white-key-hover-E1: #80e6ff;
+            --white-key-hover-F1: #80aaff;
+            --white-key-hover-G1: #a680ff;
+            --white-key-hover-A1: #e680ff;
+            --white-key-hover-B1: #ff80b2;
+            --white-key-hover-C2: #ffb280;
+            --white-key-hover-D2: #ffe680;
+            --white-key-hover-E2: #e6ff80;
+            --white-key-hover-F2: #80ffb2;
+            --white-key-hover-G2: #80fff3;
+            --white-key-hover-A2: #80ffe6;
+            --white-key-hover-B2: #80ffb2;
+            --white-key-hover-C3: #80e6ff;
+            --white-key-hover-D3: #80aaff;
+            --white-key-hover-E3: #a680ff;
+            --white-key-hover-F3: #e680ff;
+            --white-key-hover-G3: #ff80b2;
+            --white-key-hover-A3: #ffb280;
+            --white-key-hover-B3: #ffe680;
+            --white-key-hover-C4: #e6ff80;
+            --white-key-hover-D4: #80ffb2;
+            --white-key-hover-E4: #80fff3;
+            --white-key-hover-F4: #80ffe6;
+            --white-key-hover-G4: #80ffb2;
+            --white-key-hover-A4: #80e6ff;
+            --white-key-hover-B4: #80aaff;
+            --white-key-hover-C5: #a680ff;
+            --white-key-hover-D5: #e680ff;
+            --white-key-hover-E5: #ff80b2;
+            --white-key-hover-F5: #ffb280;
+            --white-key-hover-G5: #ffe680;
+            --white-key-hover-A5: #e6ff80;
+            --white-key-hover-B5: #80ffb2;
+            --white-key-hover-C6: #80fff3;
+            --white-key-hover-D6: #80ffe6;
+            --white-key-hover-E6: #80ffb2;
+            --white-key-hover-F6: #80e6ff;
+            --white-key-hover-G6: #80aaff;
+            --white-key-hover-A6: #a680ff;
+            --white-key-hover-B6: #e680ff;
+            --white-key-hover-C7: #ff80b2;
+            --white-key-hover-D7: #ffb280;
+            --white-key-hover-E7: #ffe680;
+            --white-key-hover-F7: #e6ff80;
+            --white-key-hover-G7: #80ffb2;
+            --white-key-hover-A7: #80fff3;
+            --white-key-hover-B7: #80ffe6;
+            --white-key-hover-C8: #80ffb2;
+            
+            /* 层次更丰富、比之前更深一档的清新波西米亚/高级马卡龙风格黑键悬停色 */
+            --black-key-hover-As0: #ffb366;
+            --black-key-hover-Cs1: #ffe066;
+            --black-key-hover-Ds1: #b3ff66;
+            --black-key-hover-Fs1: #66ffb3;
+            --black-key-hover-Gs1: #66e0ff;
+            --black-key-hover-As1: #6699ff;
+            --black-key-hover-Cs2: #a366ff;
+            --black-key-hover-Ds2: #e066ff;
+            --black-key-hover-Fs2: #ff66b3;
+            --black-key-hover-Gs2: #ff6699;
+            --black-key-hover-As2: #ffb366;
+            --black-key-hover-Cs3: #ffe066;
+            --black-key-hover-Ds3: #b3ff66;
+            --black-key-hover-Fs3: #66ffb3;
+            --black-key-hover-Gs3: #66e0ff;
+            --black-key-hover-As3: #6699ff;
+            --black-key-hover-Cs4: #a366ff;
+            --black-key-hover-Ds4: #e066ff;
+            --black-key-hover-Fs4: #ff66b3;
+            --black-key-hover-Gs4: #ff6699;
+            --black-key-hover-As4: #ffb366;
+            --black-key-hover-Cs5: #ffe066;
+            --black-key-hover-Ds5: #b3ff66;
+            --black-key-hover-Fs5: #66ffb3;
+            --black-key-hover-Gs5: #66e0ff;
+            --black-key-hover-As5: #6699ff;
+            --black-key-hover-Cs6: #a366ff;
+            --black-key-hover-Ds6: #ff66b3;
+            --black-key-hover-Fs6: #ff6699;
+            --black-key-hover-Gs6: #ffb366;
+            --black-key-hover-As6: #ffe066;
+            --black-key-hover-Cs7: #b3ff66;
+            --black-key-hover-Ds7: #66ffb3;
+            --black-key-hover-Fs7: #66e0ff;
+            --black-key-hover-Gs7: #6699ff;
+            --black-key-hover-As7: #a366ff;
+        }
+}
+

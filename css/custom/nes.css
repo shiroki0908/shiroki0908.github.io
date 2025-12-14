@@ -1,0 +1,12 @@
+body { font-family: Arial, sans-serif; background: #222; color: #fff; text-align: center; }
+#nes-canvas {
+    width: 768px;   /* 256*3 */
+    height: 576px;  /* 240*3 */
+    image-rendering: pixelated;
+    background: #000;
+    margin: 20px auto;
+    display: block;
+}
+.controls { margin: 20px; }
+label, button { font-size: 1.1em; margin: 0 10px; }
+

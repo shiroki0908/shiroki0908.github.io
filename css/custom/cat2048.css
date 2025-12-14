@@ -1,0 +1,41 @@
+@layer utilities {
+  .content-auto {
+    content-visibility: auto;
+  }
+  .tile-appear {
+    animation: tile-appear 0.3s ease-in-out;
+  }
+  .tile-merge {
+    animation: tile-merge 0.3s ease-in-out;
+  }
+  .game-container {
+    touch-action: none;
+  }
+  .grid-cell {
+    background-color: #FFECEC;
+    border-radius: 0.5rem;
+    box-shadow: inset 0 2px 8px 0 rgba(0,0,0,0.04);
+  }
+  .cat-tile {
+    position: absolute;
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    transition: all 0.2s;
+    box-shadow: 0 2px 8px 0 rgba(0,0,0,0.10);
+  }
+}
+
+@keyframes tile-appear {
+  0% { transform: scale(0.8); opacity: 0.8; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes tile-merge {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
