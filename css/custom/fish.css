@@ -7,18 +7,23 @@
     background: transparent !important; /* 透明背景 */
     margin: -5rem 0 0 0 !important; /* 进一步减少与st-footer的距离 */
     padding: 0 !important;
-    z-index: 100 !important; /* 降低z-index，避免遮挡音乐播放器 */
+    z-index: 1 !important; /* 降低z-index，避免遮挡其他内容 */
+    pointer-events: none !important; /* 不拦截鼠标事件，让st-footer可以点击 */
 }
 
 /* 减少st-footer与鱼儿容器之间的距离 */
 #st-footer {
     margin-bottom: 0 !important; /* 移除st-footer的底部间距 */
+    position: relative !important;
+    z-index: 10 !important; /* 确保st-footer在鱼儿容器之上，可以点击 */
+    pointer-events: auto !important; /* 确保可以点击 */
 }
 
 #jsi-flying-fish-container canvas {
     display: block !important;
     width: 100% !important;
     height: 100% !important;
+    pointer-events: none !important; /* canvas也不拦截鼠标事件 */
 }
 
 /* 确保页脚内容不被遮挡 */
