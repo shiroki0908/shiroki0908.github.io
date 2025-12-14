@@ -7,6 +7,14 @@ var RENDERER = {
 	
 	init : function(){
 		this.setParameters();
+		// 如果容器不存在，不继续初始化
+		if (!this.$container || this.$container.length === 0) {
+			return;
+		}
+		// 如果canvas创建失败，不继续
+		if (!this.$canvas || this.$canvas.length === 0 || !this.context) {
+			return;
+		}
 		this.reconstructMethods();
 		this.setup();
 		this.bindEvent();
@@ -14,12 +22,27 @@ var RENDERER = {
 	},
 	setParameters : function(){
 		this.$window = $(window);
+		// 重新获取容器引用（PJAX后容器可能被重新创建）
 		this.$container = $('#jsi-flying-fish-container');
+		if (this.$container.length === 0) {
+			// 容器不存在，设置基本状态
+			this.points = [];
+			this.fishes = [];
+			this.watchIds = [];
+			this.isRunning = false;
+			this.$canvas = null;
+			this.context = null;
+			return;
+		}
+		// 清空容器中可能存在的旧内容
+		this.$container.empty();
+		// 创建新的canvas
 		this.$canvas = $('<canvas />');
 		this.context = this.$canvas.appendTo(this.$container).get(0).getContext('2d');
 		this.points = [];
 		this.fishes = [];
 		this.watchIds = [];
+		this.isRunning = false; // 标志位：控制动画循环是否运行
 	},
 	createSurfacePoints : function(){
 		var count = Math.round(this.width / this.POINT_INTERVAL);
@@ -44,15 +67,42 @@ var RENDERER = {
 		this.render = this.render.bind(this);
 	},
 	setup : function(){
+		// 确保容器引用有效
+		if (!this.$container || this.$container.length === 0) {
+			this.$container = $('#jsi-flying-fish-container');
+			if (this.$container.length === 0) {
+				return; // 容器不存在，不初始化
+			}
+		}
+		
+		// 确保canvas存在（setParameters中应该已经创建，这里只是确认）
+		if (!this.$canvas || this.$canvas.length === 0 || !this.context) {
+			return; // canvas不存在，说明setParameters失败了
+		}
+		
 		this.points.length = 0;
 		this.fishes.length = 0;
 		this.watchIds.length = 0;
 		this.intervalCount = this.MAX_INTERVAL_COUNT;
 		this.width = this.$container.width();
 		this.height = this.$container.height();
+		
+		// 检查尺寸是否有效
+		if (this.width === 0 || this.height === 0) {
+			// 如果尺寸为0，延迟重试
+			var self = this;
+			setTimeout(function() {
+				if (self.$container && self.$container.length > 0) {
+					self.setup();
+				}
+			}, 100);
+			return;
+		}
+		
 		this.fishCount = this.FISH_COUNT * this.width / 500 * this.height / 500;
 		this.$canvas.attr({width : this.width, height : this.height});
 		this.reverse = false;
+		this.isRunning = true; // 启动动画循环
 		
 		this.fishes.push(new FISH(this));
 		this.createSurfacePoints();
@@ -140,7 +190,20 @@ var RENDERER = {
 		}
 	},
 	render : function(){
+		// 如果动画已停止，不再继续（必须在最开始检查）
+		if (!this.isRunning) {
+			return;
+		}
+		
+		// 检查context是否有效（如果canvas被移除，context也会失效）
+		if (!this.context || !this.$canvas || this.$canvas.length === 0) {
+			this.isRunning = false;
+			return;
+		}
+		
+		// 在检查通过后再注册下一帧
 		requestAnimationFrame(this.render);
+		
 		this.controlStatus();
 		this.context.clearRect(0, 0, this.width, this.height);
 		this.context.fillStyle = 'hsl(0, 0%, 95%)';
@@ -330,6 +393,72 @@ FISH.prototype = {
 		this.controlStatus(context);
 	}
 };
+// 初始化函数
+function initFishRenderer() {
+	// 如果已经初始化过，先清理
+	if (window.fishRendererInitialized) {
+		// 停止动画循环
+		RENDERER.isRunning = false;
+		
+		// 清理事件监听
+		if (RENDERER.$window) {
+			RENDERER.$window.off('resize', RENDERER.watchWindowSize);
+		}
+		if (RENDERER.$container) {
+			RENDERER.$container.off('mouseenter', RENDERER.startEpicenter);
+			RENDERER.$container.off('mousemove', RENDERER.moveEpicenter);
+		}
+		
+		// 移除canvas
+		if (RENDERER.$canvas && RENDERER.$canvas.length > 0) {
+			RENDERER.$canvas.remove();
+		}
+		
+		// 重置状态和引用
+		RENDERER.points = [];
+		RENDERER.fishes = [];
+		RENDERER.watchIds = [];
+		RENDERER.$container = null;
+		RENDERER.$canvas = null;
+		RENDERER.context = null;
+	}
+	
+	// 重置标志位
+	window.fishRendererInitialized = false;
+	
+	// 直接尝试初始化，使用简单的延迟
+	setTimeout(function() {
+		var $container = $('#jsi-flying-fish-container');
+		if ($container.length > 0) {
+			// 容器存在，尝试初始化
+			RENDERER.init();
+			// 检查是否成功初始化（通过检查canvas是否存在）
+			if (RENDERER.$canvas && RENDERER.$canvas.length > 0) {
+				window.fishRendererInitialized = true;
+			} else {
+				// 如果初始化失败，再延迟重试一次
+				setTimeout(function() {
+					var $containerRetry = $('#jsi-flying-fish-container');
+					if ($containerRetry.length > 0) {
+						RENDERER.init();
+						if (RENDERER.$canvas && RENDERER.$canvas.length > 0) {
+							window.fishRendererInitialized = true;
+						}
+					}
+				}, 500);
+			}
+		}
+	}, 100);
+}
+
+// 页面加载时初始化
 $(function(){
-	RENDERER.init();
+	initFishRenderer();
+});
+
+// PJAX支持：页面跳转后重新初始化
+// 只监听pjax:complete，避免重复触发
+// pjax:complete在DOM更新完成后触发，比pjax:success更可靠
+document.addEventListener('pjax:complete', function() {
+	initFishRenderer();
 });
