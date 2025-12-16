@@ -83,8 +83,6 @@
             
             <tag> Pug模板 </tag>
             
-            <tag> ECharts </tag>
-            
             <tag> 分类页面 </tag>
             
             <tag> 标签页面 </tag>
@@ -92,6 +90,8 @@
             <tag> 归档页面 </tag>
             
             <tag> 统计图 </tag>
+            
+            <tag> ECharts </tag>
             
             <tag> PJAX </tag>
             
@@ -177,9 +177,9 @@
             
             <tag> CSS </tag>
             
-            <tag> 侧边栏 </tag>
-            
             <tag> 个性时钟 </tag>
+            
+            <tag> 侧边栏 </tag>
             
             <tag> 数码时钟 </tag>
             
@@ -218,11 +218,11 @@
             
             <tag> CSS </tag>
             
+            <tag> 侧边栏 </tag>
+            
             <tag> 来访者 </tag>
             
             <tag> 欢迎信息 </tag>
-            
-            <tag> 侧边栏 </tag>
             
             <tag> 个性化 </tag>
             

@@ -1,7 +1,10 @@
 body { font-family: Arial, sans-serif; background: #222; color: #fff; text-align: center; }
 #nes-canvas {
-    width: 768px;   /* 256*3 */
-    height: 576px;  /* 240*3 */
+    /* Keep native canvas resolution (256x240) but scale responsively */
+    width: min(92vw, 768px);   /* up to 256*3 */
+    height: auto;
+    aspect-ratio: 256 / 240;   /* 16:15 */
+    max-height: 70vh;
     image-rendering: pixelated;
     background: #000;
     margin: 20px auto;
@@ -9,4 +12,14 @@ body { font-family: Arial, sans-serif; background: #222; color: #fff; text-align
 }
 .controls { margin: 20px; }
 label, button { font-size: 1.1em; margin: 0 10px; }
+
+@media (max-width: 640px) {
+    #nes-canvas {
+        width: 96vw;
+        max-height: 55vh;
+        margin: 12px auto;
+    }
+    .controls { margin: 12px; }
+    label, button { font-size: 1em; margin: 6px 6px; }
+}
 

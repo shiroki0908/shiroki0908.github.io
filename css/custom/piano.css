@@ -28,6 +28,13 @@
         opacity: 1 !important;
         cursor: pointer;
     }
+    /* Mobile: prevent long MIDI names from stretching layout */
+    #midi-select {
+        max-width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
     /* 钢琴键默认样式 */
     .white-key {
     fill: white;
