@@ -83,8 +83,6 @@
             
             <tag> Pug模板 </tag>
             
-            <tag> ECharts </tag>
-            
             <tag> 分类页面 </tag>
             
             <tag> 标签页面 </tag>
@@ -92,6 +90,8 @@
             <tag> 归档页面 </tag>
             
             <tag> 统计图 </tag>
+            
+            <tag> ECharts </tag>
             
             <tag> PJAX </tag>
             
@@ -378,13 +378,13 @@
             
             <tag> Hexo </tag>
             
-            <tag> Banner </tag>
-            
             <tag> 防护功能 </tag>
             
             <tag> JavaScript </tag>
             
             <tag> CSS </tag>
+            
+            <tag> Banner </tag>
             
         </tags>
       
