@@ -4,39 +4,56 @@ window.Pane = Pane;
 // Register GSAP plugins
 gsap.registerPlugin(CustomEase);
 CustomEase.create("hop", "0.9, 0, 0.1, 1");
-// Project titles
-const items = [
-  "Chromatic Loopscape",
-  "Solar Bloom",
-  "Neon Handscape",
-  "Echo Discs",
-  "Void Gaze",
-  "Gravity Sync",
-  "Heat Core",
-  "Fractal Mirage",
-  "Nova Pulse",
-  "Sonic Horizon",
-  "Dream Circuit",
-  "Lunar Mesh",
-  "Radiant Dusk",
-  "Pixel Drift",
-  "Vortex Bloom",
-  "Shadow Static",
-  "Crimson Phase",
-  "Retro Cascade",
-  "Photon Fold",
-  "Zenith Flow"
-];
-// Image URLs - replace with your actual image URLs
-const imageUrls = [
-  "https://cdn.cosmos.so/0f164449-f65e-4584-9d62-a9b3e1f4a90a?format=jpeg",
-  "https://cdn.cosmos.so/74ccf6cc-7672-4deb-ba13-1727b7dc6146?format=jpeg",
-  "https://cdn.cosmos.so/2f49a117-05e7-4ae9-9e95-b9917f970adb?format=jpeg",
-  "https://cdn.cosmos.so/7b5340f5-b4dc-4c08-8495-c507fa81480b?format=jpeg",
-  "https://cdn.cosmos.so/f733585a-081e-48e7-a30e-e636446f2168?format=jpeg",
-  "https://cdn.cosmos.so/47caf8a0-f456-41c5-98ea-6d0476315731?format=jpeg",
-  "https://cdn.cosmos.so/f99f8445-6a19-4a9a-9de3-ac382acc1a3f?format=jpeg"
-];
+
+// 配置变量，将从 Hexo 数据文件加载
+let items = [];
+let imageUrls = [];
+
+// 从注入的配置中加载数据
+function loadConfig() {
+  const config = window.museumConfig || {};
+  
+  // 从新的配置结构中提取名称和URL
+  if (config.items && Array.isArray(config.items)) {
+    items = config.items.map(item => item.name || item);
+    imageUrls = config.items.map(item => item.url || item);
+  } else {
+    // 兼容旧格式或使用默认配置
+    items = config.items || [
+      "Chromatic Loopscape",
+      "Solar Bloom",
+      "Neon Handscape",
+      "Echo Discs",
+      "Void Gaze",
+      "Gravity Sync",
+      "Heat Core",
+      "Fractal Mirage",
+      "Nova Pulse",
+      "Sonic Horizon",
+      "Dream Circuit",
+      "Lunar Mesh",
+      "Radiant Dusk",
+      "Pixel Drift",
+      "Vortex Bloom",
+      "Shadow Static",
+      "Crimson Phase",
+      "Retro Cascade",
+      "Photon Fold",
+      "Zenith Flow"
+    ];
+    imageUrls = config.imageUrls || [
+      "https://cdn.cosmos.so/0f164449-f65e-4584-9d62-a9b3e1f4a90a?format=jpeg",
+      "https://cdn.cosmos.so/74ccf6cc-7672-4deb-ba13-1727b7dc6146?format=jpeg",
+      "https://cdn.cosmos.so/2f49a117-05e7-4ae9-9e95-b9917f970adb?format=jpeg",
+      "https://cdn.cosmos.so/7b5340f5-b4dc-4c08-8495-c507fa81480b?format=jpeg",
+      "https://cdn.cosmos.so/f733585a-081e-48e7-a30e-e636446f2168?format=jpeg",
+      "https://cdn.cosmos.so/47caf8a0-f456-41c5-98ea-6d0476315731?format=jpeg",
+      "https://cdn.cosmos.so/f99f8445-6a19-4a9a-9de3-ac382acc1a3f?format=jpeg"
+    ];
+  }
+  
+  console.log("配置加载成功:", { itemsCount: items.length, imageUrlsCount: imageUrls.length });
+}
 const container = document.querySelector(".container");
 const canvas = document.getElementById("canvas");
 const overlay = document.getElementById("overlay");
@@ -77,7 +94,7 @@ let itemSizes = [
 ];
 let itemGap = settings.itemGap;
 let columns = 4;
-const itemCount = items.length;
+let itemCount = 0; // 将在配置加载后更新
 // Calculate grid cell size based on the largest possible item
 let cellWidth = settings.baseWidth + settings.itemGap;
 let cellHeight =
@@ -905,10 +922,28 @@ function initializeStyles() {
   updateHoverScale();
   updatePageVignette();
 }
-// Initialize
-initializeStyles();
-updateVisibleItems();
-animate();
-// Initialize Tweakpane after a short delay to ensure DOM is ready
-setTimeout(initTweakpane, 500);
+
+// 初始化函数
+function initialize() {
+  // 加载配置
+  loadConfig();
+  
+  // 更新 itemCount
+  itemCount = items.length;
+  
+  // 初始化样式
+  initializeStyles();
+  
+  // 更新可见项目
+  updateVisibleItems();
+  
+  // 开始动画循环
+  animate();
+  
+  // 初始化 Tweakpane
+  setTimeout(initTweakpane, 500);
+}
+
+// 启动初始化
+initialize();
 
