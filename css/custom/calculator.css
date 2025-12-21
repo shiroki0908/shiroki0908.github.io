@@ -1,0 +1,127 @@
+.calc-btn {
+    min-width: 80px;
+    font-size: 1.25rem;
+    cursor: pointer;
+    user-select: none;
+    outline: none;
+    border: none;
+}
+
+.calc-btn:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.calc-btn:active:not(:disabled) {
+    transform: scale(0.95);
+}
+
+.calc-btn:disabled {
+    opacity: 0.5 !important;
+    cursor: not-allowed !important;
+    pointer-events: none;
+}
+
+#display {
+    min-height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#video-container {
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#result-video {
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 450px; /* PC版默认高度 */
+    outline: none;
+    border: none;
+    object-fit: contain;
+}
+
+/* 平板版 (768px - 1024px) */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+    #video-container {
+        min-height: 250px;
+    }
+    
+    #result-video {
+        max-height: 350px;
+    }
+}
+
+/* 手机版 (最大宽度 768px) */
+@media screen and (max-width: 768px) {
+    #video-container {
+        min-height: 180px;
+    }
+    
+    #result-video {
+        max-height: 280px;
+    }
+}
+
+/* 小屏手机版 (最大宽度 480px) */
+@media screen and (max-width: 480px) {
+    #video-container {
+        min-height: 150px;
+    }
+    
+    #result-video {
+        max-height: 220px;
+    }
+}
+
+#result-video:focus {
+    outline: none;
+}
+
+#progress-bar {
+    transition: width 0.3s ease;
+}
+
+#loading-text {
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.6;
+    }
+}
+
+/* 移除所有元素的默认焦点边框 */
+button:focus,
+button:active,
+video:focus,
+video:active {
+    outline: none !important;
+    box-shadow: none !important;
+    border: none !important;
+}
+
+/* 移除视频容器的边框 */
+#video-section * {
+    outline: none;
+}
+
+/* 确保所有按钮没有边框 */
+.calc-btn,
+.calc-btn:focus,
+.calc-btn:active,
+.calc-btn:hover {
+    outline: none !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
